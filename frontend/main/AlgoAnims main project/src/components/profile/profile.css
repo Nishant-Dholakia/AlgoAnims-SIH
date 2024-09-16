@@ -23,7 +23,9 @@ word-break: keep-all;
 justify-content: space-around;
 align-items: center;
 }
-
+.accounts{
+    word-break: break-all;
+}
 .profilepic
 {
     margin: 10px;
@@ -60,6 +62,9 @@ align-items: center;
     font-size: 18px;
 }
 
+.textplatform{
+    width: 85%;
+}
 .darksvg
 {
     filter: invert(1);
