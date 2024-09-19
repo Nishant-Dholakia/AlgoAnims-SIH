@@ -51,6 +51,8 @@ function Profile() {
           </div>
 
           <button className="editprofilebtn">Edit Profile</button>
+
+          <div>
           <CreateUserDetails
             svg="/email.svg"
             text="nishantdholakia2020@gmail.com"
@@ -66,6 +68,10 @@ function Profile() {
             text="Github Profile"
             data="https://github.com/Nishant-Dholakia"
           />
+
+</div>
+<h1 className="text-2xl">  Competitive Platforms</h1>
+
 
           <div className="platforms mt-6">
             <CreatePlatForms
@@ -93,6 +99,27 @@ function Profile() {
               text="GeeksforGeeks"
               data="@kachaparth"
             />
+             <CreatePlatForms
+              svg="/gfg.svg"
+              text="GeeksforGeeks"
+              data="@kachaparth"
+            />
+            <CreatePlatForms
+              svg="/code-forces.svg"
+              text="GeeksforGeeks"
+              data="@kachaparth"
+            />
+             <CreatePlatForms
+              svg="/gfg.svg"
+              text="GeeksforGeeks"
+              data="@kachaparth"
+            />
+            <CreatePlatForms
+              svg="/code-forces.svg"
+              text="GeeksforGeeks"
+              data="@kachaparth"
+            />
+          
           </div>
         </div>
         <div className="right"></div>
