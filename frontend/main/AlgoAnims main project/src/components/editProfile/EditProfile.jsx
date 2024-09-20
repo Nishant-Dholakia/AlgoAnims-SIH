@@ -15,18 +15,18 @@ function EditProfile() {
       id={label.toLowerCase()}
       onClick={(e)=> {
         console.log(e.target.id)
-        setOption(e.target.id)}
+        setOption(e.target.id)
+        const rightSection = document.querySelector('.rightedit');
+        if (rightSection) {
+          rightSection.scrollIntoView({ behavior: 'smooth' });
+        }
       }
+      }
+      
       >{label}</div>
       </Link>
     )
   }
-
-  useEffect(()=>{
-
-
-
-  },[setOption]);
   
   return (
     <>

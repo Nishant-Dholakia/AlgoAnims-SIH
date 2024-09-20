@@ -1,7 +1,7 @@
-import './editplatformpage.css'
+import './edit.css'
 function EditPlatformPage() {
   return (
-    <form className='editplatform' method='post'>
+    <form className='edit' method='post'>
       <div className="area">
         <label htmlFor="leetcode" className='label'>LeetCode : </label>
         <input type="text" name='leetcodeUname' id='leetcode' placeholder='username(eg. user_12)' />
