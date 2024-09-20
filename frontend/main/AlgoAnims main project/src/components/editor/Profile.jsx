@@ -1,5 +1,8 @@
 import "./profile.css";
+import { Link } from "react-router-dom";
 function Profile() {
+
+
   function CreateUserDetails({ svg, text, data = "N/A" }) {
     return (
       <div className="accounts break-words flex gap-2 items-center m-2">
@@ -7,7 +10,6 @@ function Profile() {
       </div>
     );
   }
-
   function CreatePlatForms({ svg, text, data = "N/A" }) {
     return (
       <div className="platformAccounts bg-slate-500 flex justify-center p-1 my-2 rounded-md ">
@@ -23,7 +25,7 @@ function Profile() {
         </div>
 
         <button className="p-1">
-          <img src="/linkopen.svg" className="darksvg w-9 h-9" alt="" />
+          <img src="/linkopen.svg" className="darksvg w-9 h-9" alt={text}/>
         </button>
       </div>
     );
@@ -34,24 +36,22 @@ function Profile() {
       <div className="profilecss ">
         <div className="left flex-col">
           <div className="personaldetails">
-            {/* <div className="profilepic">
+            <div className="profilepic rounded-full">
                 N
-              </div> */}
-            <img
+              </div>
+            {/* <img
               className="profilepic"
               src="https://media.licdn.com/dms/image/v2/D4D03AQHMKhaYEalknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705511571724?e=1732147200&v=beta&t=UMWylJghozMP14R5X9VJ4XrHHzuNm2nOqf-yz5X1Udo"
               alt="N"
-            />
+            /> */}
 
             <div className="username">Nishant Dholakia</div>
-            {/* <div className="emailid">
-                <img src="/email.svg" alt="emailid" className="darksvg" />
-                nishantdholakia2020@gmail.com
-              </div> */}
+           
           </div>
 
-          <button className="editprofilebtn">Edit Profile</button>
-
+              <Link to="/editprofile">
+                  <button className="editprofilebtn">Edit Profile</button>
+              </Link>
           <div>
           <CreateUserDetails
             svg="/email.svg"
@@ -68,8 +68,7 @@ function Profile() {
             text="Github Profile"
             data="https://github.com/Nishant-Dholakia"
           />
-
-</div>
+          </div>
 <h1 className="text-2xl">  Competitive Platforms</h1>
 
 
@@ -79,6 +78,7 @@ function Profile() {
               text="LeetCode"
               data="@kachaparth"
             />
+
             <CreatePlatForms
               svg="/codechef.svg"
               text="CodeChef"
@@ -122,7 +122,11 @@ function Profile() {
           
           </div>
         </div>
-        <div className="right"></div>
+        <div className="right">
+        <div className="rightShow">
+      
+    </div>
+        </div>
       </div>
     </>
   );
