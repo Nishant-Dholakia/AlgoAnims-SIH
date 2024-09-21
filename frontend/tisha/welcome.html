@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+           
+            list-style: none;
+            text-decoration: none;
+        }
+        nav{
+            height: 80px;
+            background-color: white;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        nav ul{
+            float: right;
+            margin-right: 25px;
+        }
+        nav ul li{
+            display: inline;
+            line-height: 20px;
+            margin: 0 2px;
+        }
+      
+        nav label i {
+            font-size: 24px;
+            color: #408697;
+            display: inline-block;
+            cursor: pointer;
+        }
+      
+        #list {
+           
+            border: 1px dotted black;
+            overflow-y: scroll; 
+          }
+          
+         
+          #list::-webkit-scrollbar {
+              display: none;
+          }
+          
+          
+          #list {
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+          }
+
+
+        #cancle {
+            display: none;
+        }
+        label #btn{
+            float: right;
+            line-height: 80px;
+            margin-right: 40px;
+            display: none;
+        }
+        label #cancle{
+            float: right;
+            line-height: 80px;
+            margin-right: 40px;
+            display: none;
+        }
+        #check{
+            display: none;
+        }
+        @media(max-width:1118px){
+            nav p{
+                left:8%;
+            }
+            .container1{
+                padding: 3px;
+             }
+             .image img{
+                display: none;
+            }
+           
+        }
+        @media(max-width:944px){
+            nav p{
+                left:6%;
+                top:20px;
+                width: 130px;
+            } 
+        }
+       
+        
+            label #btn{
+                display: block;
+                
+            }
+            #lname{
+                margin-left: 33px;
+                margin-top: 8px;
+            }
+            #list{
+                background-color: rgba(255, 255, 255, 0.048);
+                backdrop-filter: blur(10px);
+            }
+            ul{
+                position: fixed;
+                width: 40vb;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.977);
+                
+                top: 80px;
+                left:-100%;
+                text-align: center;
+                transition: all 0.5s;
+                overflow-y: scroll;
+            }
+            nav ul li{
+                display: block;
+                margin: 5px 40px;
+                line-height: 30px;
+                text-align: start;
+            }
+            #check:checked ~ ul{
+                left: 0%;
+            }
+            #check:checked ~ label #btn{
+               display: none;
+            }
+            #check:checked ~ label #cancle{
+                display: block;
+             }
+             #btn,#cancle{
+        
+                margin-left: 29px;
+               
+               }
+               #btn1{
+                  float: right;
+                margin-right: 109px;
+                margin-top: 26px;
+                font-size: 22px;
+               }
+               li{
+                font-size: 23px;
+                font-weight: bold;
+               }
+                
+                #login{
+                    background-color: #408697;
+                    width: 66px;
+                    float: right;
+        margin-right: -110px;
+        margin-top: 22px;
+                }
+        
+        button{
+            flex: 1 1 auto;
+            cursor: pointer;
+           flex-wrap: wrap;
+          height: 35px;
+          width: 66px;
+          padding: 3px;
+          margin: 4px;
+         
+         font-size: 15px;
+         border-radius: 7px;  
+         background-color: #408697;  
+         color: white;
+        }
+      nav  p{
+            position: absolute;
+            top: 17px;
+           left: 35px;
+            width: 150px;
+            font-size: 26px;
+            color:#408697 ;
+        }
+       
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            display: flex;
+            flex-wrap: wrap; 
+            background-color: white;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 2px solid #408697;
+        }
+
+        .cardimage {
+            flex: 1 1 300px; 
+            min-width: 300px;
+        }
+
+        .cardimage img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .cardcontent {
+            flex: 2 1 400px; 
+            padding: 1rem;
+        }
+
+
+
+
+        .rightimage {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-left: 140px;
+            gap: 10px;
+        }
+        
+        .content {
+            flex: 1;
+            padding-right: 10px;
+            margin-top: -10px;
+            
+        }
+        
+        .image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image img {
+            width: 100%;
+            height: 400px;
+        }
+        
+       
+            @media (max-width: 1328px) {
+                .image img{
+                    display: none;
+                }
+                .rightimage {
+                    flex-direction: column;
+                    align-items: center;
+                    margin-left: 1px;
+                    margin-top: 3px;
+                    
+                }
+                .content {
+                     text-align: center;
+                }
+            }
+            
+        #h2{
+            text-align: center;
+        }
+      .content p{
+        font-size: 22px;
+      }
+      .content h2{
+        font-size: 50px;
+      }
+      h1 span{
+        display: inline-block;
+    }
+
+
+
+
+
+
+
+
+
+
+    #move{
+        background-color: #408697;
+        display: flex;
+        padding: 3vw 0;
+        overflow: hidden;
+    }
+    .marque h3{
+        font-size: 70px;
+    }
+
+.marque{
+display: flex;
+align-items: center;
+gap: 3vw;
+padding: 0 1.5vw;
+flex-shrink: 0;
+transform: translate(-100%);
+}
+    .marque img{
+       height: 4vw;
+    }
+   
+    </style>
+</head>
+<body>
+    <nav id="n">
+        <input type="checkbox" id="check">
+        <label for="check">
+            <i style="float: left;" class="fas fa-bars" id="btn"></i>
+            <i style="float: left;" class="fas fa-times" id="cancle"></i>
+        </label><h1></h1>
+     <p id="lname">AlgoAnims</p>
+     <i id="btn1" class="ri-moon-clear-line"></i>
+     <button id="login">Login</button>
+    
+     <ul id="list">
+             <li>Graph</li>
+                <li style="font-size: 13px;">BFS traversal</li>
+                <li style="font-size: 13px;">DFS traversal</li>
+                <li style="font-size: 13px;">Prim's Algorithm</li>
+                <li style="font-size: 13px;">Krushkal's Algorithm</li>
+                <li style="font-size: 13px;">Dijkstra's Algorithm</li>
+
+            <li>Tree</li>
+                <li style="font-size: 13px;">Inorder traversal</li>
+                <li style="font-size: 13px;">Postorder traversal</li>
+                <li style="font-size: 13px;">Preorder traversal</li>
+                <li style="font-size: 13px;">Level-order traversal</li>
+                <li style="font-size: 13px;">BST-insertion</li>
+                <li style="font-size: 13px;">BST-deletion</li>
+
+
+                <li>Searching</li>
+                <li style="font-size: 13px;">Linear</li>
+                <li style="font-size: 13px;">Binary </li> 
+            <li>Sorting</li>
+                <li style="font-size: 13px;">Insertion</li>
+                <li style="font-size: 13px;">Bubble</li>
+                <li style="font-size: 13px;">Selection</li>
+                <li style="font-size: 13px;">Merge</li>
+               
+                <li style="font-size: 13px;">Quick</li>
+                <li style="font-size: 13px;">Quick</li>
+                <li style="font-size: 13px;">Quick</li>
+
+           
+        </ul>
+    </nav><br><br>
+    <div class="rightimage">
+        <div class="content">
+            <h2 style="color: #408697;">Welcome to AlgoAnims!!</h2><br>
+            <h1 >Unlock the World of Algorithms</h1><br>
+            <p>Say goodbye to dry textbooks! Our dynamic animations simplify complex concepts, making it easier for you to grasp the essentials of algorithms.</p>
+           
+        </div>
+       
+        <div class="image">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29kaW5nJTIwYWxnb3JpdGhtJTIwJTIwaW1hZ2V8ZW58MHx8MHx8fDA%3D">
+        </div>
+    </div>
+    <br><br><br> <div id="page2">
+        <div id="move">
+            <div class="marque">
+                <h3>dive into algorithm</h3>
+                <img src="https://www.brandium.nl/wp-content/uploads/2023/07/arrow-br.svg">
+            </div>
+            <div class="marque">
+                <h3>dive into algorithm</h3>
+                <img src="https://www.brandium.nl/wp-content/uploads/2023/07/arrow-br.svg">
+            </div>
+            <div class="marque">
+                <h3>dive into algorithm</h3>
+                <img src="https://www.brandium.nl/wp-content/uploads/2023/07/arrow-br.svg">
+            </div>
+            <div class="marque">
+                <h3>dive into algorithm</h3>
+                <img src="https://www.brandium.nl/wp-content/uploads/2023/07/arrow-br.svg">
+            </div>
+            <div class="marque">
+                <h3>dive into algorithm</h3>
+                <img src="https://www.brandium.nl/wp-content/uploads/2023/07/arrow-br.svg">
+            </div>
+            <div class="marque">
+                <h3>dive into algorithm</h3>
+                <img src="https://www.brandium.nl/wp-content/uploads/2023/07/arrow-br.svg">
+            </div>
+            
+             
+        </div>
+    </div>
+<br><br>
+   <div class="container1">
+    <div class="container">
+        <div class="card">
+            <div class="cardimage">
+                <img src="">
+            </div>
+            <div class="cardcontent">
+                <h2>GRAPH</h2>
+                <br>
+                <p>Graph algorithms are the backbone of many complex systems and applications, from social networks to transportation logistics. These algorithms help us understand and solve problems involving interconnected data, allowing us to traverse, analyze, and manipulate graphs efficiently.</p>
+                <br><h4>Jump into our graph algorithms section and unlock a treasure trove of knowledge that will enhance your skills and expand your horizons.
+
+                </h4>
+                <br>
+                <button>Explore</button>
+            </div></div>
+        </div><br>
+        <br>
+        <div class="container1">
+            <div class="container">
+                <div class="card">
+                    <div class="cardimage">
+                        <img src="">
+                    </div>
+                    <div class="cardcontent">
+                        <h2>TREE</h2>
+                        <br>
+                        <p>Trees are fundamental data structures that model hierarchical relationships. They consist of nodes connected by edges, making them ideal for representing data with a parent-child relationship. From file systems to decision processes, trees are everywhere!</p>
+                        <br>
+                        <h4>Ready to branch out into the world of tree data structures? Explore our dedicated section and cultivate your knowledge today!</h4>
+                        <br>
+                        <button>Explore</button>
+                    </div></div>
+                </div><br>
+                <br>
+                <div class="container1">
+                    <div class="container">
+                        <div class="card">
+                            <div class="cardimage">
+                                <img src="">
+                            </div>
+                            <div class="cardcontent">
+                                <h2>SEARCHING</h2>
+                                <br>
+                                <p>Searching algorithms are the unsung heroes of data retrieval, helping you find the information you need quickly and efficiently. From simple lists to complex databases, mastering these algorithms is essential for any aspiring programmer or data enthusiast.</p>
+                                <br>
+                                <h4>Are you ready to enhance your skills and unlock the power of searching algorithms? Explore our dedicated section today and embark on a journey toward becoming a search master!</h4>
+                                <br>
+                                <button>Explore</button>
+                            </div></div>
+                        </div><br>
+                        <br>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+       <script src="welcome.js"></script>
+    
+
+</body>
+</html>
