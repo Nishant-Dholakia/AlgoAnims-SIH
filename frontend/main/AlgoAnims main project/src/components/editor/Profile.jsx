@@ -1,4 +1,5 @@
 import "./profile.css";
+import { Link } from "react-router-dom";
 function Profile() {
   function CreateUserDetails({ svg, text, data = "N/A" }) {
     return (
@@ -7,10 +8,17 @@ function Profile() {
       </div>
     );
   }
-
   function CreatePlatForms({ svg, text, data = "N/A" }) {
     return (
-      <div className="platformAccounts bg-slate-500 flex justify-center p-1 my-2 rounded-md ">
+      <div
+        className="platformAccounts bg-slate-500 flex justify-center p-1 my-2 rounded-md "
+        onClick={() => {
+          const rightSection = document.querySelector(".right");
+          if (rightSection) {
+            rightSection.scrollIntoView({ behavior: "smooth" });
+          }
+        }}
+      >
         <img
           src={svg}
           alt={text}
@@ -23,7 +31,7 @@ function Profile() {
         </div>
 
         <button className="p-1">
-          <img src="/linkopen.svg" className="darksvg w-9 h-9" alt="" />
+          <img src="/linkopen.svg" className="darksvg w-9 h-9" alt={text} />
         </button>
       </div>
     );
@@ -34,44 +42,37 @@ function Profile() {
       <div className="profilecss ">
         <div className="left flex-col">
           <div className="personaldetails">
-            {/* <div className="profilepic">
-                N
-              </div> */}
-            <img
+            <div className="profilepic rounded-full">N</div>
+            {/* <img
               className="profilepic"
               src="https://media.licdn.com/dms/image/v2/D4D03AQHMKhaYEalknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705511571724?e=1732147200&v=beta&t=UMWylJghozMP14R5X9VJ4XrHHzuNm2nOqf-yz5X1Udo"
               alt="N"
-            />
+            /> */}
 
             <div className="username">Nishant Dholakia</div>
-            {/* <div className="emailid">
-                <img src="/email.svg" alt="emailid" className="darksvg" />
-                nishantdholakia2020@gmail.com
-              </div> */}
           </div>
 
-          <button className="editprofilebtn">Edit Profile</button>
-
+          <Link to="/editprofile">
+            <button className="editprofilebtn">Edit Profile</button>
+          </Link>
           <div>
-          <CreateUserDetails
-            svg="/email.svg"
-            text="nishantdholakia2020@gmail.com"
-            data="nishantdholakia2020@gmail.com"
-          />
-          <CreateUserDetails
-            svg="/linkedin.svg"
-            text="Linkedin Profile"
-            data="https://www.linkedin.com/in/nishant-dholakia-a43bb02a8/"
-          />
-          <CreateUserDetails
-            svg="/github.svg"
-            text="Github Profile"
-            data="https://github.com/Nishant-Dholakia"
-          />
-
-</div>
-<h1 className="text-2xl">  Competitive Platforms</h1>
-
+            <CreateUserDetails
+              svg="/email.svg"
+              text="nishantdholakia2020@gmail.com"
+              data="nishantdholakia2020@gmail.com"
+            />
+            <CreateUserDetails
+              svg="/linkedin.svg"
+              text="Linkedin Profile"
+              data="https://www.linkedin.com/in/nishant-dholakia-a43bb02a8/"
+            />
+            <CreateUserDetails
+              svg="/github.svg"
+              text="Github Profile"
+              data="https://github.com/Nishant-Dholakia"
+            />
+          </div>
+          <h1 className="text-2xl"> Competitive Platforms</h1>
 
           <div className="platforms mt-6">
             <CreatePlatForms
@@ -79,6 +80,7 @@ function Profile() {
               text="LeetCode"
               data="@kachaparth"
             />
+
             <CreatePlatForms
               svg="/codechef.svg"
               text="CodeChef"
@@ -99,7 +101,7 @@ function Profile() {
               text="GeeksforGeeks"
               data="@kachaparth"
             />
-             <CreatePlatForms
+            <CreatePlatForms
               svg="/gfg.svg"
               text="GeeksforGeeks"
               data="@kachaparth"
@@ -109,7 +111,7 @@ function Profile() {
               text="GeeksforGeeks"
               data="@kachaparth"
             />
-             <CreatePlatForms
+            <CreatePlatForms
               svg="/gfg.svg"
               text="GeeksforGeeks"
               data="@kachaparth"
@@ -119,10 +121,11 @@ function Profile() {
               text="GeeksforGeeks"
               data="@kachaparth"
             />
-          
           </div>
         </div>
-        <div className="right"></div>
+        <div className="right">
+          <div className="rightShow"></div>
+        </div>
       </div>
     </>
   );
