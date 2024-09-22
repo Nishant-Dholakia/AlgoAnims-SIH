@@ -5,4 +5,4 @@ async function getGFGdata(uname) {
     return data;
 }
 
-module.exports = getGFGdata();
+module.exports = getGFGdata;
