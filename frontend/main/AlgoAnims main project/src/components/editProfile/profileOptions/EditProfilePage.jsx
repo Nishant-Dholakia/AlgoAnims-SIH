@@ -29,6 +29,7 @@ function EditProfilePage() {
           Email id :
         </label>
         <input
+        readOnly
           type="email"
           name="emailid"
           id="emailid"

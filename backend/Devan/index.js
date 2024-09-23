@@ -1,14 +1,18 @@
 const express = require('express');
+
 const cors  = require('cors');
 const gfgData = require('./Controllers/gfg');
 const codechefData = require('./Controllers/codechef');
 const leetcodeData = require('./Controllers/leetcodeData');
 const port = 8080;
 const mongoose = require('mongoose');
-const User = require('./Models/signup');
+const User = require('./Models/data');
+const mail = require('./Controllers/mail');
+const mailforSignup = require('./Controllers/mail');
+
 
 async function connection(){
-    await mongoose.connect('mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/');
+    await mongoose.connect('mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/AlgoAnims');
 }
 
 connection()
@@ -52,6 +56,25 @@ app.post("/editprofile/editPlatformPage" , async(req,res)=>{
 
 })
 
-app.post("/signup",(req,res)=>{
-    
+app.get("/signup",async(req,res)=>{
+    const data = await User.find();
+
+    res.json(data);
 })
+
+app.post("/signup",async(req,res)=>{
+    const {uname , email , pass} = req.body;
+    console.log(req.body);
+    await mailforSignup(email)
+    const user = await User.create({
+        userName: uname,
+        emailId : email,
+        password : pass
+    })
+
+    user.save();
+    console.log("sucessfull")
+})
+
+
+
