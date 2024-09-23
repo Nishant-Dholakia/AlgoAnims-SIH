@@ -19,6 +19,15 @@ function Travel() {
   const inspeed = useRef(1600);
   
 
+  async function delay(){
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 10000);
+    })
+  }
+
+
   function reset() {
     isAnimationStopped.current = true;
     setTravel([]);
@@ -84,10 +93,10 @@ function Travel() {
   }
 
   async function startPreorderTraversal(main, root) {
-    console.log(anino)
     for (let i = 0; i < preorder.length; i++) {
       let no = preorder[i];
       if (isAnimationStopped.current) {
+        console.log("in");
         return i;
       }
       if (i >= anino-1) {
@@ -127,11 +136,16 @@ function Travel() {
   useEffect(() => {
       if (firstTime) {
         if (btn) {
+          console.log(anino)
           const root = fixedTreeRoot;
           collectPreorder(root); // Collect the traversal order before animation
           async function main() {
             isAnimationStopped.current = false;
+            await delay();
             anino = await startPreorderTraversal(root, root);
+            if(anino == preorder.length){
+              isAnimationStopped.current = true;
+            }
             
           }
           main();
@@ -141,7 +155,7 @@ function Travel() {
       }
     
     
-  }, [btn,  Reset]);
+  }, [btn]);
 
   return (
     <>

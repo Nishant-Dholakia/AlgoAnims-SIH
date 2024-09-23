@@ -4,6 +4,20 @@ const gfgData = require('./Controllers/gfg');
 const codechefData = require('./Controllers/codechef');
 const leetcodeData = require('./Controllers/leetcodeData');
 const port = 8080;
+const mongoose = require('mongoose');
+const User = require('./Models/signup');
+
+async function connection(){
+    await mongoose.connect('mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/');
+}
+
+connection()
+.then(()=>{
+    console.log("connection sucessfully");
+})
+.catch((err)=>{
+    console.log(err)
+})
 
 const app = express();
 const corsopt = {
@@ -36,4 +50,8 @@ app.post("/editprofile/editPlatformPage" , async(req,res)=>{
     
     res.json({leetcode , codechef , gfg});
 
+})
+
+app.post("/signup",(req,res)=>{
+    
 })
