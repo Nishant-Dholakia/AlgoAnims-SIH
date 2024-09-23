@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 
 import { useEffect, useState } from "react"
+=======
+import { useEffect } from "react"
+>>>>>>> 295876372eabc353a8396b28d4dd478333ddb5fe
 import gsap from "gsap";
 import {Link, useNavigate} from "react-router-dom"
 import Encriptor from "encriptorjs";
@@ -158,3 +162,7 @@ function Signup() {
 }
 
 export default Signup;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 295876372eabc353a8396b28d4dd478333ddb5fe
