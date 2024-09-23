@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useEffect } from "react"
 import gsap from "gsap";
 import {Link} from "react-router-dom"
@@ -78,5 +77,4 @@ function Signup() {
 }
 
 export default Signup;
-=======
->>>>>>> 72bcf5fd8bbf2f2d667fce57de2403a5ad13a523
+
