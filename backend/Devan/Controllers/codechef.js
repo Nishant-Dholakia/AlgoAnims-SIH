@@ -5,4 +5,4 @@ async function getCodechecfData(uname){
     return data;
 }
 
-module.exports = getCodechecfData()
+module.exports = getCodechecfData

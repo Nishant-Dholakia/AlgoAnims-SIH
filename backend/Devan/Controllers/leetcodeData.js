@@ -59,7 +59,7 @@ async function getLeetcodeData(uname) {
     
     return obj;
 }
-module.exports = getLeetcodeData();
+module.exports = getLeetcodeData;
 // async function main() {
 //     const obj = await getLeetcodeData("devanchauhan012");
 //     console.log(obj);
