@@ -26,9 +26,6 @@ gsap.from("h2 .a", {
   stagger: 0.15,
   opacity: 0
 });
-
-
-
 gsap.from("h2 .b", {
   y: 50,
   duration: 0.8,
@@ -36,14 +33,6 @@ gsap.from("h2 .b", {
   stagger: -0.15,
   opacity: 0
 });
-
-
-
-
-
-
-
-
 document.getElementById('btn1').addEventListener('click', () => {
     let a = document.body.style.backgroundColor;
     let cards = document.getElementsByClassName('card'); 

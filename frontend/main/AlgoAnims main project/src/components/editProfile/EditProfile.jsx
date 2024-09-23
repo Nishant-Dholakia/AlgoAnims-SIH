@@ -1,10 +1,9 @@
-import  {  useState } from "react";
 import './editprofile.css'
 import { Link, Outlet } from 'react-router-dom'
 
 function EditProfile() {
 
-  let [option,setOption] = useState('profile');
+  // let [option,setOption] = useState('profile');
 
   function EditOption({label})
   {
@@ -15,7 +14,7 @@ function EditProfile() {
       id={label.toLowerCase()}
       onClick={(e)=> {
         console.log(e.target.id)
-        setOption(e.target.id)
+        // setOption(e.target.id)
         const rightSection = document.querySelector('.rightedit');
         if (rightSection) {
           rightSection.scrollIntoView({ behavior: 'smooth' });
