@@ -1,7 +1,7 @@
 import  { useEffect, useRef } from "react";
 import gsap from "gsap";
 import "./login.css";
-// import logoImage from "../assets/logo.png"; 
+import logoImage from "/logo.png"; 
 
 function Login() {
   // Create refs for the elements you want to animate
@@ -12,7 +12,6 @@ function Login() {
   useEffect(() => {
     console.log("useEffect called");
 
-    // Define the animation using fromTo to reset and animate elements
     const tl = gsap.timeline();
 
     tl.fromTo(
@@ -20,7 +19,7 @@ function Login() {
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.5, delay: 0.5, ease: "power2.out" }
     )
-      .fromTo(
+      .fromTo( 
         signupBoxRef.current,
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.5, delay: 0.3, ease: "power2.out" },
@@ -59,7 +58,7 @@ function Login() {
           {/* Attach ref to the login box */}
           <div className="login-box" ref={loginBoxRef}>
             <div className="logo">
-              {/* <img src={logoImage} alt="Logo" /> */}
+              <img src={logoImage} alt="Logo" />
             </div>
             <form className="login-form">
               <input
@@ -68,7 +67,7 @@ function Login() {
                 required
               />
               <input type="password" placeholder="Password" required />
-              <button type="submit">Log In</button>
+              <button type="submit" className="loginbtn">Log In</button>
               <div className="separator">
                 <div className="line"></div>
               </div>
