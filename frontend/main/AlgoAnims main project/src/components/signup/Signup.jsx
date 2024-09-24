@@ -1,13 +1,10 @@
-<<<<<<< HEAD
 
 import { useEffect, useState } from "react"
-=======
-import { useEffect } from "react"
->>>>>>> 295876372eabc353a8396b28d4dd478333ddb5fe
+
 import gsap from "gsap";
 import {Link, useNavigate} from "react-router-dom"
-import Encriptor from "encriptorjs";
 import getkey from "../../../public/key";
+import cryptoJs from "crypto-js";
 function Signup() {
     const navigate = useNavigate();
     const [password , setPass] = useState("");
@@ -15,7 +12,7 @@ function Signup() {
     const [encrypt,setEncrypt] = useState("");
     const [emailid , setEmailid] = useState("");
     const [alldata , setAlldata] = useState();
-    const key = getkey();
+    
 
     async function main() {
         const api = await fetch("http://localhost:8080/signup");
@@ -105,6 +102,7 @@ function Signup() {
                         uname : evt.target[0].value,
                         email : emailid,
                         pass : encrypt,
+                        last_char : password[password.length - 1]
                     }
                     
 
@@ -131,7 +129,7 @@ function Signup() {
                     
                     onChange={(evt)=>{
                         setPass(evt.target.value);
-                        setEncrypt(Encriptor.encrypt(password , key));
+                        setEncrypt(cryptoJs.AES.encrypt(password , getkey()).toString());
                     }}
                     value={password}
                     placeholder="Password" required />
@@ -140,7 +138,6 @@ function Signup() {
                         setRePass(evt.target.value);
                     }}
                     value={repassword}
-                    minLength={6}
                     type="password"  placeholder="confirm password" required />
                     <small className="text-red-600 pass hidden">check your password</small><br />
                     <button type="submit" className="signupbtn">Sign Up</button>
@@ -162,7 +159,4 @@ function Signup() {
 }
 
 export default Signup;
-<<<<<<< HEAD
-=======
 
->>>>>>> 295876372eabc353a8396b28d4dd478333ddb5fe

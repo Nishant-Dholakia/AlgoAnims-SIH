@@ -1,7 +1,10 @@
-import  { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import "./login.css";
-import logoImage from "/logo.png"; 
+import logoImage from "/logo.png";
+import { useNavigate } from "react-router-dom";
+import getkey from "../../../public/key";
+import CryptoJS from "crypto-js";
 
 function Login() {
   // Create refs for the elements you want to animate
@@ -9,7 +12,79 @@ function Login() {
   const signupBoxRef = useRef(null);
   const headingRef = useRef(null);
 
+  const [firstField, setFirst] = useState("");
+  const [pass, setPass] = useState("");
+  const navigate = useNavigate();
+  let [obj, setObj] = useState([]);
+
+  async function setalldata() {
+    const api = await fetch("http://localhost:8080/login");
+    const apidata = await api.json();
+    for (let data of apidata) {
+      let email = data.emailId;
+      let uname = data.userName;
+      let password = data.password;
+      let lastchar = data.password.charAt(data.password.length - 1)
+
+      let newPass = "";
+      for (let i = 0; i < password.length - 1; i++) {
+        newPass += password[i];
+      }
+
+
+      let finalstr = CryptoJS.AES.decrypt(newPass, getkey()).toString(CryptoJS.enc.Utf8)
+      finalstr += lastchar;
+
+      // console.log(new)
+
+      obj.push({
+        email: email,
+        uname: uname,
+        pass: finalstr
+      })
+
+    }
+    console.log(obj);
+  }
+
+  function check() {
+
+    let f = 0;
+    let temp;
+    for (let pd of obj) {
+      if ((pd.uname === firstField || pd.email === firstField) && pd.pass === pass) {
+        f = 1;
+        temp = pd;
+        break;
+      }
+    }
+
+    if (f == 1) {
+      navigate("/home");
+
+      const obj = {
+        email: temp.email
+      }
+
+      if (temp) {
+        fetch("http://localhost:8080/login", {
+          method: 'POST',
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(obj)
+        }).then((res) => res.json());
+
+      }
+
+    } else {
+      alert("invalid password and username or email");
+    }
+
+  }
+
   useEffect(() => {
+    setalldata();
     console.log("useEffect called");
 
     const tl = gsap.timeline();
@@ -19,7 +94,7 @@ function Login() {
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.5, delay: 0.5, ease: "power2.out" }
     )
-      .fromTo( 
+      .fromTo(
         signupBoxRef.current,
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.5, delay: 0.3, ease: "power2.out" },
@@ -60,13 +135,26 @@ function Login() {
             <div className="logo">
               <img src={logoImage} alt="Logo" />
             </div>
-            <form className="login-form">
+            <form className="login-form"
+              onSubmit={(evt) => {
+                evt.preventDefault();
+                check();
+              }}>
               <input
+                value={firstField}
+                onChange={(evt) => {
+                  setFirst(evt.target.value);
+                }}
                 type="text"
-                placeholder="Phone number, username, or email"
+                placeholder="Username, or Email"
                 required
               />
-              <input type="password" placeholder="Password" required />
+              <input
+                value={pass}
+                onChange={(evt) => {
+                  setPass(evt.target.value);
+                }}
+                type="password" placeholder="Password" required />
               <button type="submit" className="loginbtn">Log In</button>
               <div className="separator">
                 <div className="line"></div>

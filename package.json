@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "crypto-js": "^4.2.0",
     "gsap": "^3.12.5"
   }
 }

@@ -10,9 +10,10 @@ const User = require('./Models/data');
 const mail = require('./Controllers/mail');
 const mailforSignup = require('./Controllers/mail');
 
+let userId = 0;
 
 async function connection(){
-    await mongoose.connect('mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/AlgoAnims');
+    await mongoose.connect('mongodb://localhost:27017/AlgoAnims');
 }
 
 connection()
@@ -56,25 +57,33 @@ app.post("/editprofile/editPlatformPage" , async(req,res)=>{
 
 })
 
-app.get("/signup",async(req,res)=>{
-    const data = await User.find();
-
-    res.json(data);
-})
 
 app.post("/signup",async(req,res)=>{
-    const {uname , email , pass} = req.body;
+    const {uname , email , pass , last_char} = req.body;
     console.log(req.body);
-    await mailforSignup(email)
+    let final = pass + last_char;
+    // await mailforSignup(email)
     const user = await User.create({
         userName: uname,
         emailId : email,
-        password : pass
+        password : final
     })
 
     user.save();
+    let data = await User.findOne({emailId : email});
+    userId = data._id;
     console.log("sucessfull")
 })
 
 
+app.get("/login",async(req,res)=>{
+    const data = await User.find();
+    res.json(data);
+})
 
+app.post("/login" , async(req,res)=>{
+    let {email} = req.body;
+    let data = await User.findOne({emailId : email});
+    userId = data._id;
+    console.log(userId);
+})

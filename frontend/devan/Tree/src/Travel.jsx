@@ -3,11 +3,12 @@ import { drawBinaryTree } from 'binary-tree-visualizer';
 import randomTreeGenrate from '../Public/randomTreeGenrate';
 import './tree.css';
 let anino = 0;
+
 function Travel() {
   const [btn, setBtn] = useState(false);
   const [preorder, setPreorder] = useState([]);
   const [travel, setTravel] = useState([]);
-  const isAnimationStopped = useRef(false); // Use useRef for animation control
+  const isAnimationStopped = useRef(false);
   const [fixedTreeRoot, setFixedTreeroot] = useState(null);
   const [firstTime, setFirstTime] = useState(false);
   const [randomTree, setRandomTree] = useState(false);
@@ -15,61 +16,45 @@ function Travel() {
   const [btncolor, setBtnColor] = useState("bg-green-700");
   const [btnhovercolor, setBtnhoverColor] = useState("hover:bg-green-600");
   const [speed, setSpeed] = useState(10);
-  const [Reset , setReset] = useState(false);
+  const [Reset, setReset] = useState(false);
+  const [disableButtons, setDisableButtons] = useState(false); // New state for disabling buttons
   const inspeed = useRef(1600);
-  
 
-  async function delay(){
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve();
-      }, 10000);
-    })
-  }
-
-
-  function reset() {
-    isAnimationStopped.current = true;
-    setTravel([]);
-    setPreorder([]);
+  function resetAll(root) {
+    setReset(true);
     anino = 0;
-    setFirstTime(true);
-    btnsetting(false); 
+    isAnimationStopped.current = true;
+    setBtn(false);
+    setBtnName('Start Travel');
+    setBtnColor('bg-green-700');
+    setBtnhoverColor('hover:bg-green-600');
+    setPreorder([]);
+    setTravel([]);
+    setFixedTreeroot(root);
+    resetColor(root);
+    drawBinaryTree(root, document.querySelector("#travel"));
   }
 
   function resetColor(node) {
     if (node == null) return;
-    // Reset the color settings to the initial color
     if (node.nodeCircle && node.nodeCircle.colorSettings) {
       node.nodeCircle.colorSettings = {
         ...node.nodeCircle.colorSettings,
-        bgColor: '#FFF2E0', // The initial color of the nodes
+        bgColor: '#FFF2E0',
       };
     }
-    resetColor(node.left); // Reset left subtree
-    resetColor(node.right); // Reset right subtree
-  }
-
-  function btnsetting(sp) {
-    if (sp && btnName === 'Start Travel') {
-      setBtnName('Stop Travel');
-      setBtnColor('bg-red-700');
-      setBtnhoverColor('hover:bg-red-600');
-    } else {
-      setBtnName('Start Travel');
-      setBtnColor('bg-green-700');
-      setBtnhoverColor('hover:bg-green-600');
-    }
+    resetColor(node.left);
+    resetColor(node.right);
   }
 
   async function animation(node, main) {
     return new Promise((resolve) => {
       setTimeout(() => {
         if (isAnimationStopped.current) {
-          resolve(); // Stop the animation when isAnimationStopped is true
+          resolve();
           return;
         }
-        // Update the node color to indicate it's been visited
+
         if (node.nodeCircle && node.nodeCircle.colorSettings) {
           node.nodeCircle.colorSettings = {
             ...node.nodeCircle.colorSettings,
@@ -96,10 +81,9 @@ function Travel() {
     for (let i = 0; i < preorder.length; i++) {
       let no = preorder[i];
       if (isAnimationStopped.current) {
-        console.log("in");
         return i;
       }
-      if (i >= anino-1) {
+      if (i >= anino - 1) {
         let node = search(root, no);
         if (node) await animation(node, main);
         if (!isAnimationStopped.current) {
@@ -107,6 +91,7 @@ function Travel() {
         }
       }
     }
+    isAnimationStopped.current = true;
     return preorder.length;
   }
 
@@ -124,89 +109,82 @@ function Travel() {
   }, [speed]);
 
   useEffect(() => {
-    reset();
-    const root = randomTreeGenrate();
-    setFixedTreeroot(root);
-    drawBinaryTree(root, document.querySelector("#travel"));
-    anino = 0;
-    reset(true)
-    setBtn(false)
-  }, [randomTree]);
-
-  useEffect(() => {
+    if (Reset) {
+      anino = 0;
+    } else {
       if (firstTime) {
         if (btn) {
-          console.log(anino)
           const root = fixedTreeRoot;
-          collectPreorder(root); // Collect the traversal order before animation
+          collectPreorder(root);
+          main();
           async function main() {
             isAnimationStopped.current = false;
-            await delay();
             anino = await startPreorderTraversal(root, root);
-            if(anino == preorder.length){
+            if (anino == preorder.length) {
               isAnimationStopped.current = true;
             }
-            
           }
-          main();
         } else {
-          isAnimationStopped.current = true; // Stop animation
+          setPreorder([]);
+          isAnimationStopped.current = true;
         }
+      } else {
+        const root = randomTreeGenrate();
+        resetAll(root);
       }
-    
-    
-  }, [btn]);
+    }
+  }, [btn, Reset]);
 
   return (
     <>
-      <div className='flex justify-center gap-4'>
+    <h1 className='text-2xl text-center p-4'>Preorder Travetion</h1>
+      <div className='flex justify-center gap-4 reset-btn'>
         <button
           onClick={() => {
-            setBtn(true)
-            isAnimationStopped.current = true;
-            anino = 0; 
-            reset(); 
-            const root = fixedTreeRoot;
-            resetColor(root); 
-            drawBinaryTree(root, document.querySelector("#travel"));
-            setReset(true)
-            
+            resetAll(fixedTreeRoot);
           }}
           className='bg-orange-600 p-2 rounded-lg hover:bg-orange-500'
+          disabled={disableButtons} // Disable based on state
         >
           Reset Travel
         </button>
 
         <button
-          onClick={() => {
+          onClick={(evt) => {
+            setReset(false);
             setFirstTime(true);
             if (btnName === 'Start Travel') {
-              setBtn(true)
+              setBtn(true);
               setBtnName('Stop Travel');
               setBtnColor('bg-red-700');
               setBtnhoverColor('hover:bg-red-600');
+              setDisableButtons(true); // Disable buttons during travel
             } else {
               setBtnName('Start Travel');
               setBtnColor('bg-green-700');
               setBtnhoverColor('hover:bg-green-600');
-              setBtn(false)
-              
+              setBtn(false);
+              setDisableButtons(false); // Enable buttons when stopped
             }
+            evt.target.disabled = true;
+            evt.target.style.opacity = '0.7';
+            setTimeout(() => {
+              evt.target.disabled = false;
+              evt.target.style.opacity = '1';
+            }, 1200);
           }}
-          className={`p-4 text-white z-10 rounded-lg ${btncolor} ${btnhovercolor}`}
+          className={`p-4 text-white z-10 rounded-lg ${btncolor}`}
         >
           {btnName}
         </button>
+
         <button
           onClick={() => {
-            isAnimationStopped.current = true;
-            setRandomTree((prev) => !prev);
-            btnsetting(false);
-            setReset(true)
-            setFirstTime(false);
-            anino = 0;
+            const root = randomTreeGenrate();
+            resetAll(root);
           }}
-          className='bg-blue-600 rounded-lg p-2 text-lg hover:bg-blue-500'
+          className='bg-blue-600 rounded-lg p-2 text-lg hover:bg-blue-500 random-btn'
+          disabled={disableButtons} // Disable based on state
         >
           Random Tree
         </button>
