@@ -6,9 +6,9 @@ var half = Math.floor(splittedtext.length / 2);
 var clutter1 = "";
 splittedtext.forEach(function(e, idx) {
   if (idx < half) {
-    clutter1 += <span class="a">${e}</span>;
+    clutter1 += `<span class="a">${e}</span>`;
   } else {
-    clutter1 += <span class="b">${e}</span>;
+    clutter1 += `<span class="b">${e}</span>`;
   }
 });
 
