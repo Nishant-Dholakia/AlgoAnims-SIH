@@ -6,12 +6,11 @@ var half = Math.floor(splittedtext.length / 2);
 var clutter1 = "";
 splittedtext.forEach(function(e, idx) {
   if (idx < half) {
-    clutter1 += `<span class="a">${e}</span>`;
+    clutter1 += `<span class="a">${e}</span>`; 
   } else {
-    clutter1 += `<span class="b">${e}</span>`;
+    clutter1 += `<span class="b">${e}</span>`; 
   }
 });
-
 
 h2.innerHTML = clutter1;
 
@@ -23,8 +22,6 @@ gsap.from("h2 .a", {
   opacity: 0
 });
 
-
-
 gsap.from("h2 .b", {
   y: 50,
   duration: 0.8,
@@ -32,13 +29,13 @@ gsap.from("h2 .b", {
   stagger: -0.15,
   opacity: 0
 });
+
 document.getElementById('modebtn').addEventListener('click', () => {
     let a = document.body.style.backgroundColor;
     let cards = document.getElementsByClassName('card'); 
-    let n = document.getElementById('n');
+    let n = document.getElementById('nav');
     let list = document.getElementById('list');
 
-   
     if (a === 'white' || a === '' || a === 'rgb(255, 255, 255)') {
         document.body.style.backgroundColor = 'black';
         document.body.style.color = 'white';
@@ -64,62 +61,56 @@ document.getElementById('modebtn').addEventListener('click', () => {
     }
 });
 
-window.addEventListener("wheel",function(dets){
-    if(dets.deltaY >0){
-    gsap.to(".marque",{
-        transform:'translateX(-200%)',
-        duration:4,
-        repeat:-1,
-        ease:"none"
-    })
-    gsap.to(".marque img",{
-    rotate:180
-    })
+window.addEventListener("wheel", function(dets) {
+    if(dets.deltaY > 0) {
+        gsap.to(".marque", {
+            transform: 'translateX(-200%)',
+            duration: 4,
+            repeat: -1,
+            ease: "none"
+        });
+        gsap.to(".marque img", {
+            rotate: 180
+        });
+    } else {
+        gsap.to(".marque", {
+            transform: 'translateX(0%)',
+            duration: 4,
+            repeat: -1,
+            ease: "none"
+        });
+        gsap.to(".marque img", {
+            rotate: 0
+        });
     }
-    else{
-        gsap.to(".marque",{
-            transform:'translateX(0%)',
-            duration:4,
-            repeat:-1,
-            ease:"none"
-        })
-        gsap.to(".marque img",{
-            rotate:0
-            })
-    }
-    })
-   
+});
 
+document.getElementById("userForm").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-    document.getElementById("userForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-  
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const message = document.getElementById("textarea").value;
-  
-     
-      const modal = document.getElementById("confirmationModal");
-      modal.style.display = "flex";
-  
-     
-      document.getElementById("closeModal").onclick = function() {
-          modal.style.display = "none";
-      };
-  
-    
-      window.onclick = function(event) {
-          if (event.target == modal) {
-              modal.style.display = "none";
-          }
-      };
-  
-      document.getElementById("userForm").reset();
-  });
-  
-  document.getElementById('login').addEventListener('click',()=>{
-    let a=document.getElementById('login');
-    a.style.display='none';
-    let b=document.getElementById('profile');
-    b.style.display='block'
-})
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("textarea").value;
+
+    const modal = document.getElementById("confirmationModal");
+    modal.style.display = "flex";
+
+    document.getElementById("closeModal").onclick = function() {
+        modal.style.display = "none";
+    };
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    document.getElementById("userForm").reset();
+});
+
+document.getElementById('login').addEventListener('click', () => {
+    let a = document.getElementById('login');
+    a.style.display = 'none';
+    let b = document.getElementById('profile');
+    b.style.display = 'block';
+});
