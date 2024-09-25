@@ -8,6 +8,8 @@ import CryptoJS from "crypto-js";
 
 function Login() {
   // Create refs for the elements you want to animate
+
+  
   const loginBoxRef = useRef(null);
   const signupBoxRef = useRef(null);
   const headingRef = useRef(null);
@@ -103,7 +105,7 @@ function Login() {
       .fromTo(
         headingRef.current,
         { y: -50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.5, delay: 0.3, ease: "power2.out" },
+        { y: -15, opacity: 1, duration: 1.5, delay: 0.3, ease: "power2.out" },
         "-=1.2"
       );
 
@@ -114,8 +116,13 @@ function Login() {
   }, []); // Empty dependency array ensures this runs once on mount
 
   return (
+
+    
+
     <div className="body">
+      
       <div className="login-container">
+        
         <div className="video-container">
           {/* Uncomment and ensure the video path is correct if needed */}
           {/* <video id="background-video" muted loop>
