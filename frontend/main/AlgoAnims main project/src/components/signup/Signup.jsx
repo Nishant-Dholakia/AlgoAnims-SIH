@@ -93,7 +93,7 @@ function Signup() {
         </header>
 
         <div className="form-container">
-            <div className="login-box">
+            <div className="login-box" >
                 <div className="logo">
                     <img src="/logo.png" alt="Logo" />
                 </div>
