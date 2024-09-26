@@ -9,6 +9,8 @@ function EditProfile() {
   {
     // console.log(label.toLowerCase())
     return(
+      <>
+      
       <Link to={'edit'+label+'Page'}>
         <div className="editOptions" 
       id={label.toLowerCase()}
@@ -24,6 +26,7 @@ function EditProfile() {
       
       >{label}</div>
       </Link>
+      </>
     )
   }
   

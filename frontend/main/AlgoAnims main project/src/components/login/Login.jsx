@@ -5,7 +5,6 @@ import logoImage from "/logo.png";
 import { useNavigate } from "react-router-dom";
 import getkey from "../../../public/key";
 import CryptoJS from "crypto-js";
-import { Link } from "react-router-dom";
 
 function Login() {
   // Create refs for the elements you want to animate
@@ -173,7 +172,7 @@ function Login() {
           {/* Attach ref to the signup box */}
           <div className="signup-box" ref={signupBoxRef}>
             <p>
-              Do not have an account? <Link to = '/signup'>Signup</Link>
+              Do not have an account? <a href="sign_up.html">Sign up</a>
             </p>
           </div>
         </div>

@@ -10,6 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
     background-color: #fafafa;
     position: relative;
     overflow: hidden;
@@ -20,7 +21,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 100%; 
     height: 100%;
 }
 
@@ -43,7 +44,7 @@ video {
 
 .algoanims-heading {
     position: absolute;
-    top: 10%;
+    top: 7%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -65,10 +66,8 @@ video {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    max-height: 500px; 
-    max-width: 400px;  
-    width: 100%; 
-    height: 100%; 
+    width: 38%; 
+    height: 80%; 
     border-radius: 10px;
     overflow: hidden; 
 }
@@ -81,8 +80,7 @@ video {
     width: 110%;
     margin-bottom: 10px;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    max-height: 450px; 
+    box-shadow: 6px 8px rgba(0, 0, 0, 0.1); 
     overflow-y: auto; 
 }
 
