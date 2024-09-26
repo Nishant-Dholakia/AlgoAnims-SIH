@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { BinaryTreeNode, drawBinaryTree } from 'binary-tree-visualizer';
-import './tree.css'
+import '../../tree.css'
 import DrawMode from './Components/drawMode';
 
 function Tree() {

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import {Link, useNavigate,NavLink} from "react-router-dom"
 import getkey from "../../../public/key";
 import cryptoJs from "crypto-js";
+import './signup.css'
 function Signup() {
     const navigate = useNavigate();
     const [password , setPass] = useState("");
@@ -21,6 +22,17 @@ function Signup() {
     }
 
 
+<<<<<<< HEAD
+  useEffect(()=>{
+    // main()
+    
+      gsap.from("#background-video", {
+          scale: 1.2, 
+          opacity: 0.5,
+          duration: 2,
+          ease: "power2.out"
+      });
+=======
     useEffect(() => {
         const backgroundVideo = document.getElementById("background-video");
         const loginBox = document.querySelector(".login-box");
@@ -66,8 +78,28 @@ function Signup() {
           tl.kill();
         };
       }, []);
+>>>>>>> 6e054a70af6939c45d3b5b265c0383fc455cd1fd
 
 
+<<<<<<< HEAD
+      gsap.from(".signup-box", {
+          y: 50,
+          opacity: 0,
+          duration: 1.5,
+          delay: 0.8
+      });
+
+      gsap.from(".algoanims-heading", {
+          y: -50,
+          opacity: 0,
+          duration: 1.5,
+          delay:0.8
+      });
+  } , [])
+ 
+
+=======
+>>>>>>> 6e054a70af6939c45d3b5b265c0383fc455cd1fd
   function handler(evt){
       evt.preventDefault();
       let f = 0;
@@ -93,12 +125,17 @@ function Signup() {
   
   return (
     <>
-    <img src="https://drive.google.com/file/d/1i8bCq8vc-HljdKm_WmlKng3aldTyAE_6/view?usp=drive_link" alt="img" />
+   
     <div className="body">
       <div className="login-container">
         <div className="video-container">
+<<<<<<< HEAD
+            <video className="video" id="background-video" src="/bg.mp4" autoPlay muted loop/>
+                {/* <source src="/bg.mp4" type="video/mp4" />
+=======
             {/* <video className="video" id="background-video" autoPlay muted loop>
                 <source src="1726757407553429.mp4" type="video/mp4" />
+>>>>>>> 6e054a70af6939c45d3b5b265c0383fc455cd1fd
                 Your browser does not support the video tag.
             </video> */}
         </div>
@@ -165,9 +202,20 @@ function Signup() {
             </div>
             <div className="signup-box">
                 <p>have an account?
+<<<<<<< HEAD
                 <NavLink to='/login' className="text-blue-500">
                   <span>Log In</span>
                 </NavLink>
+=======
+<<<<<<< HEAD
+                <Link to='/login'>
+                  Log In
+=======
+                <Link to='login' className="text-blue-500">
+                  <span>Log In</span>
+>>>>>>> 6e054a70af6939c45d3b5b265c0383fc455cd1fd
+                </Link>
+>>>>>>> d5c15401e9164dbc3fae0b93e9fc978def8f1a1b
                 </p>
             </div>
         </div>
