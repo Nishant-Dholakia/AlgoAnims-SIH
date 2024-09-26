@@ -5,6 +5,7 @@ import logoImage from "/logo.png";
 import { useNavigate } from "react-router-dom";
 import getkey from "../../../public/key";
 import CryptoJS from "crypto-js";
+import { Link } from "react-router-dom";
 
 function Login() {
   // Create refs for the elements you want to animate
@@ -89,23 +90,23 @@ function Login() {
     setalldata();
     console.log("useEffect called");
 
-    const tl = gsap.timeline();
+    // const tl = gsap.timeline();
 
-    tl.fromTo(
+    gsap.from(
       loginBoxRef.current,
       { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.5, delay: 0.5, ease: "power2.out" }
-    )
-      .fromTo(
+      { y: 0, opacity: 1, duration: 2, delay: 0.5, ease: "power2.out" }
+    );
+      gsap.from(
         signupBoxRef.current,
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.5, delay: 0.3, ease: "power2.out" },
+        { y: 0, opacity: 1, duration: 2, delay: 0.3, ease: "power2.out" },
         "-=1" // Overlap the animations
       )
-      .fromTo(
+      gsap.from(
         headingRef.current,
         { y: -50, opacity: 0 },
-        { y: -15, opacity: 1, duration: 1.5, delay: 0.3, ease: "power2.out" },
+        { y: -15, opacity: 1, duration: 2, delay: 0.3, ease: "power2.out" },
         "-=1.2"
       );
 
@@ -125,10 +126,7 @@ function Login() {
         
         <div className="video-container">
           {/* Uncomment and ensure the video path is correct if needed */}
-          {/* <video id="background-video" muted loop>
-            <source src="/1726757407553429.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video> */}
+          <video id="background-video" src="/bg.mp4" muted loop autoPlay/>
         </div>
 
         {/* Attach ref to the heading */}
@@ -175,7 +173,7 @@ function Login() {
           {/* Attach ref to the signup box */}
           <div className="signup-box" ref={signupBoxRef}>
             <p>
-              Do not have an account? <a href="sign_up.html">Sign up</a>
+              Do not have an account? <Link to = '/signup'>Signup</Link>
             </p>
           </div>
         </div>

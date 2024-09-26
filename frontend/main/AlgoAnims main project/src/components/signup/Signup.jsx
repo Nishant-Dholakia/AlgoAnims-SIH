@@ -5,6 +5,7 @@ import gsap from "gsap";
 import {Link, useNavigate} from "react-router-dom"
 import getkey from "../../../public/key";
 import cryptoJs from "crypto-js";
+import './signup.css'
 function Signup() {
     const navigate = useNavigate();
     const [password , setPass] = useState("");
@@ -22,8 +23,8 @@ function Signup() {
 
 
   useEffect(()=>{
-    main()
-    window.onload = function() {
+    // main()
+    
       gsap.from("#background-video", {
           scale: 1.2, 
           opacity: 0.5,
@@ -51,8 +52,9 @@ function Signup() {
           duration: 1.5,
           delay:0.8
       });
-  }
-  })
+  } , [])
+ 
+
   function handler(evt){
       evt.preventDefault();
       let f = 0;
@@ -78,14 +80,14 @@ function Signup() {
   
   return (
     <>
-    <img src="https://drive.google.com/file/d/1i8bCq8vc-HljdKm_WmlKng3aldTyAE_6/view?usp=drive_link" alt="img" />
+   
     <div className="body">
       <div className="login-container">
         <div className="video-container">
-            <video className="video" id="background-video" autoPlay muted loop>
-                <source src="1726757407553429.mp4" type="video/mp4" />
+            <video className="video" id="background-video" src="/bg.mp4" autoPlay muted loop/>
+                {/* <source src="/bg.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
-            </video>
+            </video> */}
         </div>
 
         <header className="algoanims-heading">
@@ -149,7 +151,7 @@ function Signup() {
             </div>
             <div className="signup-box">
                 <p>have an account?
-                <Link to='login'>
+                <Link to='/login'>
                   Log In
                 </Link>
                 </p>
