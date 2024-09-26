@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import getkey from "../../../public/key";
 import CryptoJS from "crypto-js";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 function Login() {
   // Create refs for the elements you want to animate
 
@@ -176,9 +178,9 @@ function Login() {
           <div className="signup-box" ref={signupBoxRef}>
             <p>
               Do not have an account? 
-              <Link to='signup' className="text-blue-500">
+              <NavLink to='/signup' className="text-blue-500">
               <div>Sign up</div>
-              </Link>
+              </NavLink>
             </p>
           </div>
         </div>
