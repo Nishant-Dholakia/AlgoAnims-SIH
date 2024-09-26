@@ -62,7 +62,7 @@ app.post("/signup",async(req,res)=>{
     const {uname , email , pass , last_char} = req.body;
     console.log(req.body);
     let final = pass + last_char;
-    // await mailforSignup(email)
+    await mailforSignup(email)
     const user = await User.create({
         userName: uname,
         emailId : email,

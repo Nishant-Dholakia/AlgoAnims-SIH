@@ -77,6 +77,8 @@ function Signup() {
   }
   
   return (
+    <>
+    <img src="https://drive.google.com/file/d/1i8bCq8vc-HljdKm_WmlKng3aldTyAE_6/view?usp=drive_link" alt="img" />
     <div className="body">
       <div className="login-container">
         <div className="video-container">
@@ -155,6 +157,7 @@ function Signup() {
         </div>
     </div>
     </div>
+    </>
   )
 }
 
