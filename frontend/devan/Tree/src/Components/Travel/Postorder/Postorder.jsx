@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { drawBinaryTree } from 'binary-tree-visualizer';
 import { BinaryTreeNode } from 'binary-tree-visualizer';
-import randomTreeGenrate from '../Public/randomTreeGenrate';
-import './tree.css';
-import './travel.css'
-import DrawMode from './Components/drawMode';
+import randomTreeGenrate from '/Public/randomTreeGenrate';
+import '../../../tree.css';
+import '../travel.css';
+import DrawMode from '../../Drawmode/DrawMode.jsx';
 let anino = 0;
 
 function Postorder() {

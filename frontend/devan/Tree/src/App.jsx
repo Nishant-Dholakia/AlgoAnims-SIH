@@ -1,11 +1,11 @@
-import Travel from "./Travel";
-import Tree from "./Tree"
+import { Outlet } from "react-router-dom";
+
 
 function App() {
  
   return (
     <>
-      
+      <Outlet/>
     </>
   );
 }

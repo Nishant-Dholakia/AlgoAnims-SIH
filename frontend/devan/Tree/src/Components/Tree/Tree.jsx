@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { BinaryTreeNode, drawBinaryTree } from 'binary-tree-visualizer';
 import '../../tree.css'
-import DrawMode from './Components/drawMode';
+import DrawMode from '../Drawmode/DrawMode.jsx';
 
 function Tree() {
   const [value, setValue] = useState(0);
