@@ -22,7 +22,7 @@ function Signup() {
     }
 
 
-<<<<<<< HEAD
+
   useEffect(()=>{
     // main()
     
@@ -32,7 +32,7 @@ function Signup() {
           duration: 2,
           ease: "power2.out"
       });
-=======
+
     useEffect(() => {
         const backgroundVideo = document.getElementById("background-video");
         const loginBox = document.querySelector(".login-box");
@@ -78,10 +78,10 @@ function Signup() {
           tl.kill();
         };
       }, []);
->>>>>>> 6e054a70af6939c45d3b5b265c0383fc455cd1fd
 
 
-<<<<<<< HEAD
+
+
       gsap.from(".signup-box", {
           y: 50,
           opacity: 0,
@@ -98,8 +98,8 @@ function Signup() {
   } , [])
  
 
-=======
->>>>>>> 6e054a70af6939c45d3b5b265c0383fc455cd1fd
+
+
   function handler(evt){
       evt.preventDefault();
       let f = 0;
@@ -129,10 +129,10 @@ function Signup() {
     <div className="body">
       <div className="login-container">
         <div className="video-container">
-<<<<<<< HEAD
+
             <video className="video" id="background-video" src="/bg.mp4" autoPlay muted loop/>
                 {/* <source src="/bg.mp4" type="video/mp4" />
-=======
+
             {/* <video className="video" id="background-video" autoPlay muted loop>
                 <source src="1726757407553429.mp4" type="video/mp4" />
 >>>>>>> 6e054a70af6939c45d3b5b265c0383fc455cd1fd
@@ -202,20 +202,13 @@ function Signup() {
             </div>
             <div className="signup-box">
                 <p>have an account?
-<<<<<<< HEAD
+
                 <NavLink to='/login' className="text-blue-500">
                   <span>Log In</span>
                 </NavLink>
-=======
-<<<<<<< HEAD
-                <Link to='/login'>
-                  Log In
-=======
-                <Link to='login' className="text-blue-500">
-                  <span>Log In</span>
->>>>>>> 6e054a70af6939c45d3b5b265c0383fc455cd1fd
-                </Link>
->>>>>>> d5c15401e9164dbc3fae0b93e9fc978def8f1a1b
+
+              
+
                 </p>
             </div>
         </div>
