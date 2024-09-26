@@ -43,15 +43,15 @@ video {
 
 .algoanims-heading {
     position: absolute;
-    top: 5%;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #fff;
     text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-weight: bold;
-    background-color: rgba(0, 149, 246, 0.7);
+    background-color: rgba(0, 149, 246, 0.7); 
     padding: 10px 20px;
     border-radius: 8px;
     text-align: center;
@@ -65,9 +65,12 @@ video {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    height: auto;
-    width: 90%;
+    max-height: 500px; 
+    max-width: 400px;  
+    width: 100%; 
+    height: 100%; 
     border-radius: 10px;
+    overflow: hidden; 
 }
 
 .login-box {
@@ -75,11 +78,12 @@ video {
     padding: 20px;
     border: 1px solid #dbdbdb;
     text-align: center;
-    width: 100%;
-    max-width: 400px;
+    width: 110%;
     margin-bottom: 10px;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    max-height: 450px; 
+    overflow-y: auto; 
 }
 
 .logo img {
@@ -89,8 +93,8 @@ video {
 
 .login-form input {
     width: 100%;
-    padding: 10px;
-    margin: 8px 0;
+    padding: 8px; 
+    margin: 6px 0; 
     background: #fafafa;
     border: 1px solid #dbdbdb;
     border-radius: 3px;
@@ -107,45 +111,32 @@ button {
     margin: 10px 0;
 }
 
+.separator {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.separator .line {
+    flex: 1;
+    height: 1px;
+    background-color: #dbdbdb;
+}
+
+.forgot-password {
+    color: #00376b;
+    text-decoration: none;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
 .signup-box {
     background-color: #fff;
     padding: 20px;
     border: 1px solid #dbdbdb;
-    width: 100%;
-    max-width: 400px;
+    width: 110%;
     text-align: center;
     border-radius: 15px;
-}
-
-@media (min-width: 1200px) {
-    .algoanims-heading {
-        font-size: 3rem;
-    }
-
-    .form-container {
-        height: 450px;
-        width: 70%;
-    }
-
-    .login-box,
-    .signup-box {
-        width: 70%;
-        max-width: 500px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .algoanims-heading {
-        font-size: 4rem;
-    }
-
-    .form-container {
-        width: 50%;
-    }
-
-    .login-box,
-    .signup-box {
-        width: 50%;
-        max-width: 600px;
-    }
+    max-height: 100px; 
+    overflow: hidden; 
 }
