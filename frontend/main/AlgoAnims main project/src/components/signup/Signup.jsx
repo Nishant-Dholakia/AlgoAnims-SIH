@@ -21,38 +21,53 @@ function Signup() {
     }
 
 
-  useEffect(()=>{
-    main()
-    window.onload = function() {
-      gsap.from("#background-video", {
-          scale: 1.2, 
-          opacity: 0.5,
-          duration: 2,
-          ease: "power2.out"
-      });
+    useEffect(() => {
+        const backgroundVideo = document.getElementById("background-video");
+        const loginBox = document.querySelector(".login-box");
+        const signupBox = document.querySelector(".signup-box");
+        const algoanimsHeading = document.querySelector(".algoanims-heading");
+    
+        let tl = gsap.timeline();
+    
+        // if (backgroundVideo) {
+        //   tl.from(
+        //     backgroundVideo,
+        //     { scale: 1.2, opacity: 0.5 },
+        //     { scale: 1, opacity: 1, duration: 2, ease: "power2.out" }
+        //   );
+        // }
+    
+        if (loginBox) {
+          tl.from(
+            loginBox,
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.5, delay: 0.5 }
+          );
+        }
+    
+        if (signupBox) {
+          tl.from(
+            signupBox,
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.5, delay: 0.8 }
+          );
+        }
+    
+        if (algoanimsHeading) {
+          tl.from(
+            algoanimsHeading,
+            { y: -50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.5, delay: 0.8 }
+          );
+        }
+    
+        // Cleanup on unmount
+        return () => {
+          tl.kill();
+        };
+      }, []);
 
-      gsap.from(".login-box", {
-          y: 50,
-          opacity: 0,
-          duration: 1.5,
-          delay: 0.5
-      });
 
-      gsap.from(".signup-box", {
-          y: 50,
-          opacity: 0,
-          duration: 1.5,
-          delay: 0.8
-      });
-
-      gsap.from(".algoanims-heading", {
-          y: -50,
-          opacity: 0,
-          duration: 1.5,
-          delay:0.8
-      });
-  }
-  })
   function handler(evt){
       evt.preventDefault();
       let f = 0;
@@ -80,10 +95,10 @@ function Signup() {
     <div className="body">
       <div className="login-container">
         <div className="video-container">
-            <video className="video" id="background-video" autoPlay muted loop>
+            {/* <video className="video" id="background-video" autoPlay muted loop>
                 <source src="1726757407553429.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
-            </video>
+            </video> */}
         </div>
 
         <header className="algoanims-heading">
@@ -138,17 +153,18 @@ function Signup() {
                         setRePass(evt.target.value);
                     }}
                     value={repassword}
-                    type="password"  placeholder="confirm password" required />
-                    <small className="text-red-600 pass hidden">check your password</small><br />
+                    type="password"  placeholder="Confirm Password" required />
+                    {/* <small className="text-red-600 pass hidden">check your password</small><br /> */}
                     <button type="submit" className="signupbtn">Sign Up</button>
                     <div className="separator">
+                        <div className="line"></div>
                     </div> 
                 </form>
             </div>
             <div className="signup-box">
                 <p>have an account?
-                <Link to='login'>
-                  Log In
+                <Link to='login' className="text-blue-500">
+                  <span>Log In</span>
                 </Link>
                 </p>
             </div>

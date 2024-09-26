@@ -68,6 +68,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,6 +76,7 @@
     <link rel="stylesheet" href="sign_up.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 </head>
+
 <body>
     <div class="login-container">
         <div class="video-container">
@@ -97,15 +99,15 @@
                     <input type="text" placeholder="username" required>
                     <input type="text" placeholder="Email Address" required>
                     <input type="password" placeholder="Password" required>
-                    <input type="password" placeholder="Confirm Password" required> 
-                   
+                    <input type="password" placeholder="Confirm Password" required>
+
 
                     <button type="submit">Sign Up</button>
                     <div class="separator">
                         <div class="line"></div>
                     </div>
                 </form>
-                
+
             </div>
             <div class="signup-box">
                 <p>have an account? <a href="index.html">Log In</a></p>
@@ -114,9 +116,9 @@
     </div>
 
     <script>
-        window.onload = function() {
+        window.onload = function () {
             gsap.from("#background-video", {
-                scale: 1.2, 
+                scale: 1.2,
                 opacity: 0.5,
                 duration: 2,
                 ease: "power2.out"
@@ -140,9 +142,10 @@
                 y: -50,
                 opacity: 0,
                 duration: 1.5,
-                delay:0.8
+                delay: 0.8
             });
         }
     </script>
 </body>
+
 </html>
