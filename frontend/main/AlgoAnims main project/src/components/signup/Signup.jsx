@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 
 import gsap from "gsap";
-import {Link, useNavigate} from "react-router-dom"
+import {Link, useNavigate,NavLink} from "react-router-dom"
 import getkey from "../../../public/key";
 import cryptoJs from "crypto-js";
 import './signup.css'
@@ -203,6 +203,11 @@ function Signup() {
             <div className="signup-box">
                 <p>have an account?
 <<<<<<< HEAD
+                <NavLink to='/login' className="text-blue-500">
+                  <span>Log In</span>
+                </NavLink>
+=======
+<<<<<<< HEAD
                 <Link to='/login'>
                   Log In
 =======
@@ -210,6 +215,7 @@ function Signup() {
                   <span>Log In</span>
 >>>>>>> 6e054a70af6939c45d3b5b265c0383fc455cd1fd
                 </Link>
+>>>>>>> d5c15401e9164dbc3fae0b93e9fc978def8f1a1b
                 </p>
             </div>
         </div>
