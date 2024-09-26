@@ -1,3 +1,4 @@
+import Nav from "../navigation/Nav";
 import "./profile.css";
 import { Link } from "react-router-dom";
 function Profile() {
