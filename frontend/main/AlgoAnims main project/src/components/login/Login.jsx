@@ -178,7 +178,7 @@ function Login() {
               <NavLink to='/signup' className="text-blue-500">
               <div>Sign up</div>
               </NavLink>
-              Do not have an account? <a href="sign_up.html">Sign up</a>
+             
 
             </p>
           </div>
