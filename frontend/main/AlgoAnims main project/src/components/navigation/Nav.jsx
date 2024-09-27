@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 // import navjs from './navscript'
 import gsap from 'gsap'
 import './Nav.css';
@@ -7,7 +7,13 @@ import 'font-awesome/css/font-awesome.min.css';
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
+import Context from '../../contexts/context';
+
 function Nav() {
+  const {userName} = useContext(Context);
+  
+
+  
 
   setTimeout(() => {
     // console.log("lagi")
@@ -43,7 +49,7 @@ function Nav() {
     });
 
 
-    document.getElementById('login').addEventListener('click', () => {
+    document.getElementById('login')?.addEventListener('click', () => {
       let a = document.getElementById('login');
       a.style.display = 'none';
       let b = document.getElementById('profile');
@@ -63,9 +69,9 @@ function Nav() {
         <p id="lname">AlgoAnims</p>
         <i id="modebtn" className="ri-moon-clear-line"></i>
 
-        <NavLink to="login">
+        {!userName ?<NavLink to="login">
           <button id="login">Login</button>
-        </NavLink>
+        </NavLink>:<Link to='/profile' id='login' className='flex justify-center items-center text-black bg-transparent text-transparent underline'>{userName}</Link>}
 
         <img id="profile" src="/frontend/main/AlgoAnims main project/public/profile-icon.jpg" alt="" style={{ display: 'none' }} />
 

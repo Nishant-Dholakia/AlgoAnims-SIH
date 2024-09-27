@@ -41,12 +41,7 @@ console.log(allData);
         <label htmlFor="geeksforgeeks" className={style.label}>GeeksForGeeks : </label>
         <input type="text" name='gfgUname' id='geeksforgeeks' placeholder='username (e.g., user_12)' />
       </div>
-<<<<<<< HEAD
-      <button 
-      type="submit">Save</button>
-=======
       <button className={style.save} type="submit">Save</button>
->>>>>>> b648ca4c3c3d928efeff9ab9bf093116c3436b22
     </form>
   );
 }

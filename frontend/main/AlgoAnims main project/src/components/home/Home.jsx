@@ -1,27 +1,22 @@
-import React, { useEffect ,useRef,useState} from "react";
+import React, { useEffect ,useRef,useState , useContext} from "react";
 import "./home.css";
 import Animate from "./Animate";
 import gsap from "gsap";
-
+import Context from '../../contexts/context';
 
 export default function Home() {
-  let name = useRef("Welcome");
-
+  // let name = useRef("Welcome");
+  const {userName , setUserName} = useContext(Context);
 
   async function main() {
-   try{
     const api = await fetch("http://localhost:8080/home");
     const data = await api.json();
-    if(data.userName){
-      console.log(data.userName)
-      name.current = data.userName;
-      
-    }
-   }catch(err){
-    console.log(err)
-   }
-  }
 
+    if(data.userName){
+       console.log("ok")
+       setUserName(data.userName);
+    }
+ }
   useEffect(()=>{
     main();
   } ,[])
@@ -166,7 +161,7 @@ export default function Home() {
                 horizons.
               </h4>
               <br />
-              <button className="cardbtn" >Explore</button>
+              <button>Explore</button>
             </div>
           </div>
         </div>
@@ -196,7 +191,7 @@ export default function Home() {
                 today!
               </h4>
               <br />
-              <button className="cardbtn" >Explore</button>
+              <button>Explore</button>
             </div>
           </div>
         </div>
@@ -226,7 +221,7 @@ export default function Home() {
                 embark on a journey toward becoming a search master!
               </h4>
               <br />
-              <button className="cardbtn" >Explore</button>
+              <button>Explore</button>
             </div>
           </div>
         </div>
@@ -257,7 +252,7 @@ export default function Home() {
                 they work and see their performance in action!
               </h4>
               <br />
-              <button className="cardbtn" >Explore</button>
+              <button>Explore</button>
             </div>
           </div>
         </div>
