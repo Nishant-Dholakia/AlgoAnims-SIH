@@ -36,9 +36,7 @@ app.listen(port , ()=>{
     console.log("app is starting");
 })
 
-app.get("/home",(req,res)=>{
-    res.json({mess : "hi"});
-})
+
 app.get("/editprofile" , (req,res)=>{
     res.json({mess : "no"})
 })
@@ -90,5 +88,11 @@ app.post("/login" , async(req,res)=>{
 
 
 app.get("/home" ,(req,res)=>{
-    const data =  User.findById
+    if(userId){
+        const data =  User.findById(userId);
+        res.json({data : data});
+    }else{
+        res.json({msg :"home"});
+    }
+
 })
