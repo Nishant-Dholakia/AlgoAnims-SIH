@@ -66,7 +66,7 @@ function Login() {
     }
 
     if (f == 1) {
-      navigate("/home");
+        navigate("/home");
 
       const obj = {
         email: temp.email
@@ -178,7 +178,7 @@ function Login() {
               <NavLink to='/signup' className="text-blue-500">
               <div>Sign up</div>
               </NavLink>
-              Do not have an account? <a href="sign_up.html">Sign up</a>
+
 
             </p>
           </div>
