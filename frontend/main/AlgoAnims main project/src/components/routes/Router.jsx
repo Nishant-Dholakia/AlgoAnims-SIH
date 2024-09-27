@@ -12,6 +12,7 @@ const Router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<App />}>
 
+<<<<<<< HEAD
             <Route path='/home' element={<Home />} />
             <Route path='' element={<Home />} />
             <Route path='profile' element={<Profile />} />
@@ -24,7 +25,16 @@ const Router = createBrowserRouter(
             </Route>
         </Route>
     )
+=======
+>>>>>>> 90e799e5cc0a1f7be6ad41ad1eaa1bd2c2e561f2
 
 )
 
+<<<<<<< HEAD
 export default Router
+=======
+        
+
+
+export default Router;
+>>>>>>> 90e799e5cc0a1f7be6ad41ad1eaa1bd2c2e561f2
