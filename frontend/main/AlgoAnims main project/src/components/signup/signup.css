@@ -136,7 +136,7 @@
 }
  */
 
-<<<<<<< HEAD
+
 @media (max-width : 1300px) {
     .algoanims-heading{
         top:0;
@@ -160,8 +160,6 @@
         left: 0;
     }
 }
-=======
-
 
  
 
@@ -298,4 +296,4 @@ video {
     max-height: 100px; 
     overflow: hidden; 
 }
->>>>>>> 6e054a70af6939c45d3b5b265c0383fc455cd1fd
+

@@ -87,3 +87,8 @@ app.post("/login" , async(req,res)=>{
     userId = data._id;
     console.log(userId);
 })
+
+
+app.get("/home" ,(req,res)=>{
+    const data =  User.findById
+})
