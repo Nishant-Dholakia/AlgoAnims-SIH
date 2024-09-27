@@ -40,9 +40,6 @@ function EditPlatformPage() {
         <input type="text" name='gfgUname' id='geeksforgeeks' placeholder='username(eg. user_12)' />
       </div>
       <button 
-      onClick={()=>{
-        setFirst(true)
-      }}
       type="submit">Save</button>
     </form>
   );

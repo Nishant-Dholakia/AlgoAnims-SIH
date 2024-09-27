@@ -105,7 +105,7 @@ function Signup() {
       }
     }
 
-    
+
 
 
   }
@@ -177,8 +177,6 @@ function Signup() {
                   value={emailid}
                   type="email" placeholder="Email Address" required />
                 <input type="password"
-
-<<<<<<< HEAD
                   onChange={(evt) => {
                     setPass(evt.target.value);
                     setEncrypt(cryptoJs.AES.encrypt(password, getkey()).toString());
@@ -201,49 +199,8 @@ function Signup() {
             <div className="signup-box">
               <p>have an account?
                 <NavLink to='/login' className="text-blue-500">
-                  <span>Log In</span>
+                  <span> Log In</span>
                 </NavLink>
-              </p>
-
-              <p>have an account?
-
-                <NavLink to='/login' className="text-blue-500">
-                  <span>Log In</span>
-                </NavLink>
-=======
-                    onChange={(evt) => {
-                      setPass(evt.target.value);
-                      setEncrypt(cryptoJs.AES.encrypt(password, getkey()).toString());
-                    }}
-                    value={password}
-                    placeholder="Password" required />
-                  <input
-                    onChange={(evt) => {
-                      setRePass(evt.target.value);
-                    }}
-                    value={repassword}
-                    type="password" placeholder="Confirm Password" required />
-                  {/* <small className="text-red-600 pass hidden">check your password</small><br /> */}
-                  <button type="submit" className="signupbtn">Sign Up</button>
-                  <div className="separator">
-                    <div className="line"></div>
-                  </div>
-                </form>
-              </div>
-              <div className="signup-box">
-                <p>have an account? 
-                  <NavLink to='/login' className="text-blue-500">
-                    <span> Log In</span>
-                  </NavLink>
-                </p>
-
-                <p>
-
-                  
->>>>>>> 0c67f10026599cf885c7bc14431fe9f0a12f28b3
-
-
-
               </p>
             </div>
           </div>
