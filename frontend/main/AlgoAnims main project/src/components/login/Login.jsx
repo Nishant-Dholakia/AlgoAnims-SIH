@@ -178,11 +178,7 @@ function Login() {
               <NavLink to='/signup' className="text-blue-500">
               <div>Sign up</div>
               </NavLink>
-<<<<<<< HEAD
-             
-=======
 
->>>>>>> 9ecca08b339c276585542486e05d4a15e75f0652
 
             </p>
           </div>
