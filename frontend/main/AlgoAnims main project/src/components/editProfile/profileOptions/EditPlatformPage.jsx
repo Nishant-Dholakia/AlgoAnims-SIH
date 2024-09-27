@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
-import './edit.css';
-
+import {useState } from 'react';
+import style from './edit.module.css';
+import Context from '../../../contexts/context';
+import { useContext } from 'react';
 function EditPlatformPage() {
-  const [allData, setAlldata] = useState(0);
+  // const [allData, setAlldata] = useState(0);
 
+    let {allData,setAllData} = useContext(Context);
  
 
   const handleSubmit = async (e) => {
@@ -22,25 +24,29 @@ function EditPlatformPage() {
     });
 
     const data = await response.json();
-  setAlldata(data);
-  };
-
+  setAllData(data);
+}; 
+console.log(allData);
   return (
-    <form className='edit' onSubmit={handleSubmit}>
-      <div className="area">
-        <label htmlFor="leetcode" className='label'>LeetCode : </label>
-        <input type="text" name='leetcodeUname' id='leetcode' placeholder='username(eg. user_12)' />
+    <form className={style.edit} onSubmit={handleSubmit}>
+      <div className={style.area}>
+        <label htmlFor="leetcode" className={style.label}>LeetCode : </label>
+        <input type="text" name='leetcodeUname' id='leetcode' placeholder='username (e.g., user_12)' />
       </div>
-      <div className="area">
-        <label htmlFor="codechef" className='label'>CodeChef : </label>
-        <input type="text" name='codechefUname' id='codechef' placeholder='username(eg. user_12)' />
+      <div className={style.area}>
+        <label htmlFor="codechef" className={style.label}>CodeChef : </label>
+        <input type="text" name='codechefUname' id='codechef' placeholder='username (e.g., user_12)' />
       </div>
-      <div className="area">
-        <label htmlFor="geeksforgeeks" className='label'>GeeksForGeeks : </label>
-        <input type="text" name='gfgUname' id='geeksforgeeks' placeholder='username(eg. user_12)' />
+      <div className={style.area}>
+        <label htmlFor="geeksforgeeks" className={style.label}>GeeksForGeeks : </label>
+        <input type="text" name='gfgUname' id='geeksforgeeks' placeholder='username (e.g., user_12)' />
       </div>
+<<<<<<< HEAD
       <button 
       type="submit">Save</button>
+=======
+      <button className={style.save} type="submit">Save</button>
+>>>>>>> b648ca4c3c3d928efeff9ab9bf093116c3436b22
     </form>
   );
 }

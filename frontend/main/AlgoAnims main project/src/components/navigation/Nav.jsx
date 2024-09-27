@@ -62,6 +62,23 @@ function Nav() {
         </label>
         <p id="lname">AlgoAnims</p>
         <i id="modebtn" className="ri-moon-clear-line"></i>
+<<<<<<< HEAD
+=======
+       
+       <NavLink to="/login">
+       <button id="login">Login</button>
+       </NavLink>
+        
+        <img id="profile" src="/frontend/main/AlgoAnims main project/public/profile-icon.jpg" alt="" style= {{display: 'none'}} />
+    
+     <ul id="list">
+             <li id="topic">Graph</li>
+                <li>BFS traversal</li>
+                <li>DFS traversal</li>
+                <li>Prim's Algorithm</li>
+                <li >Kruskal's Algorithm</li>
+                <li >Dijkstra's Algorithm</li>
+>>>>>>> b648ca4c3c3d928efeff9ab9bf093116c3436b22
 
         <NavLink to="login">
           <button id="login">Login</button>

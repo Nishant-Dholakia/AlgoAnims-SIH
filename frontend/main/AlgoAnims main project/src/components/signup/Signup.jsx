@@ -78,10 +78,6 @@ function Signup() {
       tl.kill();
     };
 
-
-
-
-
   }, [])
 
 
@@ -177,6 +173,14 @@ function Signup() {
                   value={emailid}
                   type="email" placeholder="Email Address" required />
                 <input type="password"
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> 19b37f29b6a704d550d0143bbd78b4ba4521c421
+>>>>>>> b648ca4c3c3d928efeff9ab9bf093116c3436b22
                   onChange={(evt) => {
                     setPass(evt.target.value);
                     setEncrypt(cryptoJs.AES.encrypt(password, getkey()).toString());
@@ -196,16 +200,31 @@ function Signup() {
                 </div>
               </form>
             </div>
+<<<<<<< HEAD
             <div className="signup-box">
               <p>have an account?
                 <NavLink to='/login' className="text-blue-500">
                   <span> Log In</span>
                 </NavLink>
               </p>
+<<<<<<< HEAD
+=======
+                
+              </div>
+              <div className="signup-box">
+                <p>have an account? 
+                  <NavLink to='/login' className="text-blue-500">
+                    <span> Log In</span>
+                  </NavLink>
+                </p>
+>>>>>>> b648ca4c3c3d928efeff9ab9bf093116c3436b22
             </div>
+=======
+           </div>
+>>>>>>> 19b37f29b6a704d550d0143bbd78b4ba4521c421
           </div>
         </div>
-      </div>
+      
     </>
   )
 

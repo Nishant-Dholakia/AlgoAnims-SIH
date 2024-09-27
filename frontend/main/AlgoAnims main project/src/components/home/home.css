@@ -144,3 +144,12 @@
 h1 span {
     display: inline-block;
 }
+
+.cardbtn
+{
+    background-color: blueviolet;
+    padding: 10px;
+    color: aliceblue;
+    border-radius: 10px;
+    border : 1px solid;
+}

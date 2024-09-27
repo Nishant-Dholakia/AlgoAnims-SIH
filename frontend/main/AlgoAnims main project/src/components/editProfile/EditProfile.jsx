@@ -1,4 +1,4 @@
-import './editprofile.css'
+import style from  './editprofile.module.css'
 import { Link, Outlet } from 'react-router-dom'
 
 function EditProfile() {
@@ -12,11 +12,11 @@ function EditProfile() {
       <>
       
       <Link to={'edit'+label+'Page'}>
-        <div className="editOptions" 
-      id={label.toLowerCase()}
+        <div className={style.editOptions} 
+      id={label.toLowerCase()+'1'}
       onClick={(e)=> {
-        console.log(e.target.id)
-        // setOption(e.target.id)
+        console.log(e)
+        // setOption(e.target.id)  
         const rightSection = document.querySelector('.rightedit');
         if (rightSection) {
           rightSection.scrollIntoView({ behavior: 'smooth' });
@@ -32,22 +32,24 @@ function EditProfile() {
   
   return (
     <>
-      <div className="profile">
-        <div className="leftedit flex-col">
-          <div className="profiledetails">
-            <div className="profilePic">N</div>
-            <div className="profileUser">Nishant Dholakia</div>
+      <div className={style.profile}>
+        <div className={`${style.leftedit} flex-col`}>
+          <div className={style.profiledetails}>
+            <div className={style.profilePic}>N</div>
+            <div className={style.profileUser}>Nishant Dholakia</div>
           </div>
 
-          <div className="changeOptions">
-            <h2 className="changeHeader">Edit Options</h2>
-            <EditOption label = 'Profile' />
-            <EditOption label = 'Platform' />
-            <EditOption label = 'Accounts' />
+          <div className={style.changeOptions}>
+            <h2 className={style.changeHeader}>Edit Options</h2>
+            <EditOption label="Profile" />
+            <EditOption label="Platform" />
+            <EditOption label="Accounts" />
           </div>
-
+      <Link to='/profile'>
+      Profile go
+      </Link>
         </div>
-        <div className="rightedit">
+        <div className={style.rightedit}>
           <Outlet />
         </div>
       </div>

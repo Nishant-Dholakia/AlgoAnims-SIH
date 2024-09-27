@@ -166,7 +166,7 @@ export default function Home() {
                 horizons.
               </h4>
               <br />
-              <button>Explore</button>
+              <button className="cardbtn" >Explore</button>
             </div>
           </div>
         </div>
@@ -196,7 +196,7 @@ export default function Home() {
                 today!
               </h4>
               <br />
-              <button>Explore</button>
+              <button className="cardbtn" >Explore</button>
             </div>
           </div>
         </div>
@@ -226,7 +226,7 @@ export default function Home() {
                 embark on a journey toward becoming a search master!
               </h4>
               <br />
-              <button>Explore</button>
+              <button className="cardbtn" >Explore</button>
             </div>
           </div>
         </div>
@@ -257,7 +257,7 @@ export default function Home() {
                 they work and see their performance in action!
               </h4>
               <br />
-              <button>Explore</button>
+              <button className="cardbtn" >Explore</button>
             </div>
           </div>
         </div>
