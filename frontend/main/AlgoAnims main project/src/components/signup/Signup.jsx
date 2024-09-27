@@ -174,10 +174,6 @@ function Signup() {
                   type="email" placeholder="Email Address" required />
                 <input type="password"
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 19b37f29b6a704d550d0143bbd78b4ba4521c421
                   onChange={(evt) => {
                     setPass(evt.target.value);
                     setEncrypt(cryptoJs.AES.encrypt(password, getkey()).toString());
@@ -197,8 +193,7 @@ function Signup() {
                 </div>
               </form>
             </div>
-<<<<<<< HEAD
-            <div className="signup-box">
+                        <div className="signup-box">
               <p>have an account?
                 <NavLink to='/login' className="text-blue-500">
                   <span>Log In</span>
@@ -213,9 +208,7 @@ function Signup() {
                   </NavLink>
                 </p>
             </div>
-=======
            </div>
->>>>>>> 19b37f29b6a704d550d0143bbd78b4ba4521c421
           </div>
         </div>
       
