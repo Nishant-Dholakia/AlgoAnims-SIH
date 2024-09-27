@@ -15,7 +15,7 @@ const session = require('express-session');
 let userId = '';
 
 async function connection() {
-    await mongoose.connect('mongodb://localhost:27017/AlgoAnims');
+    await mongoose.connect('mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/');
 }
 
 connection()

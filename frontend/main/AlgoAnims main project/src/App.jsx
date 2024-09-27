@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom"
 import Nav from "./components/navigation/Nav"
+import UseContextProvider from "./contexts/UseContextProvider"
 function App() {
   return (
-    <>
-    <Nav />
+    <UseContextProvider>
+      <Nav />
       <Outlet/>
-    </>
+    </UseContextProvider>
   )
 }
 
