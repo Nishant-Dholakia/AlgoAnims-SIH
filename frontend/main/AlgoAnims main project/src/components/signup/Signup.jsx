@@ -196,10 +196,17 @@ function Signup() {
                 <div className="separator">
                   <div className="line"></div>
                 </div>
+                <p>have an account? 
+                  <NavLink to='/login' className="text-blue-500">
+                    <span> Log In</span>
+                  </NavLink>
+                </p>
               </form>
             </div>
            </div>
+           
           </div>
+          
         </div>
       
     </>
