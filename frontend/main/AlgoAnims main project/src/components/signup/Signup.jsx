@@ -293,17 +293,15 @@ function Signup() {
                 </form>
               </div>
               <div className="signup-box">
-                <p>have an account?
+                <p>have an account? 
                   <NavLink to='/login' className="text-blue-500">
-                    <span>Log In</span>
+                    <span> Log In</span>
                   </NavLink>
                 </p>
 
-                <p>have an account?
+                <p>
 
-                  <NavLink to='/login' className="text-blue-500">
-                    <span>Log In</span>
-                  </NavLink>
+                  
 
 
 
