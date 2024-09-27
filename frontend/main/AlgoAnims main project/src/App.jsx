@@ -4,7 +4,7 @@ import UseContextProvider from "./contexts/UseContextProvider"
 function App() {
   return (
     <UseContextProvider>
-    {/* <Nav /> */}
+    
       <Outlet/>
     </UseContextProvider>
   )

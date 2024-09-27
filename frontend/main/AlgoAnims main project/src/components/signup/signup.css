@@ -202,7 +202,7 @@ video {
 
 .algoanims-heading {
     position: absolute;
-    top: 7%;
+    top: 4%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;

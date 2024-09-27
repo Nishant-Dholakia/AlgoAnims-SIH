@@ -45,9 +45,6 @@ function EditProfile() {
             <EditOption label="Platform" />
             <EditOption label="Accounts" />
           </div>
-      <Link to='/profile'>
-      Profile go
-      </Link>
         </div>
         <div className={style.rightedit}>
           <Outlet />

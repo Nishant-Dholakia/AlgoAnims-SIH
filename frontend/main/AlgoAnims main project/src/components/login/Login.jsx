@@ -18,9 +18,9 @@ function Login() {
     const tl = gsap.timeline();
   
     // Animation sequence
-    tl.from(loginBoxRef.current, { y: 50, opacity: 0, duration: 2, delay: 0.5, ease: "power2.out" })
-      .from(signupBoxRef.current, { y: 50, opacity: 0, duration: 2, ease: "power2.out" }, "-=1")
-      .from(headingRef.current, { y: -50, opacity: 0, duration: 2, ease: "power2.out" }, "-=1.2");
+    tl.from(loginBoxRef.current, { y: 50, opacity: 0, duration: 2, delay: 0.5, ease: "power2.out" },"ok")
+      .from(signupBoxRef.current, { y: 50, opacity: 0, duration: 2, ease: "power2.out" }, "ok")
+      .from(headingRef.current, { y: -50, opacity: 0, duration: 2, ease: "power2.out" }, "ok");
   
     return () => {
       tl.kill(); // Cleanup the timeline on unmount
