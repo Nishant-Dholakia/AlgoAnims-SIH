@@ -154,7 +154,7 @@
 
 @media (max-width : 700px) {
     .login-container{
-        width: 100%;
+        min-width: 50rem;
     }
     .video-container{
         left: 0;

@@ -13,6 +13,19 @@ import { NavLink } from "react-router-dom";
 function Login() {
   // Create refs for the elements you want to animate
 
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+  
+    // Animation sequence
+    tl.from(loginBoxRef.current, { y: 50, opacity: 0, duration: 2, delay: 0.5, ease: "power2.out" })
+      .from(signupBoxRef.current, { y: 50, opacity: 0, duration: 2, ease: "power2.out" }, "-=1")
+      .from(headingRef.current, { y: -50, opacity: 0, duration: 2, ease: "power2.out" }, "-=1.2");
+  
+    return () => {
+      tl.kill(); // Cleanup the timeline on unmount
+    };
+  }, []);
   
   const loginBoxRef = useRef(null);
   const signupBoxRef = useRef(null);
@@ -176,11 +189,11 @@ function Login() {
             <p>
               Do not have an account? 
               <NavLink to='/signup' className="text-blue-500">
-              <div>Sign up</div>
+<span> Sign up </span>
               </NavLink>
 
 
-            </p>
+            </p> 
           </div>
         </div>
       </div>

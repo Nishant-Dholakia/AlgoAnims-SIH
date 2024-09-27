@@ -60,8 +60,17 @@ app.post("/editprofile/editPlatformPage", async (req, res) => {
     const leetcode = await leetcodeData(leetcodeUname);
     const codechef = await codechefData(codechefUname);
     const gfg = await gfgData(gfgUname);
+    console.log(leetcode , codechef , gfg)
 
-    res.json({ leetcode, codechef, gfg });
+    res.setHeader('Content-Type', 'application/json');
+    await User.findByIdAndUpdate(userId , {
+        userNames:{
+            leetcode : leetcode,
+            codechef  : codechef,
+            gfg : gfg
+        }
+    })
+res.json({ leetcode, codechef, gfg });
 
 })
 app.get("/signup" , async(req,res)=>{
@@ -123,10 +132,9 @@ app.get("/home", async (req, res) => {
     // console.log("Home: session.userid is", req.session.userid);  // Log the session ID
     if (userId) {
         const data = await User.findById(userId);
-        console.log("in")
-        res.json({ data: data })
+        res.send(data)
     }else{
-        console.log("sdj")
+        res.json({ data: "backend" })
     }
 
 })
