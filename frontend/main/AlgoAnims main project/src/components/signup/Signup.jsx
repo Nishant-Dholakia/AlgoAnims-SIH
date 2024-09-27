@@ -205,7 +205,7 @@ function Signup() {
 
 
     }
-
+  }
     return (
       <>
 
@@ -314,7 +314,7 @@ function Signup() {
         </div>
       </>
     )
-  }
+  
 }
 
 export default Signup;

@@ -15,8 +15,8 @@ const Router = createBrowserRouter(
             {/* <Route path='/home' element={<Home />} /> */}
             <Route path='' element={<Home />} />
             <Route path='profile' element={<Profile />} />
-            <Route path='login' element={<Login />} />
-            <Route path='signup' element={<Signup />} />
+            <Route path='login' element={<Login/>} />
+            <Route path='signup' element={<Signup/>} />
             <Route path='editprofile' element={<EditProfile />}>
                 <Route path='editProfilePage' element={<EditProfilePage />} />
                 <Route path='editPlatformPage' element={<EditPlatformPage />} />

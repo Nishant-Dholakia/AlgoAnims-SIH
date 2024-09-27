@@ -114,14 +114,12 @@ function Login() {
       );
 
     // Optional: Clean up the timeline on component unmount
-    return () => {
-      tl.kill();
-    };
+    // return () => {
+    //   tl.kill();
+    // };
   }, []); // Empty dependency array ensures this runs once on mount
 
   return (
-
-    
 
     <div className="body">
       
@@ -187,6 +185,7 @@ function Login() {
         </div>
       </div>
     </div>
+  
   );
 }
 
