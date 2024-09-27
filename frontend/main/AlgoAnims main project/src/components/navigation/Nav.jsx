@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 // import navjs from './navscript'
 import gsap from 'gsap'
 import './Nav.css';
@@ -8,6 +8,21 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 function Nav() {
+  const [data , setData] = useState();
+
+  async function userdata(){
+    const api = await fetch("http://localhost:8080/home");
+    const user = await api.json();
+    setData(user);
+  }
+
+  useEffect(()=>{
+    if(data){
+      
+    }
+  } , [])
+
+
   setTimeout(()=>{
     // console.log("lagi")
     document.getElementById('modebtn').addEventListener('click', () => {

@@ -28,10 +28,25 @@ const Router = createBrowserRouter(
         
       </Route>
 
+<<<<<<< HEAD
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
     </Route>
   )
 );
+=======
+            <Route path='/home' element={<Home />} />
+            <Route path='' element={<Home />} />
+            <Route path='profile' element={<Profile />} />
+            <Route path='login' element={<Login/>} />
+            <Route path='signup' element={<Signup/>} />
+            <Route path='editprofile' element={<EditProfile />}>
+                <Route path='editProfilePage' element={<EditProfilePage />} />
+                <Route path='editPlatformPage' element={<EditPlatformPage />} />
+                <Route path='editAccountsPage' element={<EditAccountsPage />} />
+            </Route>
+        </Route>
+    )
+>>>>>>> 9ecca08b339c276585542486e05d4a15e75f0652
 
 export default Router;
