@@ -1,19 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useRef,useState} from "react";
 import "./home.css";
 import Animate from "./Animate";
 import gsap from "gsap";
 
 
 export default function Home() {
-  useEffect(() => {
-    async function main() {
-      const api = await fetch("http://localhost:8080/home");
-      const data = await api.json();
-      console.log(data);
-    }
+  let name = useRef("Welcome");
 
+
+  async function main() {
+   try{
+    const api = await fetch("http://localhost:8080/home");
+    const data = await api.json();
+    if(data.userName){
+      console.log(data.userName)
+      name.current = data.userName;
+      
+    }
+   }catch(err){
+    console.log(err)
+   }
+  }
+
+  useEffect(()=>{
     main();
-  }, []);
+  } ,[])
+
+
+
 
   setTimeout(()=>{
     var h2 = document.querySelector("h2");
