@@ -77,7 +77,7 @@ function Nav() {
         <p id="lname">AlgoAnims</p>
         <i id="modebtn" className="ri-moon-clear-line"></i>
        
-       <NavLink to="login">
+       <NavLink to="/login">
        <button id="login">Login</button>
        </NavLink>
         
