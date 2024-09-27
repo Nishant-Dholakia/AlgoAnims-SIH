@@ -176,12 +176,21 @@ function Login() {
           {/* Attach ref to the signup box */}
           <div className="signup-box" ref={signupBoxRef}>
             <p>
+<<<<<<< HEAD
 Do not have an account? 
+=======
+
+              Do not have an account? 
+>>>>>>> 1c871d691f71db6403d55501f3988cf0b3f539b9
               <NavLink to='/signup' className="text-blue-500">
               <div>Sign up</div>
               </NavLink>
 
+<<<<<<< HEAD
               
+=======
+              Do not have an account? <a href="sign_up.html">Sign up</a>
+>>>>>>> 1c871d691f71db6403d55501f3988cf0b3f539b9
 
             </p>
           </div>

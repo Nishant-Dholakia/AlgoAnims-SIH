@@ -105,10 +105,113 @@ function Signup() {
     }
 
 
+<<<<<<< HEAD
+=======
+
+  useEffect(()=>{
+    // main()
+    
+      gsap.from("#background-video", {
+          scale: 1.2, 
+          opacity: 0.5,
+          duration: 2,
+          ease: "power2.out"
+      });
+
+    useEffect(() => {
+        const backgroundVideo = document.getElementById("background-video");
+        const loginBox = document.querySelector(".login-box");
+        const signupBox = document.querySelector(".signup-box");
+        const algoanimsHeading = document.querySelector(".algoanims-heading");
+    
+        let tl = gsap.timeline();
+    
+        // if (backgroundVideo) {
+        //   tl.from(
+        //     backgroundVideo,
+        //     { scale: 1.2, opacity: 0.5 },
+        //     { scale: 1, opacity: 1, duration: 2, ease: "power2.out" }
+        //   );
+        // }
+    
+        if (loginBox) {
+          tl.from(
+            loginBox,
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.5, delay: 0.5 }
+          );
+        }
+    
+        if (signupBox) {
+          tl.from(
+            signupBox,
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.5, delay: 0.8 }
+          );
+        }
+    
+        if (algoanimsHeading) {
+          tl.from(
+            algoanimsHeading,
+            { y: -50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.5, delay: 0.8 }
+          );
+        }
+    
+        // Cleanup on unmount
+        return () => {
+          tl.kill();
+        };
+      }, []);
+
+
+
+
+      gsap.from(".signup-box", {
+          y: 50,
+          opacity: 0,
+          duration: 1.5,
+          delay: 0.8
+      });
+
+      gsap.from(".algoanims-heading", {
+          y: -50,
+          opacity: 0,
+          duration: 1.5,
+          delay:0.8
+      });
+  } , [])
+ 
+
+
+
+  function handler(evt){
+      evt.preventDefault();
+      let f = 0;
+
+      for(let data of alldata){
+        if(data.emailId == emailid){
+            alert("your account is already exits!");
+            f = 1;
+            break;
+        }
+      }
+
+      if(f == 0){
+        if(password === repassword){
+            navigate("/home");
+        }else{
+            document.querySelector(".pass").classList.remove("hidden");
+        }
+      }
+
+      
+>>>>>>> 1c871d691f71db6403d55501f3988cf0b3f539b9
   }
 
   return (
     <>
+<<<<<<< HEAD
 
       <div className="body">
         <div className="login-container">
@@ -116,6 +219,15 @@ function Signup() {
 
             <video className="video" id="background-video" src="/bg.mp4" autoPlay muted loop />
             {/* <source src="/bg.mp4" type="video/mp4" />
+=======
+   
+    <div className="body">
+      <div className="login-container">
+        <div className="video-container">
+
+            <video className="video" id="background-video" src="/bg.mp4" autoPlay muted loop/>
+                {/* <source src="/bg.mp4" type="video/mp4" />
+>>>>>>> 1c871d691f71db6403d55501f3988cf0b3f539b9
 
             {/* <video className="video" id="background-video" autoPlay muted loop>
                 <source src="1726757407553429.mp4" type="video/mp4" />
@@ -185,11 +297,23 @@ function Signup() {
               </form>
             </div>
             <div className="signup-box">
+<<<<<<< HEAD
               <p>have an account?
                 <NavLink to='/login' className="text-blue-500">
                   <span>Log In</span>
                 </NavLink>
               </p>
+=======
+                <p>have an account?
+
+                <NavLink to='/login' className="text-blue-500">
+                  <span>Log In</span>
+                </NavLink>
+
+              
+
+                </p>
+>>>>>>> 1c871d691f71db6403d55501f3988cf0b3f539b9
             </div>
           </div>
         </div>
