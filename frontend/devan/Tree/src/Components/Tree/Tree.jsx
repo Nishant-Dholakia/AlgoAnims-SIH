@@ -1,9 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
-import { BinaryTreeNode, drawBinaryTree } from 'binary-tree-visualizer';
+import { BinaryTreeNode, drawBinaryTree, setTheme } from 'binary-tree-visualizer';
 import '../../tree.css'
 import DrawMode from '../Drawmode/DrawMode.jsx';
 
+import { VisualizationType } from 'binary-tree-visualizer';
+
+
 function Tree() {
+  const options = {
+    type: VisualizationType.PRETTY,
+      borderColor: '#fff',
+      bgColor: "fff",
+      strokeColor: "#fff"
+  };
   const [value, setValue] = useState(0);
   const [nodeno, setNodeno] = useState(0);
   const [position, setPosition] = useState('left');
@@ -29,7 +38,9 @@ function Tree() {
 
     if (first) {
       root.current = new BinaryTreeNode(value);
-      drawBinaryTree(root.current, document.querySelector('#tree'));
+      // setTheme(options);
+      drawBinaryTree(root.current, document.querySelector('#tree'),options);
+
       setFirst(false);
     } else if (rootExit) {
       if (!isValidNodeNo()) {
@@ -111,9 +122,9 @@ function Tree() {
           setValue={setValue}
           setPosition={setPosition}
           setNodeno={setNodeno}
-          setBtnState = {setBtnState}
-          setFirst = {setFirst}
-          disabled = {false}
+          setBtnState={setBtnState}
+          setFirst={setFirst}
+          disabled={false}
         />
 
       </div>

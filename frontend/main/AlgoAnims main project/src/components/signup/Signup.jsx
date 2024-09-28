@@ -129,47 +129,6 @@ function Signup() {
                   setPass(evt.target.value);
                   setEncrypt(cryptoJs.AES.encrypt(evt.target.value, getkey()).toString());
                 }}
-<<<<<<< HEAD
-              >
-                <input type="text" placeholder="username" required />
-                <input
-                  onChange={(evt) => {
-                    setEmailid(evt.target.value);
-                  }}
-                  value={emailid}
-                  type="email" placeholder="Email Address" required />
-                <input type="password"
-                  onChange={(evt) => {
-                    setPass(evt.target.value);
-                    setEncrypt(cryptoJs.AES.encrypt(password, getkey()).toString());
-                  }}
-                  value={password}
-                  placeholder="Password" required />
-                <input
-                  onChange={(evt) => {
-                    setRePass(evt.target.value);
-                  }}
-                  value={repassword}
-                  type="password" placeholder="Confirm Password" required />
-                {/* <small className="text-red-600 pass hidden">check your password</small><br /> */}
-                <button type="submit" className="signupbtn">Sign Up</button>
-                <div className="separator">
-                  <div className="line"></div>
-                </div>
-              </form>
-            </div>
-            <div className="signup-box">
-              <p>have an account?
-                <NavLink to='/login' className="text-blue-500">
-                  <span> Log In</span>
-                </NavLink>
-              </p>
-
-              </div>
-              
-           </div>
-
-=======
                 value={password}
                 type="password"
                 placeholder="Password"
@@ -197,7 +156,6 @@ function Signup() {
                 <span> Log In</span>
               </NavLink>
             </p>
->>>>>>> 90e799e5cc0a1f7be6ad41ad1eaa1bd2c2e561f2
           </div>
         </div>
       </div>

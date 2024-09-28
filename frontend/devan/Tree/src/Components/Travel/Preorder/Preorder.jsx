@@ -1,13 +1,25 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { drawBinaryTree } from 'binary-tree-visualizer';
+import { drawBinaryTree, setTheme } from 'binary-tree-visualizer';
 import { BinaryTreeNode } from 'binary-tree-visualizer';
 import randomTreeGenrate from '/Public/randomTreeGenrate.js';
 import '../../../tree.css';
 import '../travel.css';
 import DrawMode from '../../Drawmode/DrawMode.jsx';
+import { VisualizationType } from 'binary-tree-visualizer';
+
 let anino = 0;
 
 function Travel() {
+
+  const options = {
+    strokeColor: "#111",
+    colorArray: {
+      borderColor: "drakgray",
+      bgColor: "#fff"
+    }
+  }
+  setTheme(options)
+
 
   const [resetDisabled, setResetDisabled] = useState(false);
   const [ramdomDisabled, setRandomDisabled] = useState(false);
@@ -56,7 +68,7 @@ function Travel() {
     root.current = null;
     resetAll(fixedTreeRoot)
 
-    for(let i = 0;i < 15 ;i++){
+    for (let i = 0; i < 15; i++) {
       treeArray[i] = 999;
     }
     clearCanvas();
@@ -83,7 +95,11 @@ function Travel() {
 
     if (first) {
       root.current = new BinaryTreeNode(value);
-      drawBinaryTree(root.current, document.querySelector('#travel'));
+      drawBinaryTree(root.current, document.querySelector('#travel'), {
+        type: VisualizationType.HIGHLIGHT,
+
+
+      });
       setFirst(false);
       setFixedTreeroot(root.current);
 
@@ -130,14 +146,33 @@ function Travel() {
           alert("Node already exists on the right");
         } else {
           dupli.right = new BinaryTreeNode(value);
-          drawBinaryTree(root.current, document.querySelector('#travel'));
+          drawBinaryTree(root.current, document.querySelector('#travel'), {
+            type: VisualizationType.HIGHLIGHT,
+            strokeColor: "#111",
+            // A random color that is selected for each node circle
+            // (DEFAULT [{bgColor: '#fff2e0', borderColor: '#f56042'}])
+            colorArray: {
+              borderColor: "drakgray",
+              bgColor: "#fff"
+            },
+
+          });
         }
       } else if (position === 'left') {
         if (dupli.left) {
           alert("Node already exists on the left");
         } else {
           dupli.left = new BinaryTreeNode(value);
-          drawBinaryTree(root.current, document.querySelector('#travel'));
+          drawBinaryTree(root.current, document.querySelector('#travel'), {
+            type: VisualizationType.HIGHLIGHT,
+            strokeColor: "#111",
+            // A random color that is selected for each node circle
+            // (DEFAULT [{bgColor: '#fff2e0', borderColor: '#f56042'}])
+            colorArray: {
+              borderColor: "drakgray",
+              bgColor: "#fff"
+            }
+          });
         }
       }
 
@@ -163,7 +198,16 @@ function Travel() {
     setTravel([]);
     setFixedTreeroot(root);
     resetColor(root);
-    drawBinaryTree(root, document.querySelector("#travel"));
+    drawBinaryTree(root, document.querySelector("#travel"), {
+      type: VisualizationType.HIGHLIGHT,
+      strokeColor: "#111",
+      // A random color that is selected for each node circle
+      // (DEFAULT [{bgColor: '#fff2e0', borderColor: '#f56042'}])
+      colorArray: {
+        borderColor: "drakgray",
+        bgColor: "#fff"
+      }
+    });
   }
 
   function resetColor(node) {
@@ -192,7 +236,16 @@ function Travel() {
             bgColor: '#111',
           };
         }
-        drawBinaryTree(main, document.querySelector("#travel"));
+        drawBinaryTree(main, document.querySelector("#travel"), {
+          type: VisualizationType.HIGHLIGHT,
+          strokeColor: "#111",
+          // A random color that is selected for each node circle
+          // (DEFAULT [{bgColor: '#fff2e0', borderColor: '#f56042'}])
+          colorArray: {
+            borderColor: "drakgray",
+            bgColor: "#fff"
+          }
+        });
         resolve();
       }, inspeed.current);
     });
@@ -244,25 +297,25 @@ function Travel() {
       setBtnName('Stop Travel');
       setBtnColor('bg-red-700');
       setBtnhoverColor('hover:bg-red-600');
-      
+
     } else {
       setBtnName('Start Travel');
       setBtnColor('bg-green-700');
       setBtnhoverColor('hover:bg-green-600');
       setBtn(false);
-     
+
     }
     evt.target.disabled = true;
     evt.target.style.opacity = '0.7';
     setTimeout(() => {
       evt.target.disabled = false;
       evt.target.style.opacity = '1';
-      if (btnName === 'Start Travel'){
+      if (btnName === 'Start Travel') {
         setRandomDisabled(true)
         setResetDisabled(true);
         setDrawDisable(true);
         setInserDisabled(true);
-      }else{
+      } else {
         setRandomDisabled(false);
         setResetDisabled(false);
         setDrawDisable(false);
