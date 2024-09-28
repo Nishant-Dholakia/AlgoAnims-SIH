@@ -1,11 +1,14 @@
-import React, { useEffect ,useRef,useState} from "react";
+import React, { useContext, useEffect ,useRef,useState} from "react";
 import "./home.css";
 import Animate from "./Animate";
 import gsap from "gsap";
 
+import Context from "../../contexts/context";
+
 
 export default function Home() {
-  let name = useRef("Welcome");
+  const {UserName} = useContext(Context);
+  console.log(UserName.current)
 
 
   async function main() {
@@ -14,11 +17,11 @@ export default function Home() {
     const data = await api.json();
     if(data.userName){
       console.log(data.userName)
-      name.current = data.userName;
+    UserName.current = data.userName;
       
     }
    }catch(err){
-    console.log(err)
+    console.log(err,'jaytay')
    }
   }
 

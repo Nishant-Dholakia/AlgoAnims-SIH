@@ -1,7 +1,12 @@
 // import Nav from "../navigation/Nav";
 import "./profile.css";
 import { Link } from "react-router-dom";
+import Context from "../../contexts/context";
+import { useContext } from "react";
 function Profile() {
+
+  const {UserName} = useContext(Context)
+
   function CreateUserDetails({ svg, text, data = "N/A" }) {
     return (
       <div className="accounts break-words flex gap-2 items-center m-2">
@@ -43,14 +48,14 @@ function Profile() {
       <div className="profilecss ">
         <div className="left flex-col">
           <div className="personaldetails">
-            <div className="profilepic rounded-full">N</div>
+            <div className="profilepic rounded-full">{UserName.current.charAt(0)}</div>
             {/* <img
               className="profilepic"
               src="https://media.licdn.com/dms/image/v2/D4D03AQHMKhaYEalknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705511571724?e=1732147200&v=beta&t=UMWylJghozMP14R5X9VJ4XrHHzuNm2nOqf-yz5X1Udo"
               alt="N"
             /> */}
 
-            <div className="username">Nishant Dholakia</div>
+            <div className="username">{UserName.current}</div>
           </div>
 
           <Link to="/editprofile">

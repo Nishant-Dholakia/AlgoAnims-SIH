@@ -1,11 +1,11 @@
-import  { useState } from 'react'
+import  { useRef, useState } from 'react'
 import Context from './context';
 function UseContextProvider({children}) {
     
     const [allData,setAllData] = useState({});
-    const [userName,setUserName] = useState("");
+    const UserName = useRef("");
     return (
-    <Context.Provider value={{allData,setAllData,userName,setUserName}}>
+    <Context.Provider value={{allData,setAllData,UserName}}>
         {children}
     </Context.Provider>
   )

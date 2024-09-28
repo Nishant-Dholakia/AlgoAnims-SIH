@@ -88,11 +88,11 @@ function Signup() {
             "Content-type": "application/json"
           },
           body: JSON.stringify(formData)
-        }).then((response) => {
-          if (response.ok) {
-            navigate("/home");
-          }
+        }).then((res) => {
+          console.log("respones");
         });
+
+        navigate("/");
       } else {
         document.querySelector(".pass").classList.remove("hidden");
       }
