@@ -144,6 +144,8 @@ button:hover {
     position: absolute;
     margin-left: -30px;
     margin-top: 10px;
+    right: 10px;
+    font-size: 16px;
 }
 
 .password-container {
@@ -157,10 +159,4 @@ input[type="password"] {
     padding-right: 40px;
 }
 
-.toggle-password {
-    position: absolute;
-    right: 10px; 
-    cursor: pointer;
-    font-size: 16px;
-}
 
