@@ -8,7 +8,7 @@ import Context from "../../contexts/context";
 
 export default function Home() {
   const {UserName} = useContext(Context);
-  console.log(UserName.current)
+  // console.log(UserName.current)
 
 
   async function main() {

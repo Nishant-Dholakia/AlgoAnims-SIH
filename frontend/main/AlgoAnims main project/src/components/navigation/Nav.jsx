@@ -1,4 +1,4 @@
-import {useContext } from 'react'
+import { useContext } from 'react'
 import gsap from 'gsap'
 import './Nav.css';
 import 'remixicon/fonts/remixicon.css';
@@ -9,11 +9,11 @@ import Context from '../../contexts/context';
 
 
 function Nav() {
-  const {UserName} = useContext(Context)
-
+  const { UserName } = useContext(Context)
 
 
   setTimeout(() => {
+    // console.log(UserName)
     // console.log("lagi")
     document.getElementById('modebtn')?.addEventListener('click', () => {
       let a = document.body.style.backgroundColor;
@@ -47,10 +47,12 @@ function Nav() {
     });
 
 
-    document.getElementById('login')?.addEventListener('click', () => {
-      let b = document.getElementById('profile');
-      b.style.display = 'block';
-    });
+    // document.getElementById('login')?.addEventListener('click', () => {
+    //   let b = document.getElementById('profile');
+    //   if(b){
+    //     b.style.display = 'block';
+    //   }
+    // });
   }, 100)
 
   return (
@@ -65,11 +67,12 @@ function Nav() {
         <p id="lname">AlgoAnims</p>
         <i id="modebtn" className="ri-moon-clear-line"></i>
 
-        {!UserName?<NavLink to="login">
+        {!UserName.current ? <NavLink to="login">
           <button id="login">Login</button>
-        </NavLink>:<NavLink to="/profile" ><button  className='text-black  bg-red-500'>{UserName.current}</button></NavLink>}
+        </NavLink> :
+            <NavLink to="/profile" ><img id="profile" src="/profile-icon.jpg" alt="515151"/></NavLink>}
 
-        <img id="profile" src="/frontend/main/AlgoAnims main project/public/profile-icon.jpg" alt="515151"  />
+
 
         <ul id="list">
           <li id="topic">Graph</li>

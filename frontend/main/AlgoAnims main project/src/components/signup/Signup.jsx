@@ -92,6 +92,7 @@ function Signup() {
           console.log("respones");
         });
 
+        
         navigate("/login");
       } else {
         document.querySelector(".pass").classList.remove("hidden");

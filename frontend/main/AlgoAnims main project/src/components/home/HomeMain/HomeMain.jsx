@@ -1,5 +1,5 @@
 import React from 'react'
-import Nav from '../../navigation/Nav'
+import Nav from '../../navigation/Nav.jsx'
 
 import { Outlet } from 'react-router-dom'
 

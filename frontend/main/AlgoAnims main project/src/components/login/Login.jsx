@@ -12,11 +12,15 @@ import { NavLink } from "react-router-dom";
 
 function Login() {
   // Create refs for the elements you want to animate
+  
 
-
+  
+  
   useEffect(() => {
     const tl = gsap.timeline();
+   
   
+    
     // Animation sequence
     tl.from(loginBoxRef.current, { y: 50, opacity: 0, duration: 2, delay: 0.5, ease: "power2.out" },"ok")
       .from(signupBoxRef.current, { y: 50, opacity: 0, duration: 2, ease: "power2.out" }, "ok")
@@ -43,16 +47,16 @@ function Login() {
       let email = data.emailId;
       let uname = data.userName;
       let password = data.password;
-      let lastchar = data.password.charAt(data.password.length - 1)
+      // let lastchar = data.password.charAt(data.password.length - 1)
 
-      let newPass = "";
-      for (let i = 0; i < password.length - 1; i++) {
-        newPass += password[i];
-      }
+      // let newPass = "";
+      // for (let i = 0; i < password.length - 1; i++) {
+      //   newPass += password[i];
+      // }
 
 
-      let finalstr = CryptoJS.AES.decrypt(newPass, getkey()).toString(CryptoJS.enc.Utf8)
-      finalstr += lastchar;
+      let finalstr = CryptoJS.AES.decrypt(data.password, getkey()).toString(CryptoJS.enc.Utf8)
+      // finalstr += lastchar;
 
       // console.log(new)
 
@@ -79,6 +83,7 @@ function Login() {
     }
 
     if (f == 1) {
+        
         navigate("/");
 
       const obj = {

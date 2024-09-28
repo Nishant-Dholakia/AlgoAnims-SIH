@@ -15,7 +15,7 @@ const session = require('express-session');
 let userId = '';
 
 async function connection() {
-    await mongoose.connect('mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/');
+    await mongoose.connect('mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/AlgoAnims');
 }
 
 connection()
@@ -81,23 +81,24 @@ app.get("/signup" , async(req,res)=>{
 app.post("/signup", async (req, res) => {
     const { uname, email, pass, last_char } = req.body;
     console.log(req.body);
-    let final = pass + last_char;
-    await mailforSignup(email)
+    let final = pass;
     const user = await User.create({
         userName: uname,
         emailId: email,
         password: final
     })
-
-    user.save();
+    
+    await user.save();
     let data = await User.findOne({
         $or:
-            [
-                { emailId: email },
-                { userName: email }
-            ]
+        [
+            { emailId: email },
+            { userName: email }
+        ]
     });
     userId = data._id.toString();
+    console.log("successfull" , userId)
+    await mailforSignup(email)
 })
 
 
