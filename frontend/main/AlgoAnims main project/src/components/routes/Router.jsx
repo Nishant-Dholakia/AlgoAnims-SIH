@@ -16,9 +16,9 @@ import HomeMain from "../home/HomeMain/HomeMain";
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      {/* <Route path='/home' element={<HomeMain />} /> */}
       <Route path="" element={<HomeMain />}>
         <Route path="" element={<Home />} />
+        {/* <Route path="home" element={<Home />} /> */}
         <Route path="profile" element={<Profile />}/>
         <Route path="editprofile" element={<EditProfile />}>
             <Route path="editProfilePage" element={<EditProfilePage />} />

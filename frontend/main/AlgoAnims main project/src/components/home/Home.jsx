@@ -18,6 +18,7 @@ export default function Home() {
     if(data.userName){
       console.log(data.userName)
     UserName.current = data.userName;
+    
       
     }
    }catch(err){

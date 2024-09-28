@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState , useContext } from 'react'
-// import navjs from './navscript'
+import {useContext } from 'react'
 import gsap from 'gsap'
 import './Nav.css';
 import 'remixicon/fonts/remixicon.css';
@@ -7,6 +6,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Context from '../../contexts/context';
+
 
 function Nav() {
   const {UserName} = useContext(Context)
@@ -47,12 +47,10 @@ function Nav() {
     });
 
 
-    // document.getElementById('login')?.addEventListener('click', () => {
-    //   let a = document.getElementById('login');
-    //   a.style.display = 'none';
-    //   let b = document.getElementById('profile');
-    //   b.style.display = 'block';
-    // });
+    document.getElementById('login')?.addEventListener('click', () => {
+      let b = document.getElementById('profile');
+      b.style.display = 'block';
+    });
   }, 100)
 
   return (
@@ -69,9 +67,9 @@ function Nav() {
 
         {!UserName?<NavLink to="login">
           <button id="login">Login</button>
-        </NavLink>:<NavLink to="/profile" ><button  className='text-black bg-red-500'>{UserName.current}</button></NavLink>}
+        </NavLink>:<NavLink to="/profile" ><button  className='text-black  bg-red-500'>{UserName.current}</button></NavLink>}
 
-        <img id="profile" src="/frontend/main/AlgoAnims main project/public/profile-icon.jpg" alt="" style={{ display: 'none' }} />
+        <img id="profile" src="/frontend/main/AlgoAnims main project/public/profile-icon.jpg" alt="515151"  />
 
         <ul id="list">
           <li id="topic">Graph</li>

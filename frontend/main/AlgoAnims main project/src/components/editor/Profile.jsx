@@ -1,12 +1,11 @@
 // import Nav from "../navigation/Nav";
 import "./profile.css";
 import { Link } from "react-router-dom";
-import Context from "../../contexts/context";
 import { useContext } from "react";
+import Context from "../../contexts/context";
+
 function Profile() {
-
   const {UserName} = useContext(Context)
-
   function CreateUserDetails({ svg, text, data = "N/A" }) {
     return (
       <div className="accounts break-words flex gap-2 items-center m-2">

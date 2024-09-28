@@ -63,7 +63,7 @@ app.post("/editprofile/editPlatformPage", async (req, res) => {
     console.log(leetcode , codechef , gfg)
 
     res.setHeader('Content-Type', 'application/json');
-    await User.findByIdAndUpdate(userId , {
+    await User.findByIdAndUpdate(userId.toString() , {
         userNames:{
             leetcode : leetcode,
             codechef  : codechef,
