@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext , useEffect } from 'react'
 import gsap from 'gsap'
 import './Nav.css';
 import 'remixicon/fonts/remixicon.css';
@@ -11,6 +11,16 @@ import Context from '../../contexts/context';
 function Nav() {
   const { UserName } = useContext(Context)
 
+  // window.localStorage.removeItem("UserName");
+
+  useEffect(() => {
+    const hasReloaded = localStorage.getItem('hasReloaded');
+    localStorage.removeItem("hasReloaded")
+    if (!hasReloaded) {
+      localStorage.setItem('hasReloaded', 'true');
+      window.location.reload();
+    }
+  }, []);
 
   setTimeout(() => {
     // console.log(UserName)
@@ -53,6 +63,8 @@ function Nav() {
     //     b.style.display = 'block';
     //   }
     // });
+
+
   }, 100)
 
   return (
@@ -67,12 +79,18 @@ function Nav() {
         <p id="lname">AlgoAnims</p>
         <i id="modebtn" className="ri-moon-clear-line"></i>
 
-        {!UserName.current ? <NavLink to="login">
+        {!localStorage.getItem("UserName")
+        ? 
+        
+        <NavLink className='login' to="login">
           <button id="login">Login</button>
-        </NavLink> :
-            <NavLink to="/profile" ><img id="profile" src="/profile-icon.jpg" alt="515151"/></NavLink>}
+        </NavLink>:
 
-
+        <NavLink className='login' to="/profile">
+        <img id='profile' src="/profile-icon.jpg" alt="pro" />
+      </NavLink>
+      
+        }
 
         <ul id="list">
           <li id="topic">Graph</li>

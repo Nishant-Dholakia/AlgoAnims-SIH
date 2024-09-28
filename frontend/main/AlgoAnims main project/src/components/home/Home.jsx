@@ -8,7 +8,6 @@ import Context from "../../contexts/context";
 
 export default function Home() {
   const {UserName} = useContext(Context);
-  // console.log(UserName.current)
 
 
   async function main() {
@@ -17,7 +16,19 @@ export default function Home() {
     const data = await api.json();
     if(data.userName){
       console.log(data.userName)
-    UserName.current = data.userName;
+    window.localStorage.setItem("UserName" , data.userName);
+    window.localStorage.setItem("email" , data.emailId);
+    window.localStorage.setItem("Country" , data.details.country);
+    window.localStorage.setItem("Contact" , data.details.contactNo);
+
+    window.localStorage.setItem("leetcode" ,data.userNames.leetcode);
+    window.localStorage.setItem("gfg" ,data.userNames.gfg);
+    window.localStorage.setItem("codechef" ,data.userNames.codechef);
+
+    window.localStorage.setItem("github" ,data.accounts.github);
+    window.localStorage.setItem("linkedlin" ,data.accounts.linkedlin);
+    window.localStorage.setItem("discord" ,data.accounts.discord);
+
     
       
     }
@@ -52,26 +63,28 @@ export default function Home() {
   },100)
   window.addEventListener("wheel", function (dets) {
     
-    if (dets.deltaY > 0) {
-      gsap.to(".marque", {
-        transform: "translateX(-200%)",
-        duration: 4,
-        repeat: -1,
-        ease: "none",
-      });
-      gsap.to(".marque img", {
-        rotate: 180,
-      });
-    } else {
-      gsap.to(".marque", {
-        transform: "translateX(0%)",
-        duration: 4,
-        repeat: -1,
-        ease: "none",
-      });
-      gsap.to(".marque img", {
-        rotate: 0,
-      });
+    if(this.document.querySelector(".marquee")){
+      if (dets.deltaY > 0) {
+        gsap.to(".marque", {
+          transform: "translateX(-200%)",
+          duration: 4,
+          repeat: -1,
+          ease: "none",
+        });
+        gsap.to(".marque img", {
+          rotate: 180,
+        });
+      } else {
+        gsap.to(".marque", {
+          transform: "translateX(0%)",
+          duration: 4,
+          repeat: -1,
+          ease: "none",
+        });
+        gsap.to(".marque img", {
+          rotate: 0,
+        });
+      }
     }
   });
   setTimeout(()=>{

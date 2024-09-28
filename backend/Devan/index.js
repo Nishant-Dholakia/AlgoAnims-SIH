@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const User = require('./Models/data');
 const mail = require('./Controllers/mail');
 const mailforSignup = require('./Controllers/mail');
+const mongoStore = require('connect-mongo')
 
 const session = require('express-session');
 
@@ -36,11 +37,18 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
 app.use(session({
-    secret : "#sih-2024",
-    resave  :false,
-    saveUninitialized : true,
+    secret: '#sih-algoanims',
+    resave: false,            
+    saveUninitialized: true,  
     cookie : {secure : false}
-}));
+    // store: mongoStore.create({
+    //   mongoUrl: 'mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/sessions', 
+    //   collectionName: 'sessions'  
+    // }),
+    // cookie: {
+    //   maxAge: 1000 * 60 * 60 * 24 
+    // }
+  }));
 
 app.listen(port, () => {
     console.log("app is starting");
@@ -97,6 +105,8 @@ app.post("/signup", async (req, res) => {
         ]
     });
     userId = data._id.toString();
+    
+    
     console.log("successfull" , userId)
     await mailforSignup(email)
 })
@@ -126,11 +136,15 @@ app.post("/login", async (req, res) => {
     //     console.log(req.session.userid);
     // }
     userId = data._id.toString();
+    // if(userId){
+    //     console.log(data.userName , "in");
+    //    req.session.userName =   data.userName;
+    // }
 })
 
 
 app.get("/home", async (req, res) => {
-    // console.log("Home: session.userid is", req.session.userid);  // Log the session ID
+    // console.log("Home: session.userid is", req.session.userName);  // Log the session ID
     if (userId) {
         const data = await User.findById(userId);
         res.send(data)

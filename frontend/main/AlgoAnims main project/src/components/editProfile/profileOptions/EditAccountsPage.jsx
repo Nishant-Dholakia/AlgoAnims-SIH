@@ -4,8 +4,11 @@ function EditAccountsPage() {
   return (
     <form className={style.edit} method='post'>
       <div className={style.area}>
-        <label htmlFor="linkedin" className={style.label}>LinkedIn : </label>
-        <input type="text" name='linkedin' id='linkedin' placeholder='username(eg. user_12)' />
+        <label 
+        htmlFor="linkedin" className={style.label}>LinkedIn : </label>
+        <input 
+        defaultValue={localStorage.getItem(`linkedlin`)}
+        type="text" name='linkedin' id='linkedin' placeholder='username(eg. user_12)' />
       </div>
       <div className={style.area}>
         <label htmlFor="github" className={style.label}>GitHub : </label>

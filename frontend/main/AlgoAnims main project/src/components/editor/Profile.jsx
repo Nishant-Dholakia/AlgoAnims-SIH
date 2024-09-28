@@ -47,14 +47,14 @@ function Profile() {
       <div className="profilecss ">
         <div className="left flex-col">
           <div className="personaldetails">
-            <div className="profilepic rounded-full">{UserName.current.charAt(0)}</div>
+            <div className="profilepic rounded-full">{localStorage.getItem("UserName").charAt(0)}</div>
             {/* <img
               className="profilepic"
               src="https://media.licdn.com/dms/image/v2/D4D03AQHMKhaYEalknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705511571724?e=1732147200&v=beta&t=UMWylJghozMP14R5X9VJ4XrHHzuNm2nOqf-yz5X1Udo"
               alt="N"
             /> */}
 
-            <div className="username">{UserName.current}</div>
+            <div className="username">{localStorage.getItem("UserName")}</div>
           </div>
 
           <Link to="/editprofile">
@@ -63,18 +63,18 @@ function Profile() {
           <div>
             <CreateUserDetails
               svg="/email.svg"
-              text="nishantdholakia2020@gmail.com"
-              data="nishantdholakia2020@gmail.com"
+              text={localStorage.getItem("email")}
+              data={localStorage.getItem("email")}
             />
             <CreateUserDetails
               svg="/linkedin.svg"
               text="Linkedin Profile"
-              data="https://www.linkedin.com/in/nishant-dholakia-a43bb02a8/"
+              data={localStorage.getItem(`linkedlin`)}
             />
             <CreateUserDetails
               svg="/github.svg"
               text="Github Profile"
-              data="https://github.com/Nishant-Dholakia"
+              data={localStorage.getItem(`github`)}
             />
           </div>
           <h1 className="text-2xl"> Competitive Platforms</h1>
@@ -83,49 +83,21 @@ function Profile() {
             <CreatePlatForms
               svg="/leetcode.svg"
               text="LeetCode"
-              data="@kachaparth"
+              data={localStorage.getItem(`leetcode`)}
             />
 
             <CreatePlatForms
               svg="/codechef.svg"
               text="CodeChef"
-              data="@kachaparth"
-            />
-            <CreatePlatForms
-              svg="/HackerRank.png"
-              text="HackerRank"
-              data="@kachaparth"
+              data={localStorage.getItem(`codechef`)}
             />
             <CreatePlatForms
               svg="/gfg.svg"
               text="GeeksforGeeks"
-              data="@kachaparth"
+              data={localStorage.getItem(`gfg`)}
             />
-            <CreatePlatForms
-              svg="/code-forces.svg"
-              text="GeeksforGeeks"
-              data="@kachaparth"
-            />
-            <CreatePlatForms
-              svg="/gfg.svg"
-              text="GeeksforGeeks"
-              data="@kachaparth"
-            />
-            <CreatePlatForms
-              svg="/code-forces.svg"
-              text="GeeksforGeeks"
-              data="@kachaparth"
-            />
-            <CreatePlatForms
-              svg="/gfg.svg"
-              text="GeeksforGeeks"
-              data="@kachaparth"
-            />
-            <CreatePlatForms
-              svg="/code-forces.svg"
-              text="GeeksforGeeks"
-              data="@kachaparth"
-            />
+            
+           
           </div>
         </div>
         <div className="right">

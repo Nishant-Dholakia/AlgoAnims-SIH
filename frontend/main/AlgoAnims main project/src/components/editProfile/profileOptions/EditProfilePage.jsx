@@ -19,6 +19,7 @@ function EditProfilePage() {
           Username :
         </label>
         <input
+        defaultValue={localStorage.getItem(`UserName`)}
           type="text"
           name="username"
           id="username"

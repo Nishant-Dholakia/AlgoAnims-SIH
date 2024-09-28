@@ -13,8 +13,14 @@ import { NavLink } from "react-router-dom";
 function Login() {
   // Create refs for the elements you want to animate
   
-
-  
+  useEffect(() => {
+    const hasReloaded = localStorage.getItem('hasReloaded');
+    localStorage.removeItem("hasReloaded")
+    if (!hasReloaded) {
+      localStorage.setItem('hasReloaded', 'true');
+      window.location.reload();
+    }
+  }, []);
   
   useEffect(() => {
     const tl = gsap.timeline();

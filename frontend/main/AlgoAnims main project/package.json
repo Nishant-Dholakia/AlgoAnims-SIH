@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "chart.js": "^4.4.4",
+    "connect-mongo": "^5.1.0",
     "country-calling-code": "^0.0.3",
     "encriptorjs": "^1.0.2",
     "font-awesome": "^4.7.0",

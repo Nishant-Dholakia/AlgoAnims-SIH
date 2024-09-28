@@ -38,8 +38,8 @@ function EditProfile() {
       <div className={style.profile}>
         <div className={`${style.leftedit} flex-col`}>
           <div className={style.profiledetails}>
-            <div className={style.profilePic}>{userName.charAt(0)}</div>
-            <div className={style.profileUser}>{userName}</div>
+            <div className={style.profilePic}>{localStorage.getItem(`UserName`).charAt(0)}</div>
+            <div className={style.profileUser}>{localStorage.getItem(`UserName`)}</div>
           </div>
 
           <div className={style.changeOptions}>
