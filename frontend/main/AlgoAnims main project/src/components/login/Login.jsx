@@ -79,7 +79,7 @@ function Login() {
     }
 
     if (f == 1) {
-        navigate("/home");
+        navigate("/");
 
       const obj = {
         email: temp.email
