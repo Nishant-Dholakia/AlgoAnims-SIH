@@ -2,7 +2,7 @@ import React, { useContext, useEffect ,useRef,useState} from "react";
 import "./home.css";
 import Animate from "./Animate";
 import gsap from "gsap";
-
+import { NavLink } from "react-router-dom";
 import Context from "../../contexts/context";
 
 
@@ -183,7 +183,9 @@ export default function Home() {
                 horizons.
               </h4>
               <br />
-              <button className="cardbtn" >Explore</button>
+              <NavLink to={"Graph"} >
+              <button className="cardbtn"  >Explore</button>
+              </NavLink>
             </div>
           </div>
         </div>
