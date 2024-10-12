@@ -1,4 +1,4 @@
-import { useContext , useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import gsap from 'gsap'
 import './Nav.css';
 import 'remixicon/fonts/remixicon.css';
@@ -6,7 +6,28 @@ import 'font-awesome/css/font-awesome.min.css';
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Context from '../../contexts/context';
+import { Reload } from '../../Functions/Reload';
 
+function logout() {
+  let conform = confirm("DO you want logout");
+
+  if (conform) {
+    localStorage.clear();
+    console.log("User logged out, localStorage cleared.");
+    const data = { data: 0 };
+    fetch("http://localhost:8080/logout", {
+      method: 'POST',
+      headers: {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      }
+    })
+    Reload("logoutReload");
+  }
+
+}
 
 function Nav() {
   const { UserName } = useContext(Context)
@@ -14,17 +35,18 @@ function Nav() {
   // window.localStorage.removeItem("UserName");
 
   useEffect(() => {
-    const hasReloaded = localStorage.getItem('hasReloaded');
-    localStorage.removeItem("hasReloaded")
-    if (!hasReloaded) {
-      localStorage.setItem('hasReloaded', 'true');
-      window.location.reload();
-    }
+    localStorage.removeItem("LoginReload");
+    localStorage.removeItem("LogoutReload");
+    // localStorage.removeItem("HomeReload");
+
+    setInterval(() => {
+      Reload("NavReload");
+    }, 100)
+
   }, []);
 
   setTimeout(() => {
-    // console.log(UserName)
-    // console.log("lagi")
+
     document.getElementById('modebtn')?.addEventListener('click', () => {
       let a = document.body.style.backgroundColor;
       let cards = document.getElementsByClassName('card');
@@ -57,14 +79,6 @@ function Nav() {
     });
 
 
-    // document.getElementById('login')?.addEventListener('click', () => {
-    //   let b = document.getElementById('profile');
-    //   if(b){
-    //     b.style.display = 'block';
-    //   }
-    // });
-
-
   }, 100)
 
   return (
@@ -76,20 +90,27 @@ function Nav() {
           <i className="fa fa-times float-left" id="cancle"></i>
 
         </label>
-        <p id="lname">AlgoAnims</p>
+        <NavLink to='/'><p id="lname">AlgoAnims</p></NavLink>
         <i id="modebtn" className="ri-moon-clear-line"></i>
 
         {!localStorage.getItem("UserName")
-        ? 
-        
-        <NavLink className='login' to="login">
-          <button id="login">Login</button>
-        </NavLink>:
+          ?
+          
+          <NavLink to="login">
+            <button id="login">Login</button>
+          </NavLink> :
 
-        <NavLink className='login' to="/profile">
-        <img id='profile' src="/profile-icon.jpg" alt="pro" />
-      </NavLink>
-      
+          <div>
+            <NavLink to="/profile">
+              <img id='profile' src="/profile-icon.jpg" alt="pro" />
+            </NavLink>
+            <button
+              onClick={logout}
+              className='float-right relative top-5'>
+              Logout
+            </button>
+          </div>
+
         }
 
         <ul id="list">

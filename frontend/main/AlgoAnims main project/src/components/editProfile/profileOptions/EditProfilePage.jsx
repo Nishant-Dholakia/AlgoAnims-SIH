@@ -31,6 +31,7 @@ function EditProfilePage() {
           Email id :
         </label>
         <input
+        defaultValue={localStorage.getItem('email')}
           readOnly
           type="email"
           name="emailid"
@@ -43,6 +44,7 @@ function EditProfilePage() {
           Country :
         </label>
         <select
+        defaultValue={localStorage.getItem('Country')}
           name="country"
           id="country"
           className="text-slate-950" // Tailwind class

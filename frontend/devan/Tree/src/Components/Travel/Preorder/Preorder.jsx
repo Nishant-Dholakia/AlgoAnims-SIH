@@ -7,18 +7,14 @@ import '../travel.css';
 import DrawMode from '../../Drawmode/DrawMode.jsx';
 import { VisualizationType } from 'binary-tree-visualizer';
 
+
 let anino = 0;
 
 function Travel() {
 
-  const options = {
-    strokeColor: "#111",
-    colorArray: {
-      borderColor: "drakgray",
-      bgColor: "#fff"
-    }
-  }
-  setTheme(options)
+
+
+
 
 
   const [resetDisabled, setResetDisabled] = useState(false);
@@ -53,6 +49,9 @@ function Travel() {
   const [first, setFirst] = useState(false);
   const root = useRef(null); // useRef for root
 
+  const canvas = document.querySelector("canvas");
+  const ctx = canvas.getContext("2d");
+ 
 
 
   function forDrawMode() {
@@ -186,6 +185,7 @@ function Travel() {
       }
     }
   }, [btnState]);
+
   function resetAll(root) {
     setReset(true);
     anino = 0;
@@ -200,13 +200,7 @@ function Travel() {
     resetColor(root);
     drawBinaryTree(root, document.querySelector("#travel"), {
       type: VisualizationType.HIGHLIGHT,
-      strokeColor: "#111",
-      // A random color that is selected for each node circle
-      // (DEFAULT [{bgColor: '#fff2e0', borderColor: '#f56042'}])
-      colorArray: {
-        borderColor: "drakgray",
-        bgColor: "#fff"
-      }
+
     });
   }
 
@@ -215,41 +209,66 @@ function Travel() {
     if (node.nodeCircle && node.nodeCircle.colorSettings) {
       node.nodeCircle.colorSettings = {
         ...node.nodeCircle.colorSettings,
-        bgColor: '#FFF2E0',
+        bgColor: 'red',
+        borderColor: 'white'
       };
     }
     resetColor(node.left);
     resetColor(node.right);
   }
 
-  async function animation(node, main) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        if (isAnimationStopped.current) {
-          resolve();
-          return;
-        }
 
-        if (node.nodeCircle && node.nodeCircle.colorSettings) {
-          node.nodeCircle.colorSettings = {
-            ...node.nodeCircle.colorSettings,
-            bgColor: '#111',
-          };
-        }
-        drawBinaryTree(main, document.querySelector("#travel"), {
-          type: VisualizationType.HIGHLIGHT,
-          strokeColor: "#111",
-          // A random color that is selected for each node circle
-          // (DEFAULT [{bgColor: '#fff2e0', borderColor: '#f56042'}])
-          colorArray: {
-            borderColor: "drakgray",
-            bgColor: "#fff"
-          }
-        });
-        resolve();
-      }, inspeed.current);
+
+
+  function updateNodeTheme(node, color) {
+    console.log( node)
+    setTheme({
+      strokeColor: color
     });
   }
+
+  // console.log(setTheme)
+  function drawPath(node , ctx) {
+    let x = node.nodeCircle.x,y=node.nodeCircle.y,h=100 ,w=5;
+    ctx.beginPath();
+    ctx.rect(x, y, w, h);
+    ctx.fillStyle = 'red';
+    ctx.fill();
+    ctx.closePath();
+    console.log(`Draw path at (${x}, ${y}) with size (${w}, ${h})`); // Debugging output
+}
+
+async function animation(node, main) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            if (isAnimationStopped.current) {
+                resolve();
+                return;
+            }
+
+            if (node.nodeCircle && node.nodeCircle.colorSettings) {
+                // const canvas = document.querySelector("#canvas");
+                // const ctx = canvas.getContext("2d");
+
+                node.nodeCircle.colorSettings.bgColor = '#111'; 
+
+                drawBinaryTree(main, document.querySelector("#travel"), {
+                    type: VisualizationType.HIGHLIGHT,
+                });
+
+                updateNodeTheme(node , 'black');
+
+                // drawPath(node , ctx);
+            }
+
+            resolve();
+        }, inspeed.current);
+    });
+}
+
+
+
+
 
   function search(root, value) {
     if (root == null) {
@@ -414,7 +433,9 @@ function Travel() {
         <button
           onClick={() => {
             const root = randomTreeGenrate();
+            console.log(root)
             resetAll(root);
+            root.nodeCircle.colorSettings.bgColor = "#fff"
           }}
           className='bg-blue-600 rounded-lg p-2 text-lg hover:bg-blue-500 random-btn'
           disabled={ramdomDisabled} // Disable based on state

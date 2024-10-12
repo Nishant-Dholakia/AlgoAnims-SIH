@@ -29,9 +29,18 @@ connection()
 
 const app = express();
 
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
 const corsopt = {
-    origin: "http://localhost:5173",
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
 }
+
 app.use(cors(corsopt));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
@@ -52,14 +61,6 @@ app.use(session({
 
 app.listen(port, () => {
     console.log("app is starting");
-})
-
-
-app.get("/editprofile", (req, res) => {
-    res.json({ mess: "no" })
-})
-app.get("/editprofile/editPlatformPage", (req, res) => {
-    res.json({ mess: "welcome" })
 })
 
 app.post("/editprofile/editPlatformPage", async (req, res) => {
@@ -83,6 +84,7 @@ res.json({ leetcode, codechef, gfg });
 })
 app.get("/signup" , async(req,res)=>{
     const data = await User.find();
+    console.log("in home get")
     res.send(data)
 })
 
@@ -113,6 +115,7 @@ app.post("/signup", async (req, res) => {
 
 
 app.get("/login", async (req, res) => {
+
     const data = await User.find();
     res.json(data);
 })
@@ -126,24 +129,15 @@ app.post("/login", async (req, res) => {
                 { userName: email }
             ]
     });
-    
-    // if(data){
-    //     req.session.userid = data._id.toString();
-    //     async function hm(){
-    //         await req.session.save();
-    //     }
-    //     hm();
-    //     console.log(req.session.userid);
-    // }
+    console.log("in")
+
     userId = data._id.toString();
-    // if(userId){
-    //     console.log(data.userName , "in");
-    //    req.session.userName =   data.userName;
-    // }
+   console.log(userId)
 })
 
 
 app.get("/home", async (req, res) => {
+    
     // console.log("Home: session.userid is", req.session.userName);  // Log the session ID
     if (userId) {
         const data = await User.findById(userId);
@@ -152,4 +146,16 @@ app.get("/home", async (req, res) => {
         res.json({ data: "backend" })
     }
 
+})
+
+app.post("/data" , async(req,res)=>{
+    console.log(req.body);
+    let {UserName} = req.body;
+    const data = await User.findOne({userName : UserName});
+    userId = data._id.toString();
+    console.log(userId)
+})
+
+app.post("/logout" , (req,res)=>{
+    userId = '';
 })

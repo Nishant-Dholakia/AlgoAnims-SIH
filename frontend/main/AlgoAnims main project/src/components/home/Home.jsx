@@ -5,15 +5,47 @@ import gsap from "gsap";
 
 import Context from "../../contexts/context";
 
+import { Reload } from "../../Functions/Reload";
+
 
 export default function Home() {
+
+  // logout()
+  useEffect(()=>{
+    localStorage.removeItem("LoginReload");
+    Reload("HomeReload");    
+  } , []);
+
   const {UserName} = useContext(Context);
+
+  async function sendData() {
+
+    const data = {
+      UserName : localStorage.getItem("UserName")
+    }
+
+    fetch("http://localhost:8080/data",{
+      method : 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body : JSON.stringify(data)
+    }).then(()=>{
+      console.log("recive succesufuuly")
+    })
+
+    // const data = await api.json();
+
+  }
+
+  
 
 
   async function main() {
    try{
     const api = await fetch("http://localhost:8080/home");
     const data = await api.json();
+    console.log(data)
     if(data.userName){
       console.log(data.userName)
     window.localStorage.setItem("UserName" , data.userName);
@@ -39,6 +71,8 @@ export default function Home() {
 
   useEffect(()=>{
     main();
+    if(localStorage.getItem("UserName"))
+      sendData();
   } ,[])
 
 
@@ -60,10 +94,19 @@ export default function Home() {
         });
 
         h2.innerHTML = clutter1;
+
+        gsap.to(".marque", {
+          transform: "translateX(0%)",
+          duration: 4,
+          repeat: -1,
+          ease: "none",
+        });
   },100)
+
+
   window.addEventListener("wheel", function (dets) {
     
-    if(this.document.querySelector(".marquee")){
+    if(this.document.querySelector(".marque")){
       if (dets.deltaY > 0) {
         gsap.to(".marque", {
           transform: "translateX(-200%)",
@@ -109,7 +152,9 @@ export default function Home() {
   
 
   return (
+    
     <div>
+     
       <div className="rightimage">
         <div className="content">
           <h2>Welcome to AlgoAnims!!</h2>

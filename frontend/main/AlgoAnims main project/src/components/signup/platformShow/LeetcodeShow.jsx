@@ -1,5 +1,5 @@
 import React from 'react'
-import PieChart from "../chartMaker/PieChart";
+import PieChart from "../../chartMaker/PieChart";
 import { object } from "prop-types";
 function LeetcodeShow(leetcodeData) {
   return (

@@ -1,10 +1,25 @@
 // import Nav from "../navigation/Nav";
 import "./profile.css";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Context from "../../contexts/context";
+import isLogin from "../../Functions/checkLogin";
 
 function Profile() {
+
+    const navigate = useNavigate();
+    useEffect(() => {
+
+        if (!localStorage.getItem("UserName")) {
+            navigate("/login");
+        }
+    }, [navigate]);
+
+    
+
+// 
+
   const {UserName} = useContext(Context)
   function CreateUserDetails({ svg, text, data = "N/A" }) {
     return (

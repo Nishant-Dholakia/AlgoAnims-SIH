@@ -13,6 +13,9 @@ import EditAccountsPage from "../editProfile/profileOptions/EditAccountsPage";
 import EditPlatformPage from "../editProfile/profileOptions/EditPlatformPage";
 import EditProfilePage from "../editProfile/profileOptions/EditProfilePage";
 import HomeMain from "../home/HomeMain/HomeMain";
+import MokshLogin from "../MokshLogin2/MokshLogin";
+import MokshSignup from "../MokshSignUp/MokshSignup";
+
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -31,6 +34,9 @@ const Router = createBrowserRouter(
 
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
+      <Route path="mokshlogin" element={<MokshLogin />} />
+      <Route path="mokshsingup" element={<MokshSignup />} />
+
     </Route>
   )
 );

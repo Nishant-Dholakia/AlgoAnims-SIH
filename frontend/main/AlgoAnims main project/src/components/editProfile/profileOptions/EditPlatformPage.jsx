@@ -24,6 +24,9 @@ function EditPlatformPage() {
     // Update the local state with the response data
     const data = await response.json();
     setAllData(data);
+    localStorage.setItem("leetcode" , leetcodeUname);
+    localStorage.setItem("codechef" , codechefUname);
+    localStorage.setItem("gfg" , gfgUname);
   }; 
 
   console.log(allData); // Consider removing this in production or use it conditionally
@@ -32,15 +35,21 @@ function EditPlatformPage() {
     <form className={style.edit} onSubmit={handleSubmit}>
       <div className={style.area}>
         <label htmlFor="leetcode" className={style.label}>LeetCode:</label>
-        <input type="text" name='leetcodeUname' id='leetcode' placeholder='username (e.g., user_12)' />
+        <input type="text"
+        defaultValue={localStorage.getItem("leetcode")}
+        name='leetcodeUname' id='leetcode' placeholder='username (e.g., user_12)' />
       </div>
       <div className={style.area}>
         <label htmlFor="codechef" className={style.label}>CodeChef:</label>
-        <input type="text" name='codechefUname' id='codechef' placeholder='username (e.g., user_12)' />
+        <input type="text" 
+        defaultValue={localStorage.getItem("codechef")}
+        name='codechefUname' id='codechef' placeholder='username (e.g., user_12)' />
       </div>
       <div className={style.area}>
         <label htmlFor="geeksforgeeks" className={style.label}>GeeksForGeeks:</label>
-        <input type="text" name='gfgUname' id='geeksforgeeks' placeholder='username (e.g., user_12)' />
+        <input type="text"
+        defaultValue={localStorage.getItem("gfg")}
+        name='gfgUname' id='geeksforgeeks' placeholder='username (e.g., user_12)' />
       </div>
       <button className={style.save} type="submit">Save</button>
     </form>

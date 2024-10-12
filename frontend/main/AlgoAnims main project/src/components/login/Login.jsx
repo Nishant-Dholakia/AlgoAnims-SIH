@@ -8,35 +8,10 @@ import CryptoJS from "crypto-js";
 
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { Reload } from "../../Functions/Reload";
 
 
 function Login() {
-  // Create refs for the elements you want to animate
-  
-  useEffect(() => {
-    const hasReloaded = localStorage.getItem('hasReloaded');
-    localStorage.removeItem("hasReloaded")
-    if (!hasReloaded) {
-      localStorage.setItem('hasReloaded', 'true');
-      window.location.reload();
-    }
-  }, []);
-  
-  useEffect(() => {
-    const tl = gsap.timeline();
-   
-  
-    
-    // Animation sequence
-    tl.from(loginBoxRef.current, { y: 50, opacity: 0, duration: 2, delay: 0.5, ease: "power2.out" },"ok")
-      .from(signupBoxRef.current, { y: 50, opacity: 0, duration: 2, ease: "power2.out" }, "ok")
-      .from(headingRef.current, { y: -50, opacity: 0, duration: 2, ease: "power2.out" }, "ok");
-  
-    return () => {
-      tl.kill(); // Cleanup the timeline on unmount
-    };
-  }, []);
-  
   const loginBoxRef = useRef(null);
   const signupBoxRef = useRef(null);
   const headingRef = useRef(null);
@@ -46,6 +21,46 @@ function Login() {
   const navigate = useNavigate();
   let [obj, setObj] = useState([]);
 
+  const [passtype , setpasstype] = useState("password");
+  const [passicon , setpassicon] = useState("👁️");
+
+
+  const [firstfieldColor, setfirstfieldColor] = useState("text-red-500");
+  const [passColor, setpassColor] = useState("text-red-500");
+
+  const [firsttick, setfirsttick] = useState("X");
+  const [passTick, setPassTick] = useState("X");
+
+  const [firstMsg, setfirstMsg] = useState("username or email is not availabel");
+  const [passMsg, setpassMsg] = useState("password is not availabel");
+
+
+  useEffect(() => {
+    localStorage.removeItem("HomeReload");
+    localStorage.removeItem("NavedReload");
+    localStorage.removeItem("NavReload");
+
+    Reload("LoginReload");
+  }, []);
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+
+
+
+    // Animation sequence
+    tl.from(loginBoxRef.current, { y: 50, opacity: 0, duration: 2, delay: 0.5, ease: "power2.out" }, "ok")
+      .from(signupBoxRef.current, { y: 50, opacity: 0, duration: 2, ease: "power2.out" }, "ok")
+      .from(headingRef.current, { y: -50, opacity: 0, duration: 2, ease: "power2.out" }, "ok");
+
+    return () => {
+      tl.kill(); // Cleanup the timeline on unmount
+    };
+  }, []);
+
+
+
+
   async function setalldata() {
     const api = await fetch("http://localhost:8080/login");
     const apidata = await api.json();
@@ -53,18 +68,9 @@ function Login() {
       let email = data.emailId;
       let uname = data.userName;
       let password = data.password;
-      // let lastchar = data.password.charAt(data.password.length - 1)
-
-      // let newPass = "";
-      // for (let i = 0; i < password.length - 1; i++) {
-      //   newPass += password[i];
-      // }
-
 
       let finalstr = CryptoJS.AES.decrypt(data.password, getkey()).toString(CryptoJS.enc.Utf8)
-      // finalstr += lastchar;
 
-      // console.log(new)
 
       obj.push({
         email: email,
@@ -78,39 +84,33 @@ function Login() {
 
   function check() {
 
-    let f = 0;
     let temp;
-    for (let pd of obj) {
-      if ((pd.uname === firstField || pd.email === firstField) && pd.pass === pass) {
-        f = 1;
-        temp = pd;
-        break;
+    if (passTick == '✔' && firsttick == '✔') {
+      for (let pd of obj) {
+        if ((pd.uname === firstField || pd.email === firstField)) {
+          temp = pd;
+          break;
+        }
       }
-    }
+      navigate("/");
 
-    if (f == 1) {
-        
-        navigate("/");
-
-      const obj = {
+      const obj2 = {
         email: temp.email
       }
 
-      if (temp) {
+      {
         fetch("http://localhost:8080/login", {
           method: 'POST',
           headers: {
             "Content-type": "application/json"
           },
-          body: JSON.stringify(obj)
+          body: JSON.stringify(obj2)
         }).then((res) => res.json());
 
       }
 
-    } else {
-      alert("invalid password and username or email");
     }
-   
+
   }
 
   useEffect(() => {
@@ -124,18 +124,18 @@ function Login() {
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, duration: 2, delay: 0.5, ease: "power2.out" }
     );
-      gsap.from(
-        signupBoxRef.current,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 2, delay: 0.3, ease: "power2.out" },
-        "-=1" // Overlap the animations
-      )
-      gsap.from(
-        headingRef.current,
-        { y: -50, opacity: 0 },
-        { y: -15, opacity: 1, duration: 2, delay: 0.3, ease: "power2.out" },
-        "-=1.2"
-      );
+    gsap.from(
+      signupBoxRef.current,
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 2, delay: 0.3, ease: "power2.out" },
+      "-=1" // Overlap the animations
+    )
+    gsap.from(
+      headingRef.current,
+      { y: -50, opacity: 0 },
+      { y: -15, opacity: 1, duration: 2, delay: 0.3, ease: "power2.out" },
+      "-=1.2"
+    );
 
     // Optional: Clean up the timeline on component unmount
     // return () => {
@@ -143,15 +143,57 @@ function Login() {
     // };
   }, []); // Empty dependency array ensures this runs once on mount
 
+  function forFirstField(evt) {
+    let value = evt.target.value;
+    setFirst(value)
+    let isget = false;
+    for (let pd of obj) {
+      if (pd.uname == value || pd.email == value) {
+        isget = true;
+        break;
+      }
+    }
+    if (isget) {
+      setfirstMsg("valid");
+      setfirsttick("✔");
+      setfirstfieldColor("text-green-500");
+    } else {
+      setfirstMsg("username or email is not availabel");
+      setfirsttick("X");
+      setfirstfieldColor("text-red-500");
+    }
+  }
+
+  function forPassword(evt) {
+    let value = evt.target.value;
+    setPass(value)
+    let isget = false;
+    for (let pd of obj) {
+      if ((pd.uname === firstField || pd.email === firstField) &&  pd.pass == value) {
+        isget = true;
+        break;
+      }
+    }
+    if (isget) {
+      setpassMsg("valid");
+      setPassTick("✔");
+      setpassColor("text-green-500");
+    } else {
+      setpassMsg("password is not availabel");
+      setPassTick("X");
+      setpassColor("text-red-500");
+    }
+  }
+
   return (
 
     <div className="body">
-      
+
       <div className="login-container">
-        
+
         <div className="video-container">
           {/* Uncomment and ensure the video path is correct if needed */}
-          <video id="background-video" src="/bg.mp4" muted loop autoPlay/>
+          <video id="background-video" src="/bg.mp4" muted loop autoPlay />
         </div>
 
         {/* Attach ref to the heading */}
@@ -170,21 +212,58 @@ function Login() {
                 evt.preventDefault();
                 check();
               }}>
-              <input
-                value={firstField}
-                onChange={(evt) => {
-                  setFirst(evt.target.value);
-                }}
-                type="text"
-                placeholder="Username, or Email"
-                required
-              />
-              <input
-                value={pass}
-                onChange={(evt) => {
-                  setPass(evt.target.value);
-                }}
-                type="password" placeholder="Password" required />
+
+              <div className="fileds-tick">
+                <div className="fileds">
+                  <input
+                    value={firstField}
+                    onChange={(evt) => {
+                      forFirstField(evt)
+                    }}
+                    type="text"
+                    placeholder="Username, or Email"
+                    required
+                  />
+                  {firstField.length > 0 ? <input
+                    readOnly
+                    value={firsttick}
+                    className={`${firstfieldColor}`}
+                    type="text" /> : <></>}
+                </div>
+                {firstField.length > 0 && firstMsg != 'valid' ?
+                  <small className={`${firstfieldColor}`} >{firstMsg}</small>
+                  : <></>}
+              </div>
+
+              <div className="fileds-tick pass-tick">
+                <div className="fileds">
+                  <input
+                    value={pass}
+                    onChange={(evt) => {
+                      forPassword(evt)
+                    }}
+                    type={passtype} placeholder="Password" required />
+                    <button
+                    type="button"
+                    onClick={()=>{
+                      setpassicon("🙈");
+                      setpasstype((prev)=>{
+                        if(prev == "text") return "password"
+                        return "text"
+                      })
+                    }}
+                    >{passicon}</button>
+                    {pass.length > 0 ? <input 
+                    readOnly
+                    value={passTick}
+                    className={`${passColor}`}
+                    type="text" />  : <></>}
+                </div>
+                {passMsg != 'valid' && pass.length > 0 ? <small
+                className={`${passColor}`}
+                >{passMsg}</small> : <></>}
+              </div>
+
               <button type="submit" className="loginbtn">Log In</button>
               <div className="separator">
                 <div className="line"></div>
@@ -198,18 +277,18 @@ function Login() {
           {/* Attach ref to the signup box */}
           <div className="signup-box" ref={signupBoxRef}>
             <p>
-              Do not have an account? 
+              Do not have an account?
               <NavLink to='/signup' className="text-blue-500">
-<span> Sign up </span>
+                <span> Sign up </span>
               </NavLink>
 
 
-            </p> 
+            </p>
           </div>
         </div>
       </div>
     </div>
-  
+
   );
 }
 
