@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
 </head>
 <body>
     <div class="login-container">
         <div class="video-container">
             <video id="background-video" autoplay muted loop>
-                <source src="1726757407553429.mp4" type="video/mp4">
+                <source src="1726757407553429.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
         </div>
@@ -23,13 +23,13 @@
         <div class="form-container">
             <div class="login-box">
                 <div class="logo">
-                    <img src="Screenshot 2024-09-19 at 7.28.34 PM.png" alt="Logo">
+                    <img src="Screenshot 2024-09-19 at 7.28.34 PM.png" alt="Logo" />
                 </div>
                 <form id="loginForm" class="login-form">
-                    <input type="text" id="username" placeholder="Phone number, username, or email" required>
-                    <input type="password" id="password" placeholder="Password" required>
-                    <span id="loginError" class="error-message" style="display:none; color: red;">Invalid username or password</span>
-                    <button type="submit">Log In</button>
+                    <input type="text" id="username" placeholder="Phone number, username, or email" required />
+                    <input type="password" id="password" placeholder="Password" required />
+                    <span id="loginError" class="error-message">Invalid username or password</span>
+                    <button type="submit" class="b">Log In</button>
                     <div class="separator">
                         <div class="line"></div>
                     </div>
@@ -71,7 +71,7 @@
                 y: -50,
                 opacity: 0,
                 duration: 1.5,
-                delay:0.8
+                delay: 0.8
             });
         }
     </script>
