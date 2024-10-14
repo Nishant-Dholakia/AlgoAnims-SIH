@@ -7,7 +7,7 @@ const leetcodeData = require('./Controllers/leetcodeData');
 const port = 8080;
 const mongoose = require('mongoose');
 const User = require('./Models/data');
-const mail = require('./Controllers/mail');
+const sendMail = require('./Controllers/forgetPassword');
 const mailforSignup = require('./Controllers/mail');
 const mongoStore = require('connect-mongo')
 
@@ -16,7 +16,8 @@ const session = require('express-session');
 let userId = '';
 
 async function connection() {
-    await mongoose.connect('mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/AlgoAnims');
+    // await mongoose.connect('mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/AlgoAnims');
+    await mongoose.connect('mongodb://localhost:27017/AlgoAnims');
 }
 
 connection()
@@ -50,13 +51,7 @@ app.use(session({
     resave: false,            
     saveUninitialized: true,  
     cookie : {secure : false}
-    // store: mongoStore.create({
-    //   mongoUrl: 'mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/sessions', 
-    //   collectionName: 'sessions'  
-    // }),
-    // cookie: {
-    //   maxAge: 1000 * 60 * 60 * 24 
-    // }
+
   }));
 
 app.listen(port, () => {
@@ -82,7 +77,7 @@ app.post("/editprofile/editPlatformPage", async (req, res) => {
 res.json({ leetcode, codechef, gfg });
 
 })
-app.get("/signup" , async(req,res)=>{
+app.get("/api/signup" , async(req,res)=>{
     const data = await User.find();
     console.log("in home get")
     res.send(data)
@@ -114,9 +109,10 @@ app.post("/signup", async (req, res) => {
 })
 
 
-app.get("/login", async (req, res) => {
+app.get("/api/login", async (req, res) => {
 
     const data = await User.find();
+    // console.log(data)
     res.json(data);
 })
 
@@ -136,7 +132,7 @@ app.post("/login", async (req, res) => {
 })
 
 
-app.get("/home", async (req, res) => {
+app.get("/api/home", async (req, res) => {
     
     // console.log("Home: session.userid is", req.session.userName);  // Log the session ID
     if (userId) {
@@ -159,3 +155,33 @@ app.post("/data" , async(req,res)=>{
 app.post("/logout" , (req,res)=>{
     userId = '';
 })
+
+app.post("/forgetpassword",async(req,res)=>{
+    let {emailId} = req.body;
+    const data = await User.findOne({emailId : emailId});
+    userId = data._id.toString();
+    // console.log(userId)
+    await sendMail(emailId);  
+})
+
+app.get("/api/resetpassword",  async(req,res)=>{
+    const data = await User.findOne({_id : userId});
+    // console.log(data);
+    let obj = {
+        userName : data.userName,
+        email : data.emailId
+    }
+
+    res.json(obj);
+})
+
+app.patch("/changepassword" , async(req,res)=>{
+    let {password} = req.body;
+    console.log(password , req.body)
+
+    let update = await User.findByIdAndUpdate(userId , {
+        password : password
+    })
+
+    console.log("sucess");
+});

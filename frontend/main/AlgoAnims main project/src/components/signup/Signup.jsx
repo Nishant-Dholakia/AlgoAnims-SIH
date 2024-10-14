@@ -188,7 +188,7 @@ function Signup() {
 
   // Fetch existing user data
   async function main() {
-    const api = await fetch("http://localhost:8080/signup");
+    const api = await fetch("http://localhost:8080/api/signup");
     const data = await api.json();
     setAlldata(data);
     console.log(data)

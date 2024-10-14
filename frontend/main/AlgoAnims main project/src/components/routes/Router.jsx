@@ -13,14 +13,12 @@ import EditAccountsPage from "../editProfile/profileOptions/EditAccountsPage";
 import EditPlatformPage from "../editProfile/profileOptions/EditPlatformPage";
 import EditProfilePage from "../editProfile/profileOptions/EditProfilePage";
 import HomeMain from "../home/HomeMain/HomeMain";
-<<<<<<< HEAD
-import MokshLogin from "../MokshLogin2/MokshLogin";
-import MokshSignup from "../MokshSignUp/MokshSignup";
-
-=======
 import Graph from "../graph/Graph";
 import Homechild from "../home/homechild/homechild";
->>>>>>> 8b0d6a012ea661052bf1d6543491419661e51bec
+import ForgetPassword from "../ForgetPassword/ForgetPassword";
+import Mail from "../Mail/Mail";
+import ResetPassword from "../Resetpassword/ResetPassword";
+
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
@@ -42,9 +40,10 @@ const Router = createBrowserRouter(
 
 
       <Route path="login" element={<Login />} />
+      <Route path="login/forgetpassword" element = {<ForgetPassword/>} />
+      <Route path="login/forgetpassword/mail" element = {<Mail/>}  />
+      <Route path="login/forgetpassword/changepassword" element = {<ResetPassword/>} />
       <Route path="signup" element={<Signup />} />
-      <Route path="mokshlogin" element={<MokshLogin />} />
-      <Route path="mokshsingup" element={<MokshSignup />} />
 
     </Route>
   )

@@ -38,14 +38,19 @@ export default function Home() {
 
   }
 
+   async function getData(){
+    const api = await fetch("http://localhost:8080/api/home");
+    const data = await api.json();
+    return data;
+  }
+
   
 
 
   async function main() {
    try{
-    const api = await fetch("http://localhost:8080/home");
-    const data = await api.json();
-    console.log(data)
+    const data = await getData();
+    // console.log(data)
     if(data.userName){
       console.log(data.userName)
     window.localStorage.setItem("UserName" , data.userName);
@@ -330,3 +335,5 @@ export default function Home() {
     </div>
   );
 }
+
+

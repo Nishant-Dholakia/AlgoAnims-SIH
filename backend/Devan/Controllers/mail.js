@@ -5,11 +5,11 @@ async function mailforSignup(to){
 
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
-        port: 587, // Port for TLS
-        secure: false, // Set to true if you are using port 465
+        port: 587, 
+        secure: false,
         auth: {
-            user: from, // your email
-            pass: "vxnp qqkp mumh ihyv", // your app password
+            user: from,
+            pass: "vxnp qqkp mumh ihyv", 
         }
     })
 

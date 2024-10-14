@@ -62,7 +62,7 @@ function Login() {
 
 
   async function setalldata() {
-    const api = await fetch("http://localhost:8080/login");
+    const api = await fetch("http://localhost:8080/api/login");
     const apidata = await api.json();
     for (let data of apidata) {
       let email = data.emailId;
@@ -192,17 +192,17 @@ function Login() {
       <div className="login-container">
 
         <div className="video-container">
-          {/* Uncomment and ensure the video path is correct if needed */}
+          
           <video id="background-video" src="/bg.mp4" muted loop autoPlay />
         </div>
 
-        {/* Attach ref to the heading */}
+
         <header className="algoanims-heading" ref={headingRef}>
           AlgoAnims
         </header>
 
         <div className="form-container">
-          {/* Attach ref to the login box */}
+         
           <div className="login-box" ref={loginBoxRef}>
             <div className="logo">
               <img src={logoImage} alt="Logo" />
@@ -264,17 +264,17 @@ function Login() {
                 >{passMsg}</small> : <></>}
               </div>
 
-              <button type="submit" className="loginbtn">Log In</button>
+              <button type="submit" className="loginbtn btn-login">Log In</button>
               <div className="separator">
                 <div className="line"></div>
               </div>
-              <a href="#" className="forgot-password">
+              <Link to='forgetpassword' className="forgot-password">
                 Forgot password?
-              </a>
+              </Link>
             </form>
           </div>
 
-          {/* Attach ref to the signup box */}
+          
           <div className="signup-box" ref={signupBoxRef}>
             <p>
               Do not have an account?

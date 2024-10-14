@@ -51,7 +51,7 @@ function Travel() {
 
   const canvas = document.querySelector("canvas");
   const ctx = canvas.getContext("2d");
- 
+
 
 
   function forDrawMode() {
@@ -221,50 +221,48 @@ function Travel() {
 
 
   function updateNodeTheme(node, color) {
-    console.log( node)
+    console.log(node)
     setTheme({
       strokeColor: color
     });
   }
 
   // console.log(setTheme)
-  function drawPath(node , ctx) {
-    let x = node.nodeCircle.x,y=node.nodeCircle.y,h=100 ,w=5;
-    ctx.beginPath();
-    ctx.rect(x, y, w, h);
-    ctx.fillStyle = 'red';
-    ctx.fill();
-    ctx.closePath();
-    console.log(`Draw path at (${x}, ${y}) with size (${w}, ${h})`); // Debugging output
-}
+  // async function svgColor(node) {
+  //   return new Promise((reslove, reject) => {
+  //     drawBinaryTree(node.left, document.querySelector("#travel"), {
+  //       type: VisualizationType.HIGHLIGHT,
+  //     });
+  //     setTheme({
+  //       strokeColor : "#111"
+  //     })
+  //     setTimeout(() => {
+  //       reslove(100);
+  //     }, 1000);
+  //   })
+  // }
+  async function animation(node, main) {
+    return new Promise(async(resolve) => {
+      // await svgColor(node);
+      console.log(node)
+      
+      setTimeout(() => {
+        if (isAnimationStopped.current) {
+          resolve();
+          return;
+        }
 
-async function animation(node, main) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            if (isAnimationStopped.current) {
-                resolve();
-                return;
-            }
+        if (node.nodeCircle && node.nodeCircle.colorSettings) {
+          node.nodeCircle.colorSettings.bgColor = '#111';
+          drawBinaryTree(main, document.querySelector("#travel"), {
+            type: VisualizationType.HIGHLIGHT,
+          });
+        }
 
-            if (node.nodeCircle && node.nodeCircle.colorSettings) {
-                // const canvas = document.querySelector("#canvas");
-                // const ctx = canvas.getContext("2d");
-
-                node.nodeCircle.colorSettings.bgColor = '#111'; 
-
-                drawBinaryTree(main, document.querySelector("#travel"), {
-                    type: VisualizationType.HIGHLIGHT,
-                });
-
-                updateNodeTheme(node , 'black');
-
-                // drawPath(node , ctx);
-            }
-
-            resolve();
-        }, inspeed.current);
+        resolve();
+      }, inspeed.current);
     });
-}
+  }
 
 
 
@@ -435,7 +433,6 @@ async function animation(node, main) {
             const root = randomTreeGenrate();
             console.log(root)
             resetAll(root);
-            root.nodeCircle.colorSettings.bgColor = "#fff"
           }}
           className='bg-blue-600 rounded-lg p-2 text-lg hover:bg-blue-500 random-btn'
           disabled={ramdomDisabled} // Disable based on state

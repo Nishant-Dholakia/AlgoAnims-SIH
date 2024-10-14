@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { drawBinaryTree } from 'binary-tree-visualizer';
+import { drawBinaryTree, setTheme } from 'binary-tree-visualizer';
 import { BinaryTreeNode } from 'binary-tree-visualizer';
 import randomTreeGenrate from '/Public/randomTreeGenrate';
 import '../../../tree.css';
@@ -8,7 +8,10 @@ import DrawMode from '../../Drawmode/DrawMode.jsx';
 let anino = 0;
 
 function Inorder() {
-
+  setTheme({
+    strokeColor : "#111",
+    fontSize: 12,
+  })
   const [resetDisabled, setResetDisabled] = useState(false);
   const [ramdomDisabled, setRandomDisabled] = useState(false);
 
@@ -171,7 +174,8 @@ function Inorder() {
     if (node.nodeCircle && node.nodeCircle.colorSettings) {
       node.nodeCircle.colorSettings = {
         ...node.nodeCircle.colorSettings,
-        bgColor: '#FFF2E0',
+        bgColor: '#fff2e0',
+        
       };
     }
     resetColor(node.left);
@@ -179,22 +183,28 @@ function Inorder() {
   }
 
   async function animation(node, main) {
+    setTravel((prevTravel) => [...prevTravel, node.value]);
     return new Promise((resolve) => {
+      
       setTimeout(() => {
         if (isAnimationStopped.current) {
           resolve();
           return;
         }
-
-        if (node.nodeCircle && node.nodeCircle.colorSettings) {
-          node.nodeCircle.colorSettings = {
-            ...node.nodeCircle.colorSettings,
-            bgColor: '#111',
-          };
-        }
+        
+        // if (node.nodeCircle && node.nodeCircle.colorSettings) {
+          //   node.nodeCircle.colorSettings = {
+            //     ...node.nodeCircle.colorSettings,
+            //     bgColor: 'green',
+            
+            //   };
+            // }
+            
+            node.nodeCircle.colorSettings.bgColor = '#111';
+            console.log(node);
         drawBinaryTree(main, document.querySelector("#travel"));
-        resolve();
-      }, inspeed.current);
+        resolve(200);
+      }, 1);
     });
   }
 
@@ -205,6 +215,7 @@ function Inorder() {
     if (root.value === value) {
       return root;
     }
+    
     return search(root.left, value) || search(root.right, value);
   }
 
@@ -214,7 +225,7 @@ function Inorder() {
       if (isAnimationStopped.current) {
         return i;
       }
-      if (i >= anino - 1) {
+      if (i >= anino - 1) { 
         let node = search(root, no);
         if (node) await animation(node, main);
         if (!isAnimationStopped.current) {
@@ -226,13 +237,49 @@ function Inorder() {
     return preorder.length;
   }
 
-  function collectPreorder(root) {
-    if (root == null) {
-      return;
-    }
-    collectPreorder(root.left);
-    preorder.push(root.value);
-    collectPreorder(root.right);
+  async function border(node){
+    
+    return new Promise((resolve, reject) => {
+      node.nodeCircle.colorSettings.borderColor = "#111"
+      node.nodeCircle.colorSettings.bgColor = "#fff2e0"
+      drawBinaryTree(fixedTreeRoot , document.querySelector("#travel"))
+      setTimeout(() => {
+        node.nodeCircle.colorSettings.borderColor = "#f56042"
+        // node.nodeCircle.colorSettings.bgColor = "#fff2e0"
+        drawBinaryTree(fixedTreeRoot , document.querySelector("#travel"))
+        resolve(300)
+      }, inspeed.current);
+    })
+  }
+  // async function collectInorder(root) {
+  //   if (root == null) {
+  //     return;
+  //   }
+  //   collectInorder(root.left);
+  //   await border(root);
+  //   preorder.push(root.value);
+  //   collectInorder(root.right);
+  // }
+
+  async function collectInorder(node){
+
+      if (node == null) {
+        return;
+      }
+      console.log(node)
+      await border(node);
+
+      await collectInorder(node.left);
+
+      await border(node);
+      node.nodeCircle.colorSettings.bgColor = 'lightgreen';
+      drawBinaryTree(fixedTreeRoot, document.querySelector("#travel"));
+      setTravel((prevTravel) => [...prevTravel, node.value]);
+      preorder.push(node.value);
+
+      await collectInorder(node.right);
+    
+    
   }
 
   function forTravelBtn(evt) {
@@ -287,15 +334,16 @@ function Inorder() {
     } else {
       if (firstTime) {
         if (btn) {
+          
           const root = fixedTreeRoot;
-          collectPreorder(root);
           main();
           async function main() {
-            isAnimationStopped.current = false;
-            anino = await startPreorderTraversal(root, root);
-            if (anino == preorder.length) {
-              isAnimationStopped.current = true;
-            }
+            await collectInorder(root);
+            // isAnimationStopped.current = false;
+            // anino = await startPreorderTraversal(root, root);
+            // if (anino == preorder.length) {
+            //   isAnimationStopped.current = true;
+            // }
           }
         } else {
           setPreorder([]);
@@ -310,7 +358,7 @@ function Inorder() {
 
   return (
     <>
-      <h1 className='text-2xl text-center p-4'>Preorder Travetion</h1>
+      <h1 className='text-2xl text-center p-4'>Inorder Travetion</h1>
       <div className='flex justify-center gap-4 flex-wrap'>
 
         <button
