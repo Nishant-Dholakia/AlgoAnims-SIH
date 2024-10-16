@@ -1,12 +1,10 @@
-import { useContext, useEffect } from 'react'
-import gsap from 'gsap'
+
 import './Nav.css';
 import 'remixicon/fonts/remixicon.css';
 import 'font-awesome/css/font-awesome.min.css';
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import Context from '../../contexts/context';
+import { Link,NavLink } from "react-router-dom";
 import { Reload } from '../../Functions/Reload';
+import { useEffect } from 'react';
 
 function logout() {
   let conform = confirm("DO you want logout");
@@ -30,7 +28,6 @@ function logout() {
 }
 
 function Nav() {
-  const { UserName } = useContext(Context)
 
   // window.localStorage.removeItem("UserName");
 
@@ -113,8 +110,10 @@ function Nav() {
 
         }
 
-        <ul id="list">
+        <ul id="list" className='cursor-pointer'>
+          <Link to={"/graph"}>
           <li id="topic">Graph</li>
+          </Link>
           <li>BFS traversal</li>
           <li>DFS traversal</li>
           <li>Prim's Algorithm</li>
