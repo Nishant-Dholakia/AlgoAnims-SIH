@@ -17,6 +17,10 @@ import Graph from "../graph/Graph";
 import ForgetPassword from "../ForgetPassword/ForgetPassword";
 import Mail from "../Mail/Mail";
 import ResetPassword from "../Resetpassword/ResetPassword";
+import Tree from "../Tree/Tree";
+import Preorder from "../Tree/Travel/Preorder/preorder.jsx"
+import Postorder from "../Tree/Travel/Postorder/Postorder.jsx"
+import Inorder from "../Tree/Travel/Inorder/Inorder.jsx"
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +28,10 @@ const Router = createBrowserRouter(
       <Route path="" element={<HomeMain />}>
         <Route path="" element={<Home />} />
         <Route path="graph" element={<Graph />} />
+        <Route path="tree" element = {<Tree/>} />
+        <Route path="tree/preorder" element = {< Preorder/>} />
+        <Route path="tree/postorder" element = {< Postorder/>} />
+        <Route path="tree/inorder" element = {< Inorder/>} />
         <Route path="profile" element={<Profile />} />
         <Route path="editprofile" element={<EditProfile />}>
           <Route path="editProfilePage" element={<EditProfilePage />} />
@@ -31,6 +39,7 @@ const Router = createBrowserRouter(
           <Route path="editAccountsPage" element={<EditAccountsPage />} />
         </Route>
       </Route>
+
 
       <Route path="login" element={<Login />} />
       <Route path="login/forgetpassword" element={<ForgetPassword />} />
