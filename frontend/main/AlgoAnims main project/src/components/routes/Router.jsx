@@ -14,7 +14,6 @@ import EditPlatformPage from "../editProfile/profileOptions/EditPlatformPage";
 import EditProfilePage from "../editProfile/profileOptions/EditProfilePage";
 import HomeMain from "../home/HomeMain/HomeMain";
 import Graph from "../graph/Graph";
-import Homechild from "../home/homechild/homechild";
 import ForgetPassword from "../ForgetPassword/ForgetPassword";
 import Mail from "../Mail/Mail";
 import ResetPassword from "../Resetpassword/ResetPassword";
@@ -24,11 +23,7 @@ const Router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route path="" element={<HomeMain />}>
         <Route path="" element={<Home />} />
-        <Route path="home" element={<Homechild />}>
-          <Route path="" element={<Home />} />
-          <Route path="graph" element={<Graph />} />
-        </Route>
-
+        <Route path="graph" element={<Graph />} />
         <Route path="profile" element={<Profile />} />
         <Route path="editprofile" element={<EditProfile />}>
           <Route path="editProfilePage" element={<EditProfilePage />} />

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom"
 import UseContextProvider from "./contexts/UseContextProvider"
 function App() {
   return (
-      <UseContextProvider>
+    <UseContextProvider>
   <Outlet/>
   </UseContextProvider>
   )
