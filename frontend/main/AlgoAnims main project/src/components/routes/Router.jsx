@@ -25,31 +25,28 @@ const Router = createBrowserRouter(
       <Route path="" element={<HomeMain />}>
         <Route path="" element={<Home />} />
         <Route path="home" element={<Homechild />}>
-        <Route path="" element={<Home/>} />
-        <Route path="graph" element={<Graph />} />
+          <Route path="" element={<Home />} />
+          <Route path="graph" element={<Graph />} />
         </Route>
 
-        <Route path="profile" element={<Profile />}/>
+        <Route path="profile" element={<Profile />} />
         <Route path="editprofile" element={<EditProfile />}>
-            <Route path="editProfilePage" element={<EditProfilePage />} />
-            <Route path="editPlatformPage" element={<EditPlatformPage />} />
-            <Route path="editAccountsPage" element={<EditAccountsPage />} />
-          </Route>
-        
+          <Route path="editProfilePage" element={<EditProfilePage />} />
+          <Route path="editPlatformPage" element={<EditPlatformPage />} />
+          <Route path="editAccountsPage" element={<EditAccountsPage />} />
+        </Route>
       </Route>
 
-
       <Route path="login" element={<Login />} />
-      <Route path="login/forgetpassword" element = {<ForgetPassword/>} />
-      <Route path="login/forgetpassword/mail" element = {<Mail/>}  />
-      <Route path="login/forgetpassword/changepassword" element = {<ResetPassword/>} />
+      <Route path="login/forgetpassword" element={<ForgetPassword />} />
+      <Route path="login/forgetpassword/mail" element={<Mail />} />
+      <Route
+        path="login/forgetpassword/changepassword"
+        element={<ResetPassword />}
+      />
       <Route path="signup" element={<Signup />} />
-
     </Route>
   )
 );
-
-        
-
 
 export default Router;
