@@ -191,15 +191,6 @@ function Inorder() {
           resolve();
           return;
         }
-        
-        // if (node.nodeCircle && node.nodeCircle.colorSettings) {
-          //   node.nodeCircle.colorSettings = {
-            //     ...node.nodeCircle.colorSettings,
-            //     bgColor: 'green',
-            
-            //   };
-            // }
-            
             node.nodeCircle.colorSettings.bgColor = '#111';
             console.log(node);
         drawBinaryTree(main, document.querySelector("#travel"));

@@ -46,32 +46,26 @@ app.use(cors(corsopt));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
-app.use(session({
-    secret: '#sih-algoanims',
-    resave: false,            
-    saveUninitialized: true,  
-    cookie : {secure : false}
 
-  }));
 
 app.listen(port, () => {
     console.log("app is starting");
 })
 
 app.post("/editprofile/editPlatformPage", async (req, res) => {
-    const { leetcodeUname, codechefUname, gfgUname } = req.body;
+    const { leetcodeUname, codechefUname, gfgUname , email } = req.body;
 
     const leetcode = await leetcodeData(leetcodeUname);
     const codechef = await codechefData(codechefUname);
     const gfg = await gfgData(gfgUname);
-    console.log(leetcode , codechef , gfg)
+    // console.log(leetcode , codechef , gfg)
 
-    res.setHeader('Content-Type', 'application/json');
-    await User.findByIdAndUpdate(userId.toString() , {
+    // res.setHeader('Content-Type', 'application/json');
+    const data = await User.findOneAndUpdate({emailId : email} , {
         userNames:{
-            leetcode : leetcode,
-            codechef  : codechef,
-            gfg : gfg
+           leetcode : leetcodeUname,
+            codechef : codechefUname,
+            gfg : gfgUname
         }
     })
 res.json({ leetcode, codechef, gfg });
