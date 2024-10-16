@@ -45,12 +45,17 @@
 .glimpse {
     width: 15rem;
     border-radius: 6px;
+    border: 1px solid;
 }
-
+.outerglimpse{
+    display: flex;
+    justify-content: center;
+}
 .rightglimpse {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    width: 100%;
 }
 
 .quecard {
@@ -59,7 +64,10 @@
     border: 4px solid #408697;
     padding: 10px;
     border-radius: 12px;
+    /* width: 100%; */
+    /* justify-content: space-between; */
     gap: 20px;
+    
 }
 
 .logo{
@@ -74,7 +82,7 @@
 }
 
 .problink {
-    color: blue;
+    color: #608da2;
 }
 
 .problink:hover {
@@ -89,7 +97,7 @@
     border: solid #408697;
     padding: 2px 3px;
     border-radius: 5px;
-
+   
 }
 
 .Viewbtn {
@@ -108,6 +116,10 @@
 .Articlebtn:hover {
     padding: 3px 4px;
 }
+
+/* .forinvert{
+    filter: invert(1);
+} */
 
 .Articlebtn:active {
     background-color: rgb(249, 244, 254);
@@ -164,7 +176,7 @@
     /* Your CSS styles go here */
     .quecard {
         flex-direction: column;
-       
+        
         /* align-items: center; */
         min-width: 100%;
     }
