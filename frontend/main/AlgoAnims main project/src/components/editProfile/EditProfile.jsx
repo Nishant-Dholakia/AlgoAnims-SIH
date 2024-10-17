@@ -1,12 +1,22 @@
 import style from  './editprofile.module.css'
 import { Link, Outlet } from 'react-router-dom'
-import { useContext } from 'react'
-import Context from '../../contexts/context'
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
 
 function EditProfile() {
-  const {userName} = useContext(Context);
+  const [userName,setUserName] = useState('');
+    const navigate = useNavigate();
+    useEffect(() => {
 
-  // let [option,setOption] = useState('profile');
+     setUserName(localStorage.getItem("UserName"));
+        if (!localStorage.getItem("UserName")) {
+            navigate("/login");
+        }
+        
+        
+         
+    }, [navigate]);
 
   function EditOption({label})
   {
@@ -38,8 +48,8 @@ function EditProfile() {
       <div className={style.profile}>
         <div className={`${style.leftedit} flex-col`}>
           <div className={style.profiledetails}>
-            <div className={style.profilePic}>{localStorage.getItem(`UserName`).charAt(0)}</div>
-            <div className={style.profileUser}>{localStorage.getItem(`UserName`)}</div>
+            <div className={style.profilePic}>{(userName.charAt(0)).toUpperCase()}</div>
+            <div className={style.profileUser}>{userName}</div>
           </div>
 
           <div className={style.changeOptions}>
@@ -48,11 +58,17 @@ function EditProfile() {
             <EditOption label="Platform" />
             <EditOption label="Accounts" />
           </div>
+          <div>
+            <Link to='/profile'>
+              <button>Back</button>
+            </Link>
+          </div>
         </div>
         <div className={style.rightedit}>
           <Outlet />
         </div>
       </div>
+
     </>
   );
 }

@@ -1,26 +1,25 @@
 // import Nav from "../navigation/Nav";
 import "./profile.css";
 import { Link } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Context from "../../contexts/context";
-import isLogin from "../../Functions/checkLogin";
 
 function Profile() {
-
+    const [userName,setUserName] = useState('');
+    const [emailId,setEmailId] = useState('');
     const navigate = useNavigate();
     useEffect(() => {
 
+     setUserName(localStorage.getItem("UserName"));
+      setEmailId(localStorage.getItem("email"));
         if (!localStorage.getItem("UserName")) {
             navigate("/login");
-        }
+        }    
     }, [navigate]);
-
     
 
-// 
 
-  const {UserName} = useContext(Context)
+
   function CreateUserDetails({ svg, text, data = "N/A" }) {
     return (
       <div className="accounts break-words flex gap-2 items-center m-2">
@@ -62,14 +61,14 @@ function Profile() {
       <div className="profilecss ">
         <div className="left flex-col">
           <div className="personaldetails">
-            <div className="profilepic rounded-full">{localStorage.getItem("UserName").charAt(0)}</div>
+            <div className="profilepic rounded-full">{(userName.charAt(0)).toUpperCase()}</div>
             {/* <img
               className="profilepic"
               src="https://media.licdn.com/dms/image/v2/D4D03AQHMKhaYEalknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705511571724?e=1732147200&v=beta&t=UMWylJghozMP14R5X9VJ4XrHHzuNm2nOqf-yz5X1Udo"
               alt="N"
             /> */}
 
-            <div className="username">{localStorage.getItem("UserName")}</div>
+            <div className="username">{userName}</div>
           </div>
 
           <Link to="/editprofile">
@@ -78,8 +77,8 @@ function Profile() {
           <div>
             <CreateUserDetails
               svg="/email.svg"
-              text={localStorage.getItem("email")}
-              data={localStorage.getItem("email")}
+              text={emailId}
+              data={emailId}
             />
             <CreateUserDetails
               svg="/linkedin.svg"

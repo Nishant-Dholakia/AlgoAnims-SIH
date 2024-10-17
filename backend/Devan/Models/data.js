@@ -8,40 +8,40 @@ const UserSchema = new mongoose.Schema({
     details : {
         country : {
             type : String,
-            default : "NA"
+            default : "India"
         },
         contactNo : {
             type : Number,
-            default : -9999999,
+            default : null,
         }
 
     },
     accounts : {
         github : {
             type : String,
-            default : "NA"
+            default : ""
         },
         linkedlin : {
             type : String,
-            default : "NA"
+            default : ""
         },
         discord : {
             type : String,
-            default : "NA"
+            default : ""
         }
     },
     userNames : {
         leetcode : {
              type : String,
-            default : "NA"
+            default : ""
         },
         codechef : {
              type : String,
-            default : "NA"
+            default : ""
         },
         gfg : {
              type : String,
-            default : "NA"
+            default : ""
         }
     }
 

@@ -1,29 +1,62 @@
-import { useState } from "react";
-import style from "./edit.module.css"; // Importing CSS module
+import { useState ,useEffect} from "react";
+import style from "./edit.module.css";
 import codes from "country-calling-code";
+import { useNavigate } from "react-router-dom";
 
 function EditProfilePage() {
-  let code = new Object();
+      let code = new Object();
+      const [userName,setUserName] = useState(localStorage.getItem("UserName"));
+      const emailId = localStorage.getItem("email");;
+      const navigate = useNavigate();
+      useEffect(() => {
+          if (!localStorage.getItem("UserName")) {
+              navigate("/login");
+          }  
+          
+      }, [navigate]);
 
   for (let it of codes) {
     code[it.country] = it.countryCodes[0];
   }
 
-  let [phonecode, setPhoneCode] = useState(code['India']);
-  let [phonecountry, setPhoneCountry] = useState('India');
+  const [phonecountry, setPhoneCountry] = useState(localStorage.getItem('Country'));
+  const [phonecode, setPhoneCode] = useState(code[phonecountry]);
+  const [phoneNumber,setPhoneNumber] = useState(localStorage.getItem('Contact'));
+
+  function saveEditProfile(e)
+  {
+    e.preventDefault();
+    localStorage.setItem('Contact',phoneNumber);
+    localStorage.setItem('Country',phonecountry);
+    localStorage.setItem('UserName',userName);
+    location.reload(true);// to show changes in the edit profile also
+  }
+
+  function setNumber(e)
+  {
+    let input = e.target.value;
+    if( /^\d+$/.test(input))// it returns true if string contains only digits, else false
+    {
+      setPhoneNumber(parseInt(input));
+      console.log(input);
+    }
+  }
 
   return (
-    <form className={style.edit} method="post">
+    <form className={style.edit} method="post"
+      onSubmit={saveEditProfile}
+    >
       <div className={style.area}>
         <label htmlFor="username" className={style.label}>
           Username :
         </label>
         <input
-        defaultValue={localStorage.getItem(`UserName`)}
+          defaultValue={userName}
           type="text"
           name="username"
           id="username"
           placeholder="eg. Billy_12"
+          onChange={(e)=>setUserName(e.target.value)}
         />
       </div>
       <div className={style.area}>
@@ -31,7 +64,7 @@ function EditProfilePage() {
           Email id :
         </label>
         <input
-        defaultValue={localStorage.getItem('email')}
+          defaultValue={emailId}
           readOnly
           type="email"
           name="emailid"
@@ -44,10 +77,10 @@ function EditProfilePage() {
           Country :
         </label>
         <select
-        defaultValue={localStorage.getItem('Country')}
+          defaultValue={phonecountry}
           name="country"
           id="country"
-          className="text-slate-950" // Tailwind class
+          className="text-slate-950"
           onChange={(e) => {
             setPhoneCode(code[e.target.value]);
             setPhoneCountry(e.target.value);
@@ -63,6 +96,7 @@ function EditProfilePage() {
           })}
         </select>
       </div>
+
       <div className={style.area}>
         <label htmlFor="contactnum" className={style.label}>
           Contact Number :
@@ -70,13 +104,15 @@ function EditProfilePage() {
         <div className={style['contact-input']}>
           <span>{phonecode}</span>
           <input
-            type="number"
-            max={10}
-            min={10}
+            type="text"
+            value={String(phoneNumber)}
+            maxLength={10}
+            minLength={10}
             name="contactnum"
             id="contactnum"
             placeholder="Enter 10 digit number only"
             className={style['no-spinner']}
+            onChange={setNumber}
           />
         </div>
       </div>
