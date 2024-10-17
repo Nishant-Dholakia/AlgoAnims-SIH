@@ -1,20 +1,22 @@
 import style from  './editprofile.module.css'
 import { Link, Outlet } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 
 function EditProfile() {
-  let userName = 'Nishant Dholakia';
-    // const navigate = useNavigate();
-    // useEffect(() => {
+  const [userName,setUserName] = useState('');
+    const navigate = useNavigate();
+    useEffect(() => {
 
-    //     if (!localStorage.getItem("UserName")) {
-    //         navigate("/login");
-    //     }
-    //     else{
-    //       userName = localStorage.getItem("UserName")
-    //     }
+     setUserName(localStorage.getItem("UserName"));
+        if (!localStorage.getItem("UserName")) {
+            navigate("/login");
+        }
         
-    // }, [navigate]);
+        
+         
+    }, [navigate]);
 
   function EditOption({label})
   {
@@ -46,7 +48,7 @@ function EditProfile() {
       <div className={style.profile}>
         <div className={`${style.leftedit} flex-col`}>
           <div className={style.profiledetails}>
-            <div className={style.profilePic}>{userName.charAt(0)}</div>
+            <div className={style.profilePic}>{(userName.charAt(0)).toUpperCase()}</div>
             <div className={style.profileUser}>{userName}</div>
           </div>
 
@@ -56,11 +58,17 @@ function EditProfile() {
             <EditOption label="Platform" />
             <EditOption label="Accounts" />
           </div>
+          <div>
+            <Link to='/profile'>
+              <button>Back</button>
+            </Link>
+          </div>
         </div>
         <div className={style.rightedit}>
           <Outlet />
         </div>
       </div>
+
     </>
   );
 }
