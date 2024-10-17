@@ -54,7 +54,7 @@ app.listen(port, () => {
 })
 
 
-app.get("/api/signup" , async(req,res)=>{
+app.get("/api/signup", async (req, res) => {
     const data = await User.find();
     console.log("in home get")
     res.send(data)
@@ -69,19 +69,19 @@ app.post("/signup", async (req, res) => {
         emailId: email,
         password: final
     })
-    
+
     await user.save();
     let data = await User.findOne({
         $or:
-        [
-            { emailId: email },
-            { userName: email }
-        ]
+            [
+                { emailId: email },
+                { userName: email }
+            ]
     });
     userId = data._id.toString();
-    
-    
-    console.log("successfull" , userId)
+
+
+    console.log("successfull", userId)
     await mailforSignup(email)
 })
 
@@ -105,88 +105,88 @@ app.post("/login", async (req, res) => {
     console.log("in")
 
     userId = data._id.toString();
-   console.log(userId)
+    console.log(userId)
 })
 
 
 app.get("/api/home", async (req, res) => {
-    
+
     // console.log("Home: session.userid is", req.session.userName);  // Log the session ID
     if (userId) {
         const data = await User.findById(userId);
         res.send(data)
-    }else{
+    } else {
         res.json({ data: "backend" })
     }
 
 })
 
-app.post("/data" , async(req,res)=>{
+app.post("/data", async (req, res) => {
     console.log(req.body);
-    let {UserName} = req.body;
-    const data = await User.findOne({userName : UserName});
+    let { UserName } = req.body;
+    const data = await User.findOne({ userName: UserName });
     userId = data._id.toString();
     console.log(userId)
 })
 
-app.post("/logout" , (req,res)=>{
+app.post("/logout", (req, res) => {
     userId = '';
 })
 
-app.post("/forgetpassword",async(req,res)=>{
-    let {emailId} = req.body;
-    const data = await User.findOne({emailId : emailId});
+app.post("/forgetpassword", async (req, res) => {
+    let { emailId } = req.body;
+    const data = await User.findOne({ emailId: emailId });
     userId = data._id.toString();
     // console.log(userId)
-    await sendMail(emailId);  
+    await sendMail(emailId);
 })
 
-app.get("/api/resetpassword",  async(req,res)=>{
-    const data = await User.findOne({_id : userId});
+app.get("/api/resetpassword", async (req, res) => {
+    const data = await User.findOne({ _id: userId });
     // console.log(data);
     let obj = {
-        userName : data.userName,
-        email : data.emailId
+        userName: data.userName,
+        email: data.emailId
     }
 
     res.json(obj);
 })
 
-app.patch("/changepassword" , async(req,res)=>{
-    let {password} = req.body;
-    console.log(password , req.body)
+app.patch("/changepassword", async (req, res) => {
+    let { password } = req.body;
+    console.log(password, req.body)
 
-    let update = await User.findByIdAndUpdate(userId , {
-        password : password
+    let update = await User.findByIdAndUpdate(userId, {
+        password: password
     })
 
     console.log("sucess");
 });
 
 
-app.patch("/editProfile" , async(req,res,next) => {
-    let {email ,username,country,phoneNo} = req.body;
+app.patch("/editProfile", async (req, res, next) => {
+    let { email, username, country, phoneNo } = req.body;
     // console.log(req.body)
 
-    await User.findOneAndUpdate({emailId : email} , {
-        userName : username,
-        details:{
-            country : country,
-            contactNo : phoneNo,
+    await User.findOneAndUpdate({ emailId: email }, {
+        userName: username,
+        details: {
+            country: country,
+            contactNo: phoneNo,
         }
     })
 
     res.send("sucessfully")
 })
 
-app.patch("/editAccount" , async(req,res,next)=>{
-    let {email,linkedin, github, discord} = req.body;
+app.patch("/editAccount", async (req, res, next) => {
+    let { email, linkedin, github, discord } = req.body;
 
-    await User.findOneAndUpdate({emailId : email} , {
-        accounts:{
-            github : github,
-            linkedlin : linkedin,
-            discord : discord,
+    await User.findOneAndUpdate({ emailId: email }, {
+        accounts: {
+            github: github,
+            linkedlin: linkedin,
+            discord: discord,
         }
     })
 
@@ -194,18 +194,18 @@ app.patch("/editAccount" , async(req,res,next)=>{
 })
 
 app.post("/editprofile/editPlatformPage", async (req, res) => {
-    const { leetcodeUname, codechefUname, gfgUname , email } = req.body;
+    const { leetcodeUname, codechefUname, gfgUname, email } = req.body;
 
     const leetcode = await leetcodeData(leetcodeUname);
     const codechef = await codechefData(codechefUname);
     const gfg = await gfgData(gfgUname);
-    const data = await User.findOneAndUpdate({emailId : email} , {
-        userNames:{
-           leetcode : leetcodeUname,
-            codechef : codechefUname,
-            gfg : gfgUname
+    const data = await User.findOneAndUpdate({ emailId: email }, {
+        userNames: {
+            leetcode: leetcodeUname,
+            codechef: codechefUname,
+            gfg: gfgUname
         }
     })
-res.json({ leetcode, codechef, gfg });
+    res.json({ leetcode, codechef, gfg });
 
 })
