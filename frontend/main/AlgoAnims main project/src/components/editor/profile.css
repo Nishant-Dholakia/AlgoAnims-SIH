@@ -1,26 +1,28 @@
 .profilecss {
-    background-color: #2C2B30; /* Dark background */
+    background-color: white; /* Dark background */
+    /* background-color: #000000;   */
     display: flex;
     width: 100vw;
     height: 100vh;
-    padding: 9px;
+    padding:9px ;
     justify-content: space-around;
-  
-  
-  
-    color: #EAEAEA; /* Lighter text for contrast */
+    color: black; /* Lighter text for contrast */
+    gap: 9px;
   }
   
+  
+
   .left {
     min-height: 20vh;
-    background-color: #3E3D42; /* Slightly darker for contrast */
+    background-color: white; /* Slightly darker for contrast */
     width: 26vw;
     border-radius: 10px;
     padding: 0.5rem;
-    color: antiquewhite;
+    color: black;
     word-break: keep-all;
     overflow: hidden;
-   
+    border: 2px solid #408697;
+    box-shadow: 0px 0px 10px 0px black;
    
   }
   
@@ -41,25 +43,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: blueviolet; /* Softer, neutral color */
+    background-color:#d4d4d4 ; /* Softer, neutral color */
     border-radius: 50%;
     font-weight: bolder;
     font-size: 50px;
     width: 100px;
     height: 100px;
+    /* border: 2px solid #408697; */
   }
   
   .username {
     font-size: 25px;
     padding: 5px;
     width: 60%;
-    color: #EAEAEA; /* Text color for better readability */
+    /* color: black; Text color for better readability */
   }
   
   .editprofilebtn {
     width: 92%;
     margin-left: 4%;
-    background-color: #5A5A72; /* Professional, muted tone */
+    background-color: #408697; /* Professional, muted tone */
     color: whitesmoke; /* Springgreen for a pop of color */
     font-weight: 700;
     padding: 5px 0;
@@ -77,14 +80,18 @@
   }
   
   .darksvg {
-    filter: invert(1);
+    filter: invert(0);
   }
   
   .right {
-    background-color: #3E3D42;
+    background-color: white;
     min-height: 20vh;
     width: 71vw;
     border-radius: 10px;
+    margin-right: 10px;
+    box-shadow: 0px 0px 10px 0px black;
+    border: 2px solid #408697;
+    
   }
   
   /* Media Queries for responsiveness */
@@ -183,7 +190,7 @@
   }
 
   .platformAccounts{
-background-color: #313131;
+background-color: #d4d4d4;
   }
 
   .right
