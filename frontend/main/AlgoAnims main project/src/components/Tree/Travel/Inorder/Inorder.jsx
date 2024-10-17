@@ -2,12 +2,16 @@ import React, { useEffect, useState, useRef } from 'react';
 import { drawBinaryTree, setTheme } from 'binary-tree-visualizer';
 import randomTreeGenrate from '/Public/randomTreeGenrate';
 import '../travel.css'
+import '../tree.css'
 let anino = 0;
 
 function Inorder() {
   setTheme({
     strokeColor : "#111",
-    fontSize: 12,
+    fontSize: 15,
+    radius : 30,
+    leafNodeSpace: 100,
+    lineHeight: 150,
   })
   const [resetDisabled, setResetDisabled] = useState(false);
   const [ramdomDisabled, setRandomDisabled] = useState(false);
@@ -27,6 +31,7 @@ function Inorder() {
   const inspeed = useRef(1600);
   const [drawMode, setDrawMode] = useState(false);
   const [inserDisabled, setInserDisabled] = useState(false);
+  const noRef = useRef(0);
 
   function resetAll(root) {
     setReset(true);
@@ -41,6 +46,11 @@ function Inorder() {
     setFixedTreeroot(root);
     resetColor(root);
     drawBinaryTree(root, document.querySelector("#travel"));
+  }
+
+  function search(root){
+    if(root.value == noRef.current) return root;
+    return search(root.left) || search (root.right);
   }
 
   function resetColor(node) {
@@ -58,6 +68,7 @@ function Inorder() {
 
  async function border(node){
     return new Promise((resolve, reject) => {
+      if(!isAnimationStopped.current){
       node.nodeCircle.colorSettings.borderColor = "#111"
       node.nodeCircle.colorSettings.bgColor = "#fff2e0"
       drawBinaryTree(fixedTreeRoot , document.querySelector("#travel"))
@@ -66,6 +77,7 @@ function Inorder() {
         drawBinaryTree(fixedTreeRoot , document.querySelector("#travel"))
         resolve(300)
       }, inspeed.current);
+    }
     })
   }
 
@@ -77,6 +89,9 @@ function Inorder() {
   }
 
   async function collectInorder(node){
+
+    if(isAnimationStopped.current) return;  
+
     setTimeout(()=>{
       setOpacity();
     } , inspeed.current)
@@ -102,18 +117,19 @@ function Inorder() {
       } , 100)
       await collectInorder(node.right);
     
+      
+    }
     
-  }
-
-  function forTravelBtn(evt) {
+    function forTravelBtn(evt) {
+    noRef.current = fixedTreeRoot.value;
     setReset(false);
     setFirstTime(true);
     if (btnName === 'Start Travel') {
-      console.log(drawMode);
       setBtn(true);
       setBtnName('Stop Travel');
       setBtnColor('bg-red-700');
       setBtnhoverColor('hover:bg-red-600');
+      isAnimationStopped.current = false;
       
     } else {
       setBtnName('Start Travel');
@@ -156,7 +172,8 @@ function Inorder() {
           const root = fixedTreeRoot;
           main();
           async function main() {
-            await collectInorder(root);
+            const node = search(root);
+            await collectInorder(node);
           }
         } else {
           setPreorder([]);
@@ -170,7 +187,7 @@ function Inorder() {
   }, [btn, Reset]);
 
   return (
-    <>
+    <div className='for-tree'>
       
       <h1 className='text-2xl text-center p-4'>Inorder Travel</h1>
       <div className='flex justify-center gap-4 flex-wrap'>
@@ -240,7 +257,7 @@ function Inorder() {
         </div>
         <canvas id='travel' className='z-0'></canvas>
       </section>
-    </>
+    </div>
   );
 }
 

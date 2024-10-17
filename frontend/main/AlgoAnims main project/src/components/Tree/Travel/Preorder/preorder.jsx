@@ -105,11 +105,11 @@ function Preorder() {
     
   }
 
+
   function forTravelBtn(evt) {
     setReset(false);
     setFirstTime(true);
     if (btnName === 'Start Travel') {
-      console.log(drawMode);
       setBtn(true);
       setBtnName('Stop Travel');
       setBtnColor('bg-red-700');
@@ -232,7 +232,7 @@ function Preorder() {
               <pre className=''> void Preorder(TreeNode* root){"{"} </pre>
               <pre className='opacity-55' id='null'>       if(root == nullptr)  return;</pre>
               <pre className='opacity-55' >                                   </pre>
-              <pre className='opacity-55' id='print'>       print(root.value)</pre>
+              <pre className='opacity-55' id='print'>       print(root.value)</pre>n
               <pre className='opacity-55' id='left'>       Preorder(root.left)</pre>
               <pre className='opacity-55' id='right'>       Preorder(root.right)</pre>
               <pre className='' > {"}"}</pre>

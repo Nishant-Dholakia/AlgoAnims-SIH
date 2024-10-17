@@ -14,10 +14,7 @@ function Profile() {
       setEmailId(localStorage.getItem("email"));
         if (!localStorage.getItem("UserName")) {
             navigate("/login");
-        }
-        
-        
-         
+        }    
     }, [navigate]);
     
 
@@ -100,18 +97,18 @@ function Profile() {
             <CreatePlatForms
               svg="/leetcode.svg"
               text="LeetCode"
-              data={localStorage.getItem(`leetcode`) || 'N/A'}
+              data={localStorage.getItem(`leetcode`)}
             />
 
             <CreatePlatForms
               svg="/codechef.svg"
               text="CodeChef"
-              data={localStorage.getItem(`codechef`) || 'N/A'}
+              data={localStorage.getItem(`codechef`)}
             />
             <CreatePlatForms
               svg="/gfg.svg"
               text="GeeksforGeeks"
-              data={localStorage.getItem(`gfg`) || 'N/A'}
+              data={localStorage.getItem(`gfg`)}
             />
             
            
