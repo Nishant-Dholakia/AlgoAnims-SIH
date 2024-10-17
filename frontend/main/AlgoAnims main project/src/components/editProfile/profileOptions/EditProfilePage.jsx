@@ -1,9 +1,20 @@
 import { useState } from "react";
-import style from "./edit.module.css"; // Importing CSS module
+import style from "./edit.module.css";
 import codes from "country-calling-code";
 
+
 function EditProfilePage() {
-  let code = new Object();
+      let code = new Object();
+      let userName = 'Nishant Dholakia';
+      let emailId = 'nishantdholakia2020@gmail.com';
+      // const navigate = useNavigate();
+      // useEffect(() => {
+  
+      //     userName = localStorage.getItem("UserName")
+      //     if (!userName.trim()) {
+      //         navigate("/login");
+      //     }
+      // }, [navigate]);
 
   for (let it of codes) {
     code[it.country] = it.countryCodes[0];
@@ -19,7 +30,7 @@ function EditProfilePage() {
           Username :
         </label>
         <input
-        defaultValue={localStorage.getItem(`UserName`)}
+          defaultValue={userName}
           type="text"
           name="username"
           id="username"
@@ -31,7 +42,7 @@ function EditProfilePage() {
           Email id :
         </label>
         <input
-        defaultValue={localStorage.getItem('email')}
+          defaultValue={emailId}
           readOnly
           type="email"
           name="emailid"
@@ -44,10 +55,10 @@ function EditProfilePage() {
           Country :
         </label>
         <select
-        defaultValue={localStorage.getItem('Country')}
+          defaultValue={localStorage.getItem('Country')}
           name="country"
           id="country"
-          className="text-slate-950" // Tailwind class
+          className="text-slate-950"
           onChange={(e) => {
             setPhoneCode(code[e.target.value]);
             setPhoneCountry(e.target.value);

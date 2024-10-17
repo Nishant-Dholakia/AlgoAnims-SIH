@@ -1,12 +1,20 @@
 import style from  './editprofile.module.css'
 import { Link, Outlet } from 'react-router-dom'
-import { useContext } from 'react'
-import Context from '../../contexts/context'
+
 
 function EditProfile() {
-  const {userName} = useContext(Context);
+  let userName = 'Nishant Dholakia';
+    // const navigate = useNavigate();
+    // useEffect(() => {
 
-  // let [option,setOption] = useState('profile');
+    //     if (!localStorage.getItem("UserName")) {
+    //         navigate("/login");
+    //     }
+    //     else{
+    //       userName = localStorage.getItem("UserName")
+    //     }
+        
+    // }, [navigate]);
 
   function EditOption({label})
   {
@@ -38,8 +46,8 @@ function EditProfile() {
       <div className={style.profile}>
         <div className={`${style.leftedit} flex-col`}>
           <div className={style.profiledetails}>
-            <div className={style.profilePic}>{localStorage.getItem(`UserName`).charAt(0)}</div>
-            <div className={style.profileUser}>{localStorage.getItem(`UserName`)}</div>
+            <div className={style.profilePic}>{userName.charAt(0)}</div>
+            <div className={style.profileUser}>{userName}</div>
           </div>
 
           <div className={style.changeOptions}>

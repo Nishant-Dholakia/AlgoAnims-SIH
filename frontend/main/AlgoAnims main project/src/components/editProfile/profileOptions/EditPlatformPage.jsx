@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import style from './edit.module.css';
 import Context from '../../../contexts/context';
 
@@ -27,7 +27,7 @@ function EditPlatformPage() {
     localStorage.setItem("leetcode" , leetcodeUname);
     localStorage.setItem("codechef" , codechefUname);
     localStorage.setItem("gfg" , gfgUname);
-  }; 
+  };
 
   console.log(allData); // Consider removing this in production or use it conditionally
 
