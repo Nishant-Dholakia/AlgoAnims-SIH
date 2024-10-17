@@ -53,22 +53,7 @@ app.listen(port, () => {
     console.log("app is starting");
 })
 
-app.post("/editprofile/editPlatformPage", async (req, res) => {
-    const { leetcodeUname, codechefUname, gfgUname , email } = req.body;
 
-    const leetcode = await leetcodeData(leetcodeUname);
-    const codechef = await codechefData(codechefUname);
-    const gfg = await gfgData(gfgUname);
-    const data = await User.findOneAndUpdate({emailId : email} , {
-        userNames:{
-           leetcode : leetcodeUname,
-            codechef : codechefUname,
-            gfg : gfgUname
-        }
-    })
-res.json({ leetcode, codechef, gfg });
-
-})
 app.get("/api/signup" , async(req,res)=>{
     const data = await User.find();
     console.log("in home get")
@@ -177,3 +162,50 @@ app.patch("/changepassword" , async(req,res)=>{
 
     console.log("sucess");
 });
+
+
+app.patch("/editProfile" , async(req,res,next) => {
+    let {email ,username,country,phoneNo} = req.body;
+    // console.log(req.body)
+
+    await User.findOneAndUpdate({emailId : email} , {
+        userName : username,
+        details:{
+            country : country,
+            contactNo : phoneNo,
+        }
+    })
+
+    res.send("sucessfully")
+})
+
+app.patch("/editAccount" , async(req,res,next)=>{
+    let {email,linkedin, github, discord} = req.body;
+
+    await User.findOneAndUpdate({emailId : email} , {
+        accounts:{
+            github : github,
+            linkedlin : linkedin,
+            discord : discord,
+        }
+    })
+
+    res.send("successfull")
+})
+
+app.post("/editprofile/editPlatformPage", async (req, res) => {
+    const { leetcodeUname, codechefUname, gfgUname , email } = req.body;
+
+    const leetcode = await leetcodeData(leetcodeUname);
+    const codechef = await codechefData(codechefUname);
+    const gfg = await gfgData(gfgUname);
+    const data = await User.findOneAndUpdate({emailId : email} , {
+        userNames:{
+           leetcode : leetcodeUname,
+            codechef : codechefUname,
+            gfg : gfgUname
+        }
+    })
+res.json({ leetcode, codechef, gfg });
+
+})
