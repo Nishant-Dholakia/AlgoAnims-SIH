@@ -26,14 +26,14 @@ function Profile() {
   function CreateUserDetails({ svg, text, data = "N/A" }) {
     return (
       <div className="accounts break-words flex gap-2 items-center m-2">
-        <img src={svg} className="mx-1 darksvg " /> <a href={data}>{text}</a>
+        <img src={svg} className="mx-1 darksvg  dark:invert" /> <a href={data}>{text}</a>
       </div>
     );
   }
   function CreatePlatForms({ svg, text, data = "N/A" }) {
     return (
       <div
-        className="platformAccounts bg-slate-500 flex justify-center p-1 my-2 rounded-md "
+        className="platformAccounts bg-slate-500 flex justify-center p-1 my-2 rounded-md dark:bg-platformAccount"
         onClick={() => {
           const rightSection = document.querySelector(".right");
           if (rightSection) {
@@ -53,7 +53,7 @@ function Profile() {
         </div>
 
         <button className="p-1">
-          <img src="/linkopen.svg" className="darksvg w-9 h-9" alt={text} />
+          <img src="/linkopen.svg" className="darksvg  w-9 h-9 dark:invert" alt={text} />
         </button>
       </div>
     );
@@ -61,10 +61,10 @@ function Profile() {
 
   return (
     <>
-      <div className="profilecss ">
-        <div className="left flex-col">
+      <div className="profilecss dark:bg-black ">
+        <div className="left  flex-col dark:bg-custoBg dark:text-antiquewhite">
           <div className="personaldetails">
-            <div className="profilepic rounded-full">{(userName.charAt(0)).toUpperCase()}</div>
+            <div className="profilepic rounded-full dark:bg-platformAccount">{(userName.charAt(0)).toUpperCase()}</div>
             {/* <img
               className="profilepic"
               src="https://media.licdn.com/dms/image/v2/D4D03AQHMKhaYEalknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705511571724?e=1732147200&v=beta&t=UMWylJghozMP14R5X9VJ4XrHHzuNm2nOqf-yz5X1Udo"
@@ -94,7 +94,7 @@ function Profile() {
               data={localStorage.getItem(`github`)}
             />
           </div>
-          <h1 className="text-2xl"> Competitive Platforms</h1>
+          <h1 className="text-2xl font-bold text-center"> Competitive Platforms</h1>
 
           <div className="platforms mt-6">
             <CreatePlatForms
@@ -117,7 +117,7 @@ function Profile() {
            
           </div>
         </div>
-        <div className="right">
+        <div className="right dark:bg-custoBg">
           <div className="rightShow"></div>
         </div>
       </div>

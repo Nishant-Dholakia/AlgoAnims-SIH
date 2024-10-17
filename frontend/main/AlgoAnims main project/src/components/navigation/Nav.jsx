@@ -4,7 +4,18 @@ import 'remixicon/fonts/remixicon.css';
 import 'font-awesome/css/font-awesome.min.css';
 import { Link,NavLink } from "react-router-dom";
 import { Reload } from '../../Functions/Reload';
-import { useEffect } from 'react';
+import { useEffect ,useState} from 'react';
+
+
+
+// function Mode() {
+     
+  
+
+// // document.getElementById('modebtn')?.addEventListener('click', () => {});
+
+// }
+
 
 function logout() {
   let conform = confirm("DO you want logout");
@@ -29,6 +40,13 @@ function logout() {
 
 function Nav() {
 
+  const [mode,setmode] = useState("light");
+  useEffect(()=>{
+    document.querySelector('html').classList.remove("light","dark");
+    document.querySelector('html').classList.add(mode);
+},[mode])
+    
+
   // window.localStorage.removeItem("UserName");
 
   useEffect(() => {
@@ -42,9 +60,9 @@ function Nav() {
 
   }, []);
 
-  setTimeout(() => {
-
-    document.getElementById('modebtn')?.addEventListener('click', () => {
+  // setTimeout(() => {
+    // document.getElementById('modebtn')?.addEventListener('click',
+     function change() {
       let a = document.body.style.backgroundColor;
       let cards = document.getElementsByClassName('card');
       let n = document.getElementById('nav');
@@ -83,11 +101,21 @@ function Nav() {
           Filter.style.filter = '';
 }
       )
+
+
+      if(mode=="light")
+        {
+          setmode("dark")
+        }
+        else
+        {
+          setmode("light")
+        }
       
-    });
+    }
 
 
-  }, 100)
+  
 
   return (
     <div className='fixed'>
@@ -99,7 +127,7 @@ function Nav() {
 
         </label>
         <NavLink to='/'><p id="lname">AlgoAnims</p></NavLink>
-        <i id="modebtn" className="ri-moon-clear-line"></i>
+        <i onClick={change} id="modebtn" className="ri-moon-clear-line"></i>
 
         {!localStorage.getItem("UserName")
           ?
