@@ -15,6 +15,7 @@ const session = require('express-session');
 
 let userId = '';
 
+
 async function connection() {
     await mongoose.connect('mongodb+srv://AlgoAnims:sih-AlgoAnims-2024@cluster0.ettpzze.mongodb.net/AlgoAnims');
     // await mongoose.connect('mongodb://localhost:27017/AlgoAnims');
@@ -46,34 +47,25 @@ app.use(cors(corsopt));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
-app.use(session({
-    secret: '#sih-algoanims',
-    resave: false,            
-    saveUninitialized: true,  
-    cookie : {secure : false}
 
-  }));
 
 app.listen(port, () => {
     console.log("app is starting");
 })
 
 app.post("/editprofile/editPlatformPage", async (req, res) => {
-    const { leetcodeUname, codechefUname, gfgUname } = req.body;
+    const { leetcodeUname, codechefUname, gfgUname , email } = req.body;
 
     const leetcode = await leetcodeData(leetcodeUname);
     const codechef = await codechefData(codechefUname);
     const gfg = await gfgData(gfgUname);
-    console.log(leetcode , codechef , gfg)
-
-    // res.setHeader('Content-Type', 'application/json');
-    // await User.findByIdAndUpdate(userId.toString() , {
-    //     userNames:{
-    //         leetcode : leetcode,
-    //         codechef  : codechef,
-    //         gfg : gfg
-    //     }
-    // })
+    const data = await User.findOneAndUpdate({emailId : email} , {
+        userNames:{
+           leetcode : leetcodeUname,
+            codechef : codechefUname,
+            gfg : gfgUname
+        }
+    })
 res.json({ leetcode, codechef, gfg });
 
 })

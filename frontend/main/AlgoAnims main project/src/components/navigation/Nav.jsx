@@ -68,11 +68,22 @@ function Nav() {
 
         list.style.backgroundColor = 'rgba(165, 42, 42, 0.045)';
         list.style.backdropFilter = 'blur(10px)';
-
+        
         for (let i = 0; i < cards.length; i++) {
           cards[i].style.backgroundColor = "white";
         }
       }
+      
+      // let in = 0;
+      let Filter = document.querySelectorAll('.forinvert') ;
+      Filter.forEach((Filter)=>{
+        if(!Filter.style.filter)
+          Filter.style.filter = 'invert(1)';
+        else
+          Filter.style.filter = '';
+}
+      )
+      
     });
 
 

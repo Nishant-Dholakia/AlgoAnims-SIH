@@ -1,26 +1,27 @@
 // import Nav from "../navigation/Nav";
 import "./profile.css";
 import { Link } from "react-router-dom";
-import {useEffect } from "react";
+import {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Profile() {
-    let userName = '';
-    let emailId = '';
+    const [userName,setUserName] = useState('');
+    const [emailId,setEmailId] = useState('');
     const navigate = useNavigate();
     useEffect(() => {
 
+     setUserName(localStorage.getItem("UserName"));
+      setEmailId(localStorage.getItem("email"));
         if (!localStorage.getItem("UserName")) {
             navigate("/login");
         }
-        else{
-          userName = localStorage.getItem("UserName")
-        }
         
+        
+         
     }, [navigate]);
     
 
-// 
+
 
   function CreateUserDetails({ svg, text, data = "N/A" }) {
     return (
@@ -63,7 +64,7 @@ function Profile() {
       <div className="profilecss ">
         <div className="left flex-col">
           <div className="personaldetails">
-            <div className="profilepic rounded-full">{userName.charAt(0)}</div>
+            <div className="profilepic rounded-full">{(userName.charAt(0)).toUpperCase()}</div>
             {/* <img
               className="profilepic"
               src="https://media.licdn.com/dms/image/v2/D4D03AQHMKhaYEalknA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705511571724?e=1732147200&v=beta&t=UMWylJghozMP14R5X9VJ4XrHHzuNm2nOqf-yz5X1Udo"

@@ -11,6 +11,7 @@ function EditPlatformPage() {
     const leetcodeUname = e.target.leetcodeUname.value;
     const codechefUname = e.target.codechefUname.value;
     const gfgUname = e.target.gfgUname.value;
+    const email = localStorage.getItem("email");
 
     // Send the updated usernames to the server
     const response = await fetch("http://localhost:8080/editprofile/editPlatformPage", {
@@ -18,7 +19,7 @@ function EditPlatformPage() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ leetcodeUname, codechefUname, gfgUname })
+      body: JSON.stringify({ leetcodeUname, codechefUname, gfgUname , email })
     });
 
     // Update the local state with the response data

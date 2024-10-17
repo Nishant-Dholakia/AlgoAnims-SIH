@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "binary-tree-visualizer": "^2.1.5",
     "chart.js": "^4.4.4",
     "connect-mongo": "^5.1.0",
     "country-calling-code": "^0.0.3",
