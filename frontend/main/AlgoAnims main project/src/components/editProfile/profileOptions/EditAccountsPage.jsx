@@ -1,8 +1,12 @@
 import style from './edit.module.css'; // Importing CSS module
 
 function EditAccountsPage() {
+
+
+
   return (
-    <form className={style.edit} method='post'>
+    <form
+     className={style.edit} method='post'>
       <div className={style.area}>
         <label 
         htmlFor="linkedin" className={style.label}>LinkedIn : </label>
