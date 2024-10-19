@@ -10,11 +10,10 @@ function LeetcodeActivity() {
 
             const apicall = await fetch(leetcode);
                 const obj = await apicall.json();
-                console.log(obj);
             setLeetData(obj);
         }
         call();
-        console.log(leetdata);
+        // console.log(leetdata);
     },[])
 
 

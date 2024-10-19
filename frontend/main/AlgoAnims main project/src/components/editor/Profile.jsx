@@ -3,9 +3,8 @@ import "./profile.css";
 import { Link } from "react-router-dom";
 import {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { current } from "@reduxjs/toolkit";
 import LeetcodeActivity from "./Leetcode/LeetcodeActivity";
-
+import MyHeatmap from "../heatMap/heatMap";
 function Profile() {
     const [userName,setUserName] = useState('');
     const [emailId,setEmailId] = useState('');
@@ -126,8 +125,14 @@ function Profile() {
                 
                 <h1 className="text-center text-3xl w-full font-bold">{currentPlatform}</h1>
                { currentPlatform === 'LeetCode' && <LeetcodeActivity />}
-                
+               {
+                  currentPlatform === 'CodeChef' &&      
+                  <div className="mapdiv  dark:bg-platformAccount w-full rounded-md px-6 pt-1 pb-0 ">
+                    <MyHeatmap />
+                  </div>
+                }
           </div>
+          
         </div>
       </div>
     </>
