@@ -4,12 +4,6 @@ import { useNavigate } from 'react-router-dom';
 function EditAccountsPage() {
 
 
-<<<<<<< HEAD
-
-  return (
-    <form
-     className={style.edit} method='post'>
-=======
   const [linkedin,setLinkedin] = useState(localStorage.getItem(`linkedin`));
   const [github,setGithub] = useState(localStorage.getItem(`github`));
   const [discord,setDiscord] = useState(localStorage.getItem(`discord`));
@@ -34,7 +28,6 @@ function EditAccountsPage() {
     <form className={style.edit} method='post'
     onSubmit={(setAccounts)}
     >
->>>>>>> 0aa83ab935ac225278e07859cbc076bda72dfa1d
       <div className={style.area}>
         <label 
         htmlFor="linkedin" className={style.label}>LinkedIn : </label>
