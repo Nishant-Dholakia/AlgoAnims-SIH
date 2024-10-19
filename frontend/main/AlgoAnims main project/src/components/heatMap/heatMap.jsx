@@ -59,7 +59,7 @@ function MyHeatmap ()  {
 
   return (
     <div>
-      <h2 className='dark:text-white'>CodeChef HeatMap</h2>
+      <h2 className='dark:text-white font-bold'>CodeChef heatmap</h2>
       {values.length !== 0 ? (
         <div className='jaytay'>
           <CalendarHeatmap

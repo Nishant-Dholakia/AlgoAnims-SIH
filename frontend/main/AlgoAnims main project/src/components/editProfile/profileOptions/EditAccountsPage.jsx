@@ -3,10 +3,6 @@ import style from './edit.module.css'; // Importing CSS module
 import { useNavigate } from 'react-router-dom';
 function EditAccountsPage() {
 
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/main
   const [linkedin,setLinkedin] = useState(localStorage.getItem(`linkedin`));
   const [github,setGithub] = useState(localStorage.getItem(`github`));
   const [discord,setDiscord] = useState(localStorage.getItem(`discord`));

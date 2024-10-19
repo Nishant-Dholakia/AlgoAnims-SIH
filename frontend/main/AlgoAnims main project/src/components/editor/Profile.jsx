@@ -115,7 +115,10 @@ function Profile() {
           </div>
         </div>
         <div className="right dark:bg-custoBg">
-          <MyHeatmap />
+          <div className="mapdiv  dark:bg-platformAccount w-full rounded-md px-6 pt-1 pb-0 ">
+            <MyHeatmap />
+          </div>
+          
           <div className="rightShow"></div>
         </div>
       </div>
