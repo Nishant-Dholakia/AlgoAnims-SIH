@@ -3,7 +3,7 @@ import "./profile.css";
 import { Link } from "react-router-dom";
 import {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import MyHeatmap from "../heatMap/heatMap";
 function Profile() {
     const [userName,setUserName] = useState('');
     const [emailId,setEmailId] = useState('');
@@ -115,6 +115,7 @@ function Profile() {
           </div>
         </div>
         <div className="right dark:bg-custoBg">
+          <MyHeatmap />
           <div className="rightShow"></div>
         </div>
       </div>
