@@ -22,7 +22,23 @@ function EditProfilePage() {
   const [phonecountry, setPhoneCountry] = useState(localStorage.getItem('Country'));
   const [phonecode, setPhoneCode] = useState(code[phonecountry]);
   const [phoneNumber,setPhoneNumber] = useState(localStorage.getItem('Contact'));
+  async function submitData(){
+    const data = {
+      email : emailId,
+      username : userName,
+      country : phonecountry,
+      phoneNo : phoneNumber,
+    }
+    const api = await fetch("http://localhost:8080/editProfile" , {
+      method : 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body : JSON.stringify(data),
+    })
 
+
+  }
   function saveEditProfile(e)
   {
     e.preventDefault();
@@ -30,6 +46,8 @@ function EditProfilePage() {
     localStorage.setItem('Country',phonecountry);
     localStorage.setItem('UserName',userName);
     location.reload(true);// to show changes in the edit profile also
+    
+    submitData();
   }
 
   function setNumber(e)
@@ -41,6 +59,8 @@ function EditProfilePage() {
       console.log(input);
     }
   }
+
+  
 
   return (
     <form className={style.edit} method="post"

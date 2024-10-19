@@ -3,10 +3,14 @@ import style from './edit.module.css'; // Importing CSS module
 import { useNavigate } from 'react-router-dom';
 function EditAccountsPage() {
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/main
   const [linkedin,setLinkedin] = useState(localStorage.getItem(`linkedin`));
   const [github,setGithub] = useState(localStorage.getItem(`github`));
   const [discord,setDiscord] = useState(localStorage.getItem(`discord`));
+  const [emailId , setEmailId] = useState(localStorage.getItem("email"));
   const navigate = useNavigate();
   useEffect(() => {
       if (!localStorage.getItem("UserName")) {
@@ -15,6 +19,25 @@ function EditAccountsPage() {
       
   }, [navigate]);
 
+  async function main(){
+
+    const data = {
+      email : emailId,
+      linkedin : linkedin,
+      github : github,
+      discord : discord,
+    }
+
+    const api = await fetch('http://localhost:8080/editAccount' , {
+      method : 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body : JSON.stringify(data),
+    })
+
+  }
+
   function setAccounts(e)
   {
     e.preventDefault();
@@ -22,6 +45,7 @@ function EditAccountsPage() {
     localStorage.setItem('github',github);
     localStorage.setItem('discord',discord);
 
+    main();
   }
 
   return (
