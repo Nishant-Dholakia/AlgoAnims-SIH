@@ -9,11 +9,12 @@ const mongoose = require('mongoose');
 const User = require('./Models/data');
 const sendMail = require('./Controllers/forgetPassword');
 const mailforSignup = require('./Controllers/mail');
-const mongoStore = require('connect-mongo')
+const asyncWrap = require('./utils/asyncWrap');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const ExpressError = require('./utils/ExpressError')
 
-const session = require('express-session');
-
-let userId = '';
+const key = 'sih-algoanims'
 
 
 async function connection() {
@@ -32,35 +33,41 @@ connection()
 const app = express();
 
 const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174'];
+
 const corsopt = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true
+    origin : allowedOrigins,
+    credentials : true
 }
 
 app.use(cors(corsopt));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
+app.use(cookieParser());
+
+const checkToken = (req,res,next) => {
+    let token = req.cookies.token;
+    if(!token){
+        return res.json('token is not avaliable');
+        
+    }
+    
+    jwt.verify(token , key ,(err , decode)=>{
+        if(err) return res.json('not found')
+        
+        req.user = decode;
+        // console.log(req.user);
+        next();
+    })
+}
 
 
-
-app.listen(port, () => {
-    console.log("app is starting");
-})
-
-
-app.get("/api/signup", async (req, res) => {
+app.get("/api/signup",asyncWrap(async (req, res,next) => {
     const data = await User.find();
     console.log("in home get")
     res.send(data)
-})
+}))
 
-app.post("/signup", async (req, res) => {
+app.post("/signup", asyncWrap(async (req, res,next) => {
     const { uname, email, pass, last_char } = req.body;
     console.log(req.body);
     let final = pass;
@@ -71,29 +78,19 @@ app.post("/signup", async (req, res) => {
     })
 
     await user.save();
-    let data = await User.findOne({
-        $or:
-            [
-                { emailId: email },
-                { userName: email }
-            ]
-    });
-    userId = data._id.toString();
-
-
-    console.log("successfull", userId)
+    
     await mailforSignup(email)
-})
+}))
 
 
-app.get("/api/login", async (req, res) => {
+app.get("/api/login", asyncWrap(async (req, res,next) => {
 
     const data = await User.find();
     // console.log(data)
     res.json(data);
-})
+}))
 
-app.post("/login", async (req, res) => {
+app.post("/login", asyncWrap(async (req, res,next) => {
     let { email } = req.body;
     let data = await User.findOne({
         $or:
@@ -102,47 +99,48 @@ app.post("/login", async (req, res) => {
                 { userName: email }
             ]
     });
-    console.log("in")
+    // console.log("in")
 
-    userId = data._id.toString();
-    console.log(userId)
-})
+    const token = jwt.sign({id : data._id, email : data.emailId , userName : data.userName} ,key , {
+        expiresIn : '2d'
+    })
+    // console.log(token); 
+
+    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict' })
+    res.json(token);
+
+}))
 
 
-app.get("/api/home", async (req, res) => {
-
-    // console.log("Home: session.userid is", req.session.userName);  // Log the session ID
-    if (userId) {
-        const data = await User.findById(userId);
-        res.send(data)
-    } else {
-        res.json({ data: "backend" })
+app.get("/api/home", checkToken , asyncWrap(async (req, res,next) => {
+    let user = req.user;
+    // console.log(user.id)
+    if(user){
+        const data = await User.findById(user.id);
+        return res.json(data);
     }
 
-})
+    return res.json('wrong')
 
-app.post("/data", async (req, res) => {
-    console.log(req.body);
-    let { UserName } = req.body;
-    const data = await User.findOne({ userName: UserName });
-    userId = data._id.toString();
-    console.log(userId)
-})
+}))
+
 
 app.post("/logout", (req, res) => {
-    userId = '';
+    res.clearCookie('token',{ httpOnly: true, secure: true, sameSite: 'strict' });
+    return res.send('logout')
 })
 
-app.post("/forgetpassword", async (req, res) => {
+app.post("/forgetpassword", asyncWrap(async (req, res,next) => {
     let { emailId } = req.body;
     const data = await User.findOne({ emailId: emailId });
-    userId = data._id.toString();
-    // console.log(userId)
     await sendMail(emailId);
-})
+}))
 
-app.get("/api/resetpassword", async (req, res) => {
-    const data = await User.findOne({ _id: userId });
+app.get("/api/resetpassword", asyncWrap(async (req, res,next) => {
+    if(!req.user){
+        return res.json('jay0yai')
+    }
+    const data = await User.findById(req.user.id);
     // console.log(data);
     let obj = {
         userName: data.userName,
@@ -150,21 +148,23 @@ app.get("/api/resetpassword", async (req, res) => {
     }
 
     res.json(obj);
-})
+}))
 
-app.patch("/changepassword", async (req, res) => {
+app.patch("/changepassword",asyncWrap( async (req, res,next) => {
     let { password } = req.body;
-    console.log(password, req.body)
-
-    let update = await User.findByIdAndUpdate(userId, {
+    // console.log(password, req.body)
+    if(!req.user){
+        return res.json('jay0yai')
+    }
+    let update = await User.findByIdAndUpdate(req.user.id, {
         password: password
     })
 
     console.log("sucess");
-});
+}));
 
 
-app.patch("/editProfile", async (req, res, next) => {
+app.patch("/editProfile", asyncWrap(async (req, res, next) => {
     let { email, username, country, phoneNo } = req.body;
     // console.log(req.body)
 
@@ -177,9 +177,9 @@ app.patch("/editProfile", async (req, res, next) => {
     })
 
     res.send("sucessfully")
-})
+}))
 
-app.patch("/editAccount", async (req, res, next) => {
+app.patch("/editAccount", asyncWrap(async (req, res, next) => {
     let { email, linkedin, github, discord } = req.body;
 
     await User.findOneAndUpdate({ emailId: email }, {
@@ -191,9 +191,9 @@ app.patch("/editAccount", async (req, res, next) => {
     })
 
     res.send("successfull")
-})
+}))
 
-app.post("/editprofile/editPlatformPage", async (req, res) => {
+app.post("/editprofile/editPlatformPage", asyncWrap(async (req, res,next) => {
     const { leetcodeUname, codechefUname, gfgUname, email } = req.body;
 
     const leetcode = await leetcodeData(leetcodeUname);
@@ -208,4 +208,17 @@ app.post("/editprofile/editPlatformPage", async (req, res) => {
     })
     res.json({ leetcode, codechef, gfg });
 
+}))
+
+
+
+app.use((err,req,res)=>{
+    let {status , message} = err
+    res.staus(status).json(message);
+})
+
+
+
+app.listen(port, () => {
+    console.log("app is starting");
 })

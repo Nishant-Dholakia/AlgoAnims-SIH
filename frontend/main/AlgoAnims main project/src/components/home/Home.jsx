@@ -1,4 +1,4 @@
-import  {useEffect} from "react";
+import { useEffect } from "react";
 import "./home.css";
 import gsap from "gsap";
 import { NavLink } from "react-router-dom";
@@ -8,106 +8,73 @@ import { Reload } from "../../Functions/Reload";
 export default function Home() {
 
   // logout()
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.removeItem("LoginReload");
-    Reload("HomeReload");    
-  } , []);
-
-
-  async function sendData() {
-
-    const data = {
-      UserName : localStorage.getItem("UserName")
-    }
-
-    fetch("http://localhost:8080/data",{
-      method : 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body : JSON.stringify(data)
-    }).then(()=>{
-      console.log("recive succesufuuly")
-    })
-
-    // const data = await api.json();
-
-  }
-
-   async function getData(){
-    const api = await fetch("http://localhost:8080/api/home");
-    const data = await api.json();
-    return data;
-  }
-
-  
+    Reload("HomeReload");
+    main();
+  }, []);
 
 
   async function main() {
-   try{
-    const data = await getData();
-    // console.log(data)
-    if(data.userName){
-      console.log(data.userName)
-    window.localStorage.setItem("UserName" , data.userName);
-    window.localStorage.setItem("email" , data.emailId);
-    window.localStorage.setItem("Country" , data.details.country);
-    window.localStorage.setItem("Contact" , data.details.contactNo);
+    console.log("in fun");
+    const api = await fetch('http://localhost:8080/api/home', {
+      credentials: 'include'
+    })
+    const data = await api.json()
+    // localStorage.removeItem('HomeReload')
+    console.log(data)
+    if (data._id) {
+        Reload('AgainHome')
 
-    window.localStorage.setItem("leetcode" ,data.userNames.leetcode);
-    window.localStorage.setItem("gfg" ,data.userNames.gfg);
-    window.localStorage.setItem("codechef" ,data.userNames.codechef);
+      window.localStorage.setItem("UserName", data.userName);
+      window.localStorage.setItem("email", data.emailId);
+      window.localStorage.setItem("Country", data.details.country);
+      window.localStorage.setItem("Contact", data.details.contactNo);
 
-    window.localStorage.setItem("github" ,data.accounts.github);
-    window.localStorage.setItem("linkedlin" ,data.accounts.linkedlin);
-    window.localStorage.setItem("discord" ,data.accounts.discord);
+      window.localStorage.setItem("leetcode", data.userNames.leetcode);
+      window.localStorage.setItem("gfg", data.userNames.gfg);
+      window.localStorage.setItem("codechef", data.userNames.codechef);
 
-    
-      
+      window.localStorage.setItem("github", data.accounts.github);
+      window.localStorage.setItem("linkedlin", data.accounts.linkedin);
+      window.localStorage.setItem("discord", data.accounts.discord);
+
     }
-   }catch(err){
-    console.log(err,'jaytay')
-   }
+
   }
 
-  useEffect(()=>{
-    main();
-    if(localStorage.getItem("UserName"))
-      sendData();
-  } ,[])
 
 
 
-
-  setTimeout(()=>{
+  setTimeout(() => {
     var h2 = document.querySelector("h2");
     var h2T = h2.textContent;
     var splittedtext = h2T.split("");
     var half = Math.floor(splittedtext.length / 2);
 
-        var clutter1 = "";
-        splittedtext.forEach(function (e, idx) {
-          if (idx < half) {
-            clutter1 += `<span class="a">${e}</span>`;
-          } else {
-            clutter1 += `<span class="b">${e}</span>`;
-          }
-        });
+    var clutter1 = "";
+    splittedtext.forEach(function (e, idx) {
+      if (idx < half) {
+        clutter1 += `<span class="a">${e}</span>`;
+      } else {
+        clutter1 += `<span class="b">${e}</span>`;
+      }
+    });
 
-        h2.innerHTML = clutter1;
+    h2.innerHTML = clutter1;
 
-        gsap.to(".marque", {
-          transform: "translateX(0%)",
-          duration: 4,
-          repeat: -1,
-          ease: "none",
-        });
-  },100)
+    gsap.to(".marque", {
+      transform: "translateX(0%)",
+      duration: 4,
+      repeat: -1,
+      ease: "none",
+    });
+  }, 100)
 
 
   window.addEventListener("wheel", function (dets) {
-    
-    if(this.document.querySelector(".marque")){
+
+    if (this.document.querySelector(".marque")) {
       if (dets.deltaY > 0) {
         gsap.to(".marque", {
           transform: "translateX(-200%)",
@@ -131,27 +98,26 @@ export default function Home() {
       }
     }
   });
-  setTimeout(()=>{
+  setTimeout(() => {
     gsap.from("h2 .a", {
-        y: 50,
-        duration: 0.8,
-        delay: 0.5,
-        stagger: 0.15,
-        opacity: 0,
-      });
-  
-      gsap.from("h2 .b", {
-        y: 50,
-        duration: 0.8,
-        delay: 0.5,
-        stagger: -0.15,
-        opacity: 0,
-      });
-    
-},200)
+      y: 50,
+      duration: 0.8,
+      delay: 0.5,
+      stagger: 0.15,
+      opacity: 0,
+    });
 
-  function Arrow()
-  {
+    gsap.from("h2 .b", {
+      y: 50,
+      duration: 0.8,
+      delay: 0.5,
+      stagger: -0.15,
+      opacity: 0,
+    });
+
+  }, 200)
+
+  function Arrow() {
     return (
       <div className="marque">
         <h3>dive into algorithm</h3>
@@ -160,10 +126,9 @@ export default function Home() {
     )
   }
 
-  function TopicCard({imgSrc,heading,description1,description2,navlink,})
-  {
-    return(
-    <div className="container1">
+  function TopicCard({ imgSrc, heading, description1, description2, navlink, }) {
+    return (
+      <div className="container1">
         <div className="container">
           <div className="card">
             <div className="cardimage">
@@ -191,9 +156,9 @@ export default function Home() {
   }
 
   return (
-    
+
     <div>
-     
+
       <div className="rightimage">
         <div className="content">
           <h2>Welcome to AlgoAnims!!</h2>
@@ -216,62 +181,62 @@ export default function Home() {
       <br />{" "}
       <div id="page2">
         <div id="move">
-         <Arrow />
-         <Arrow />
-         <Arrow />
-         <Arrow />
-         <Arrow />
-         <Arrow />
+          <Arrow />
+          <Arrow />
+          <Arrow />
+          <Arrow />
+          <Arrow />
+          <Arrow />
         </div>
       </div>
       <br />
       <br />
-      <TopicCard 
-        imgSrc = "graph.jpeg"
-        heading = 'GRAPH'
-        description1 = {`Graph algorithms are the backbone of many complex systems and
+      <TopicCard
+        imgSrc="graph.jpeg"
+        heading='GRAPH'
+        description1={`Graph algorithms are the backbone of many complex systems and
                 applications, from social networks to transportation logistics.
                 These algorithms help us understand and solve problems involving
                 interconnected data, allowing us to traverse, analyze, and
                 manipulate graphs efficiently.`}
-        description2 = {`Jump into our graph algorithms section and unlock a treasure
+        description2={`Jump into our graph algorithms section and unlock a treasure
                 trove of knowledge that will enhance your skills and expand your
                 horizons.`}
-        navlink = '/graph'
+        navlink='/graph'
       />
       <br />
       <br />
-      <TopicCard 
-        imgSrc = "tree.jpeg"
-        heading = 'TREE'
-        description1 = {`Trees are fundamental data structures that model hierarchical
+      <TopicCard
+        imgSrc="tree.jpeg"
+        heading='TREE'
+        description1={`Trees are fundamental data structures that model hierarchical
                 relationships. They consist of nodes connected by edges, making
                 them ideal for representing data with a parent-child
                 relationship. From file systems to decision processes, trees are
                 everywhere!`}
-        description2 = {`Ready to branch out into the world of tree data structures?
+        description2={`Ready to branch out into the world of tree data structures?
                 Explore our dedicated section and cultivate your knowledge
                 today!`}
-        navlink = '/'
+        navlink='/'
       />
       <br />
       <br />
-      <TopicCard 
-        imgSrc = "search.jpeg"
-        heading = 'SEARCHING'
-        description1 = {`Searching algorithms are the unsung heroes of data retrieval,
+      <TopicCard
+        imgSrc="search.jpeg"
+        heading='SEARCHING'
+        description1={`Searching algorithms are the unsung heroes of data retrieval,
                 helping you find the information you need quickly and
                 efficiently. From simple lists to complex databases, mastering
                 these algorithms is essential for any aspiring programmer or
                 data enthusiast.`}
-        description2 = {`Are you ready to enhance your skills and unlock the power of
+        description2={`Are you ready to enhance your skills and unlock the power of
                 searching algorithms? Explore our dedicated section today and
                 embark on a journey toward becoming a search master!`}
-        navlink = '/'
+        navlink='/'
       />
       <br />
       <br />
-      <TopicCard 
+      <TopicCard
         imgSrc="Sorting.jpeg"
         heading="SORTING"
         description1={`The Art of Sorting in DSA Sorting is more than just order; it's
@@ -284,9 +249,9 @@ export default function Home() {
           and see their performance in action!`}
         navlink="/"
       />
-        <br />
-      </div>
-    
+      <br />
+    </div>
+
   );
 }
 

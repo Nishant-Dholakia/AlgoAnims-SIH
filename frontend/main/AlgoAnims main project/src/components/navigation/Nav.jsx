@@ -22,16 +22,10 @@ function logout() {
 
   if (conform) {
     localStorage.clear();
-    console.log("User logged out, localStorage cleared.");
-    const data = { data: 0 };
+    // console.log("User logged out, localStorage cleared.");
     fetch("http://localhost:8080/logout", {
       method: 'POST',
-      headers: {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-      }
+      credentials : 'include'
     })
     Reload("logoutReload");
   }
@@ -51,8 +45,8 @@ function Nav() {
 
   useEffect(() => {
     localStorage.removeItem("LoginReload");
-    localStorage.removeItem("LogoutReload");
-    // localStorage.removeItem("HomeReload");
+    localStorage.removeItem("LogoutReload");    
+    // localStorage.removeItem("HomedReload");    
 
     setInterval(() => {
       Reload("NavReload");

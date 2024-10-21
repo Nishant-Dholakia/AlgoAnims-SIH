@@ -21,8 +21,8 @@ function Login() {
   const navigate = useNavigate();
   let [obj, setObj] = useState([]);
 
-  const [passtype , setpasstype] = useState("password");
-  const [passicon , setpassicon] = useState("👁️");
+  const [passtype, setpasstype] = useState("password");
+  const [passicon, setpassicon] = useState("👁️");
 
 
   const [firstfieldColor, setfirstfieldColor] = useState("text-red-500");
@@ -36,11 +36,13 @@ function Login() {
 
 
   useEffect(() => {
-    localStorage.removeItem("HomeReload");
     localStorage.removeItem("NavedReload");
     localStorage.removeItem("NavReload");
 
+
     Reload("LoginReload");
+    // setTimeout(() => {
+    // }, 5000);
   }, []);
 
   useEffect(() => {
@@ -82,7 +84,7 @@ function Login() {
     console.log(obj);
   }
 
-  function check() {
+  async function check() {
 
     let temp;
     if (passTick == '✔' && firsttick == '✔') {
@@ -98,16 +100,20 @@ function Login() {
         email: temp.email
       }
 
-      {
-        fetch("http://localhost:8080/login", {
-          method: 'POST',
-          headers: {
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify(obj2)
-        }).then((res) => res.json());
 
-      }
+      const api = await fetch("http://localhost:8080/login", {
+        method: 'POST',
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(obj2),
+        credentials: 'include',
+      })
+
+      // console.log(api);
+
+      const data = await api.json();
+      localStorage.setItem('data', data)
 
     }
 
@@ -169,7 +175,7 @@ function Login() {
     setPass(value)
     let isget = false;
     for (let pd of obj) {
-      if ((pd.uname === firstField || pd.email === firstField) &&  pd.pass == value) {
+      if ((pd.uname === firstField || pd.email === firstField) && pd.pass == value) {
         isget = true;
         break;
       }
@@ -192,7 +198,7 @@ function Login() {
       <div className="login-container">
 
         <div className="video-container">
-          
+
           <video id="background-video" src="/bg.mp4" muted loop autoPlay />
         </div>
 
@@ -202,7 +208,7 @@ function Login() {
         </header>
 
         <div className="form-container">
-         
+
           <div className="login-box" ref={loginBoxRef}>
             <div className="logo">
               <img src={logoImage} alt="Logo" />
@@ -243,24 +249,24 @@ function Login() {
                       forPassword(evt)
                     }}
                     type={passtype} placeholder="Password" required />
-                    <button
+                  <button
                     type="button"
-                    onClick={()=>{
+                    onClick={() => {
                       setpassicon("🙈");
-                      setpasstype((prev)=>{
-                        if(prev == "text") return "password"
+                      setpasstype((prev) => {
+                        if (prev == "text") return "password"
                         return "text"
                       })
                     }}
-                    >{passicon}</button>
-                    {pass.length > 0 ? <input 
+                  >{passicon}</button>
+                  {pass.length > 0 ? <input
                     readOnly
                     value={passTick}
                     className={`${passColor}`}
-                    type="text" />  : <></>}
+                    type="text" /> : <></>}
                 </div>
                 {passMsg != 'valid' && pass.length > 0 ? <small
-                className={`${passColor}`}
+                  className={`${passColor}`}
                 >{passMsg}</small> : <></>}
               </div>
 
@@ -274,7 +280,7 @@ function Login() {
             </form>
           </div>
 
-          
+
           <div className="signup-box" ref={signupBoxRef}>
             <p>
               Do not have an account?
