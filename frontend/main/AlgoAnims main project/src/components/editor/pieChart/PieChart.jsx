@@ -13,7 +13,7 @@ const PieChart = ({ totalSolved,totalQuestions,label }) => {
         label: {label},
         data: [totalSolved, totalQuestions - totalSolved], // Example data
         backgroundColor: ['orange', 'blue'], // You can set custom colors here
-        hoverBackgroundColor: ['orange', 'green'],
+        hoverBackgroundColor: ['orange', 'blue'],
       },
     ],
   };
@@ -22,12 +22,12 @@ const PieChart = ({ totalSolved,totalQuestions,label }) => {
     plugins: {
       legend: {
         labels: {
-          color: '#ffffff', // Change legend text color
+          color: '#000000', // Change legend text color
         },
       },
       tooltip: {
         bodyColor: '#00FF00', // Change tooltip text color
-        titleColor: '#000000', // Change tooltip title text color
+        titleColor: '#ffffff', // Change tooltip title text color
       },
     },
   };

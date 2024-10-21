@@ -113,7 +113,7 @@ function Nav() {
 
   return (
     <div className='fixed'>
-      <nav id="nav">
+      <nav id="nav" >
         <input type="checkbox" id="check" />
         <label htmlFor="check">
           <i className="fa fa-bars float-left" id="btn"></i>
@@ -121,8 +121,9 @@ function Nav() {
 
         </label>
         <NavLink to='/'><p id="lname">AlgoAnims</p></NavLink>
-        <i onClick={change} id="modebtn" className="ri-moon-clear-line"></i>
-
+        <div >
+         <i onClick={change} id="modebtn" className="ri-moon-clear-line ml-5"></i>
+        </div>
         {!localStorage.getItem("UserName")
           ?
           
@@ -130,15 +131,19 @@ function Nav() {
             <button id="login">Login</button>
           </NavLink> :
 
-          <div>
+          <div className="">
             <NavLink to="/profile">
               <img id='profile' src="/profile-icon.jpg" alt="pro" />
             </NavLink>
+
+           <div className=''>
             <button
               onClick={logout}
-              className='float-right relative top-5'>
+              className='float-right relative top-8 font-bold px-2'>
               Logout
             </button>
+            </div>
+            
           </div>
 
         }

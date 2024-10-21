@@ -53,7 +53,11 @@ function EditProfilePage() {
   function setNumber(e)
   {
     let input = e.target.value;
-    if( /^\d+$/.test(input))// it returns true if string contains only digits, else false
+    if(!input)
+    {
+      setPhoneNumber(null);
+    }
+    else if( /^\d+$/.test(input))// it returns true if string contains only digits, else false
     {
       setPhoneNumber(parseInt(input));
       console.log(input);
@@ -125,7 +129,7 @@ function EditProfilePage() {
           <span>{phonecode}</span>
           <input
             type="text"
-            value={String(phoneNumber)}
+            value={String(phoneNumber) == 'null' ? '' : String(phoneNumber)}
             maxLength={10}
             minLength={10}
             name="contactnum"

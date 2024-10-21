@@ -1,18 +1,18 @@
 import { useEffect } from "react";
 import "./home.css";
 import gsap from "gsap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Reload } from "../../Functions/Reload";
 
 
 export default function Home() {
 
+  const navigate = useNavigate();
   // logout()
   useEffect(() => {
     localStorage.removeItem("LoginReload");
-    Reload("HomeReload");
-    main();
-  }, []);
+    Reload("HomeReload");    
+  } , []);
 
 
   async function main() {

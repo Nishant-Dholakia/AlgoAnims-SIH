@@ -3,11 +3,15 @@ import "./profile.css";
 import { Link } from "react-router-dom";
 import {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import LeetcodeActivity from "./Leetcode/LeetcodeActivity";
+import MyHeatmap from "../heatMap/heatMap";
 function Profile() {
     const [userName,setUserName] = useState('');
     const [emailId,setEmailId] = useState('');
     const navigate = useNavigate();
+
+  const [currentPlatform,setCurrentPlatform] = useState('');
+
     useEffect(() => {
 
      setUserName(localStorage.getItem("UserName"));
@@ -27,7 +31,9 @@ function Profile() {
       </div>
     );
   }
-  function CreatePlatForms({ svg, text, data = "N/A" }) {
+
+
+  function CreatePlatForms({ svg, text, data = "N/A"}) {
     return (
       <div
         className="platformAccounts bg-slate-500 flex justify-center p-1 my-2 rounded-md dark:bg-platformAccount"
@@ -48,10 +54,9 @@ function Profile() {
           <div className="text-xl">{text}</div>
           <div>{data}</div>
         </div>
-
-        <button className="p-1">
-          <img src="/linkopen.svg" className="darksvg  w-9 h-9 dark:invert" alt={text} />
-        </button>
+          <button className="p-1" onClick={()=>setCurrentPlatform(text)}>
+            <img src="/linkopen.svg" className="darksvg  w-9 h-9 dark:invert" alt={text} />
+          </button>
       </div>
     );
   }
@@ -104,6 +109,7 @@ function Profile() {
               svg="/codechef.svg"
               text="CodeChef"
               data={localStorage.getItem(`codechef`)}
+              
             />
             <CreatePlatForms
               svg="/gfg.svg"
@@ -115,7 +121,18 @@ function Profile() {
           </div>
         </div>
         <div className="right dark:bg-custoBg">
-          <div className="rightShow"></div>
+          <div className="rightShow">
+                
+                <h1 className="text-center text-3xl w-full font-bold">{currentPlatform}</h1>
+               { currentPlatform === 'LeetCode' && <LeetcodeActivity />}
+               {
+                  currentPlatform === 'CodeChef' &&      
+                  <div className="mapdiv  dark:bg-platformAccount w-full rounded-md px-6 pt-1 pb-0 ">
+                    <MyHeatmap />
+                  </div>
+                }
+          </div>
+          
         </div>
       </div>
     </>
