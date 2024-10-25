@@ -62,7 +62,6 @@ function Profile() {
   }
 
   return (
-    <>
       <div className="profilecss dark:bg-black ">
         <div className="left  flex-col dark:bg-custoBg dark:text-antiquewhite">
           <div className="personaldetails">
@@ -135,7 +134,6 @@ function Profile() {
           
         </div>
       </div>
-    </>
   );
 }
 
