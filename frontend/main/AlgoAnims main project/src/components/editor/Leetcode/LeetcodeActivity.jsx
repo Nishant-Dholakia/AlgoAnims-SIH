@@ -7,40 +7,64 @@ function LeetcodeActivity() {
     const [leetdata,setLeetData] = useState({});
     useEffect(()=>{
         const call = async ()=>{
-
-            const apicall = await fetch(leetcode);
+            
+                console.log("entered");
+                const apicall = await fetch(leetcode);
                 const obj = await apicall.json();
-            setLeetData(obj);
+                setLeetData(obj);
+            
         }
-        call();
-        // console.log(leetdata);
+        // while(!( Object.keys(leetdata).length) || leetdata.status === 500)
+            call();
     },[])
-
+    
+    console.log(leetdata);
 
   return (
-    <div className='flex flex-wrap w-full'>
-        <PieChart 
-            totalQuestions={leetdata.totalQuestions}
-            totalSolved={leetdata.totalSolved}
-            label={'Overall : '}
-        />
-        <PieChart 
-            totalQuestions={leetdata.totalEasy}
-            totalSolved={leetdata.easySolved}
-            label={'Easy : '}
-        />
-        <PieChart 
-            totalQuestions={leetdata.totalMedium}
-            totalSolved={leetdata.mediumSolved}
-            label={'Medium : '}
-        />
-        <PieChart 
-            totalQuestions={leetdata.totalHard}
-            totalSolved={leetdata.hardSolved}
-            label={'Hard : '}
-        />
+    <>
+        <div>
+            <div>
+                Rating : {leetdata.ranking}
+            </div>
+            <div>
 
-    </div>
+            </div>
+        </div>
+
+        <div className='flex flex-wrap w-full'>
+            <PieChart 
+                totalQuestions={leetdata.totalQuestions}
+                totalSolved={leetdata.totalSolved}
+                label={'Overall'}
+            />
+            <PieChart 
+                totalQuestions={leetdata.totalEasy}
+                totalSolved={leetdata.easySolved}
+                label={'Easy'}
+            />
+            <PieChart 
+                totalQuestions={leetdata.totalMedium}
+                totalSolved={leetdata.mediumSolved}
+                label={'Medium'}
+            />
+            <PieChart 
+                totalQuestions={leetdata.totalHard}
+                totalSolved={leetdata.hardSolved}
+                label={'Hard'}
+            />
+             <PieChart 
+                totalQuestions={100}
+                totalSolved={leetdata.acceptanceRate}
+                label={'Acceptance Rate'}
+                Labels = {['Accepted','Not Accepted']}
+            />
+        </div>
+
+
+
+
+    </>
+
   )
 }
 
