@@ -5,6 +5,7 @@ import {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LeetcodeActivity from "./Leetcode/LeetcodeActivity";
 import MyHeatmap from "../heatMap/heatMap";
+import CodechefGraph from "../CodeChefGraph/CodechefGraph";
 function Profile() {
     const [userName,setUserName] = useState('');
     const [emailId,setEmailId] = useState('');
@@ -129,6 +130,7 @@ function Profile() {
                   currentPlatform === 'CodeChef' &&      
                   <div className="mapdiv  dark:bg-platformAccount w-full rounded-md px-6 pt-1 pb-0 ">
                     <MyHeatmap />
+                    <CodechefGraph/>
                   </div>
                 }
           </div>
