@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="binarysearch.css">
+</head>
+<body>
+    <h1 id="heading">BINARY SEARCH</h1>
+    <p>Enter elements of the array (one by one)</p>
+    <div class="element">
+    <input type="text" id="arrayInput"><button onclick="enter()" id="searchbtn">ENTER</button>
+  </div>
+    <div class="container" id="numberContainer"></div>
+    <p>Enter value which you want to find</p>
+    <div class="element">
+      <input type="text" id="value"><button onclick="binarysearch()" id="searchbtn">SEARCH</button>
+      <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="alertred">Alert!!</h2>
+            <p id="alertmessage"></p>
+        </div>
+    </div>
+    </div>
+    <p id="message"></p>
+  <script src="binarysearch.js"></script>
+    
+</body>
+</html>
