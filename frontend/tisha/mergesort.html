@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="merge.css">
+</head>
+<body>
+  <br>
+    <h1 id="heading">MERGE SORT</h1>
+    <p>Enter elements of the array (one by one)</p>
+
+    <div class="element">
+        <input type="text" id="arrayInput"><button onclick="enter()" id="sortBtn">ENTER</button><button onclick="mergesort()" id="sortBtn">SORT</button>
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <span id="closeModal" class="close">&times;</span>
+                <h2 id="alertred">Alert!!</h2>
+                <p id="alertmessage"></p>
+            </div>
+        </div>
+        <br><br/>
+
+    </div> <br><br/>
+    
+    
+    <div id="initialArray"></div>
+
+   
+    <div id="initialArray2"></div>
+
+    <div class="numc">
+       <div id="LeftContainer"></div>
+      
+        <div id="RightContainer"></div>
+    </div>
+    
+    <br><br/>
+    
+   
+    <div id="sortedArrayContainer"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="merge.js"></script>
+   
+   
+</body>
+</html>
