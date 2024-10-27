@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <title>Document</title>
+    <link rel="stylesheet"  href="shell.css">
+</head>
+<body>
+    <h1 id="heading">SHELL SORT</h1>
+    <div class="container" id="numberContainer"></div>
+    <p>Enter elements of the array (one by one)</p>
+    <div class="element">
+      <input type="text" id="arrayInput"><button onclick="enter()" id="enterBtn">ENTER</button> <button onclick="shell()" id="sortBtn">SORT</button> 
+      <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="alertred">Alert!!</h2>
+            <p id="alertmessage"></p>
+        </div>
+    </div>
+    </div>
+    <p id="message1"></p>
+    <p id="message"></p>
+    <script src="shell.js"> </script>
+</body>
+</html>
