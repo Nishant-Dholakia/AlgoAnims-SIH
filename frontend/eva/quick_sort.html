@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort</title>
+    <link rel="stylesheet" href="quick_sort.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Enter up to 10 Numbers</h2>
+        <input type="text" id="numberInput" maxlength="3" placeholder="Enter a number">
+        <button id="enterButton">Enter</button>
+        <button id="sortButton">Sort</button>
+        <div id="displayArea" class="number-container"></div>
+    </div>
+
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="alertred">Alert!!</h2>
+            <p id="alertmessage"></p>
+        </div>
+    </div>
+
+    
+    <script src="quick_sort.js"> </script>
+</body>
+</html>
+
