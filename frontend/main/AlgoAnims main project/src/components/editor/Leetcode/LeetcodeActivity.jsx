@@ -12,9 +12,7 @@ function LeetcodeActivity() {
                 const apicall = await fetch(leetcode);
                 const obj = await apicall.json();
                 setLeetData(obj);
-            
         }
-        // while(!( Object.keys(leetdata).length) || leetdata.status === 500)
             call();
     },[])
     
@@ -24,11 +22,23 @@ function LeetcodeActivity() {
     <>
         <div>
             <div>
-                Rating : {leetdata.ranking}
+                <strong>
+                    Rating : {leetdata.ranking}
+                </strong>
             </div>
             <div>
-
+                <strong>
+                    Contribution Points : {leetdata.contributionPoints}
+                </strong>
             </div>
+            {
+                leetdata.reputation ? <div><strong>
+                Reputation : {leetdata.reputation}
+                </strong></div> : null
+            }
+                
+        
+            
         </div>
 
         <div className='flex flex-wrap w-full'>
