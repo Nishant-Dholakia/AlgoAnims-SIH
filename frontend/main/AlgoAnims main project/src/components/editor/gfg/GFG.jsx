@@ -1,48 +1,45 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
 function GFG() {
 
-    const gfg = useSelector(state => state.gfg);
-    const [gfgData,setGfgData] = useState({});
-    useEffect(()=>{
-        const call = async ()=>{
-            
-                console.log("entered");
-                const uname = {
-                  name : localStorage.getItem("gfg")
-                }
+  const gfg = useSelector(state => state.gfg);
+  const [gfgData, setGfgData] = useState({});
+  useEffect(() => {
+    const call = async () => {
 
-                try {
-                  const api = await fetch(`http://localhost:8080/api/gfg` , {
-                    method : 'post',
-                    headers: {
-                      "Content-type": "application/json"
-                    },
-                    body : JSON.stringify(uname)
-                  })
-                  const data = await api.json()
-                    // const apicall = await fetch(`https://geeks-for-geeks-api.vercel.app/${localStorage.getItem("gfg")}`);
-                    // if (!apicall.ok) throw new Error("Network response was not ok");
-                    // const obj = await apicall.json();
-                    console.log(data)
-                    setGfgData(data);
-                  } catch (error) {
-                    console.log("Fetch error:", error);
-                  }
-                            
-        }
-        console.log(gfg);
-            call();
-    },[])
-    console.log(gfgData);
+      console.log("entered");
+      const uname = {
+        name: localStorage.getItem("gfg")
+      }
+
+      try {
+        const api = await fetch(`http://localhost:8080/api/gfg`, {
+          method: 'post',
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(uname)
+        })
+        const data = await api.json()
+        console.log(data)
+        setGfgData(data);
+      } catch (error) {
+        console.log("Fetch error:", error);
+      }
+
+    }
+    console.log(gfg);
+    call();
+  }, [])
+  console.log(gfgData);
   return (
     <div>
-        <div>
-            <strong>
-                Institution : {gfgData.institution}
-            </strong>
-        </div>
+      <div>
+        <strong>
+          Institution : {gfgData.institution}
+        </strong>
+      </div>
     </div>
   )
 }
