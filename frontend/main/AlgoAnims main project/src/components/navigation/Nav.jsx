@@ -159,9 +159,9 @@ function Nav() {
           <li >Dijkstra's Algorithm</li>
 
           <li id="topic">Tree</li>
-          <li >Inorder traversal</li>
-          <li>Postorder traversal</li>
-          <li >Preorder traversal</li>
+          <li><Link to="/tree/inorder">Inorder traversal</Link></li>
+          <li> <Link to="/tree/postorder">Postorder traversal </Link> </li>
+          <li > <Link to="/tree/preorder"> Preorder traversal </Link> </li>
           <li >Level-order traversal</li>
           <li>BST-insertion</li>
           <li >BST-deletion</li>
