@@ -24,6 +24,7 @@ function EditPlatformPage() {
 
     // Update the local state with the response data
     const data = await response.json();
+    console.log(data);
     setAllData(data);
     localStorage.setItem("leetcode" , leetcodeUname);
     localStorage.setItem("codechef" , codechefUname);
