@@ -9,11 +9,24 @@ function GFG() {
         const call = async ()=>{
             
                 console.log("entered");
+                const uname = {
+                  name : localStorage.getItem("gfg")
+                }
+
                 try {
-                    const apicall = await fetch(`https://geeks-for-geeks-api.vercel.app/${localStorage.getItem("gfg")}`);
-                    if (!apicall.ok) throw new Error("Network response was not ok");
-                    const obj = await apicall.json();
-                    setGfgData(obj);
+                  const api = await fetch(`http://localhost:8080/api/gfg` , {
+                    method : 'post',
+                    headers: {
+                      "Content-type": "application/json"
+                    },
+                    body : JSON.stringify(uname)
+                  })
+                  const data = await api.json()
+                    // const apicall = await fetch(`https://geeks-for-geeks-api.vercel.app/${localStorage.getItem("gfg")}`);
+                    // if (!apicall.ok) throw new Error("Network response was not ok");
+                    // const obj = await apicall.json();
+                    console.log(data)
+                    setGfgData(data);
                   } catch (error) {
                     console.log("Fetch error:", error);
                   }

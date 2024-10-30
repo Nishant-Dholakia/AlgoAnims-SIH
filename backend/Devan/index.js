@@ -209,7 +209,11 @@ app.post("/editprofile/editPlatformPage", asyncWrap(async (req, res,next) => {
 
 }))
 
-
+app.post("/api/gfg" , async(req,res) => {
+    let {name} = req.body;
+    const gfg = await gfgData(name);
+    res.send(gfg);
+})
 
 app.use((err,req,res)=>{
     let {status , message} = err
