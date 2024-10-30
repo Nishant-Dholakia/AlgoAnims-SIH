@@ -159,7 +159,7 @@ function Postorder() {
     <>
       
       <h1 className='text-2xl text-center p-4'>Postorder Travel</h1>
-      <div className='flex justify-center gap-4 flex-wrap'>
+      <div className='flex justify-center gap-4 flex-wrap '>
 
         <button
           onClick={(evt) => {
@@ -212,7 +212,7 @@ function Postorder() {
       </div>
 
       <section className={`section w-full h-full p-3`}>
-      <div className="algo">
+      <div className="algo dark:bg-black">
             <h2 className='text-2xl text-center'>Algorithm</h2>
             <div className='text-xl p-4 mt-4'>
               <pre className=''> void Inorder(TreeNode* root){"{"} </pre>
@@ -224,7 +224,7 @@ function Postorder() {
               <pre className='' > {"}"}</pre>
             </div>
         </div>
-        <canvas id='travel' className='z-0'></canvas>
+        <canvas id='travel' className='z-0 dark:bg-gray-800'></canvas>
       </section>
     </>
   );

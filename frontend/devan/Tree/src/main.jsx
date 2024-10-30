@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -7,6 +6,7 @@ import Tree from './Components/Tree/Tree.jsx'
 import Inorder from './Components/Travel/Inorder/Inorder.jsx';
 import Postorder from './Components/Travel/Postorder/Postorder.jsx';
 import Preorder from './Components/Travel/Preorder/Preorder.jsx';
+import Crud from './Components/BST/CRUD/crud.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -15,6 +15,7 @@ const router = createBrowserRouter(
             <Route path='/preorder' element = {<Preorder/>} />
             <Route path='/inorder' element = {<Inorder/>} />
             <Route path='/postorder' element = {<Postorder/>} />
+            <Route path='/bst' element = {<Crud/>}></Route>
         </Route>
     )
 )

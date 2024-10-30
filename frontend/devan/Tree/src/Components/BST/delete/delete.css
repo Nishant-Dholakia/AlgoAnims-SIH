@@ -1,0 +1,9 @@
+/* .sp{
+    height: 50vh;
+} */
+
+.right-canvas, .left-canvas{
+    width: 30%;
+  height: 30%;
+   transform-origin: right center;
+}
