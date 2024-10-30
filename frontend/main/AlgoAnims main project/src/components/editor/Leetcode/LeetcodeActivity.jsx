@@ -5,6 +5,13 @@ import { useSelector } from 'react-redux';
 function LeetcodeActivity() {
     const leetcode = useSelector((state) => state.leetcode);
     const [leetdata,setLeetData] = useState({});
+    const [heatmap,setHeatmap] = useState({});
+    function makeHeatmap()
+    {
+        // (leetdata.submissionCalender).forEach(entry => {
+            
+        // });
+    }
     useEffect(()=>{
         const call = async ()=>{
             
@@ -12,6 +19,7 @@ function LeetcodeActivity() {
                 const apicall = await fetch(leetcode);
                 const obj = await apicall.json();
                 setLeetData(obj);
+                makeHeatmap();
         }
             call();
     },[])

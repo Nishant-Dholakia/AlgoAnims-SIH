@@ -10,8 +10,8 @@ function GFG() {
             
                 console.log("entered");
                 try {
-                    const apicall = await fetch(`https://geeks-for-geeks-api.vercel.app/${localStorage.getItem("gfg")}`);
-                    if (!apicall.ok) throw new Error("Network response was not ok");
+                    const apicall = await fetch(`https://geeks-for-geeks-api.vercel.app/${localStorage.getItem("gfg")}`,{mode:'no-cors'});
+                    // if (!apicall.ok) throw new Error("Network response was not ok");
                     const obj = await apicall.json();
                     setGfgData(obj);
                   } catch (error) {
