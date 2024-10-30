@@ -1,16 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import style from './edit.module.css';
 import Context from '../../../contexts/context';
 
 function EditPlatformPage() {
   const { allData, setAllData } = useContext(Context);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const leetcodeUname = e.target.leetcodeUname.value;
-    const codechefUname = e.target.codechefUname.value;
-    const gfgUname = e.target.gfgUname.value;
+  
+  const [leetUname,setLeetUname] = useState(localStorage.getItem("leetcode"));
+  const [codeUname,setCodeUname] = useState(localStorage.getItem("codechef"));
+  const [gfgUname,setGfgUname] = useState(localStorage.getItem("gfg"));
+  async function Savedb()
+  {
+  
     const email = localStorage.getItem("email");
 
     // Send the updated usernames to the server
@@ -19,39 +19,51 @@ function EditPlatformPage() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ leetcodeUname, codechefUname, gfgUname , email })
+      body: JSON.stringify({ leetUname, codeUname, gfgUname , email })
     });
 
     // Update the local state with the response data
     const data = await response.json();
     console.log(data);
     setAllData(data);
-    localStorage.setItem("leetcode" , leetcodeUname);
-    localStorage.setItem("codechef" , codechefUname);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem("leetcode" , leetUname);
+    localStorage.setItem("codechef" , codeUname);
     localStorage.setItem("gfg" , gfgUname);
+    // location.reload(true);
+    Savedb();
   };
 
-  console.log(allData); // Consider removing this in production or use it conditionally
+  console.log("allData" , allData); 
 
   return (
     <form className={style.edit} onSubmit={handleSubmit}>
       <div className={style.area}>
         <label htmlFor="leetcode" className={style.label}>LeetCode:</label>
         <input type="text"
-        defaultValue={localStorage.getItem("leetcode")}
-        name='leetcodeUname' id='leetcode' placeholder='username (e.g., user_12)' />
+        defaultValue={leetUname}
+        name='leetcodeUname' id='leetcode' placeholder='username (e.g., user_12)'
+        onChange={evt => setLeetUname(evt.target.value)}
+        />
       </div>
       <div className={style.area}>
         <label htmlFor="codechef" className={style.label}>CodeChef:</label>
         <input type="text" 
-        defaultValue={localStorage.getItem("codechef")}
-        name='codechefUname' id='codechef' placeholder='username (e.g., user_12)' />
+        defaultValue={codeUname}
+        name='codechefUname' id='codechef' placeholder='username (e.g., user_12)'
+        onChange={evt => setCodeUname(evt.target.value)}
+        />
       </div>
       <div className={style.area}>
         <label htmlFor="geeksforgeeks" className={style.label}>GeeksForGeeks:</label>
         <input type="text"
-        defaultValue={localStorage.getItem("gfg")}
-        name='gfgUname' id='geeksforgeeks' placeholder='username (e.g., user_12)' />
+        defaultValue={gfgUname}
+        name='gfgUname' id='geeksforgeeks' placeholder='username (e.g., user_12)'
+        onChange={evt => setGfgUname(evt.target.value)}
+        />
       </div>
       <button className={style.save} type="submit">Save</button>
     </form>
