@@ -5,15 +5,14 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 // Register the required Chart.js components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = ({ totalSolved,totalQuestions,label ,Labels = ['Solved','Unsolved']}) => {
+const PieChart = ({ totalSolved,totalQuestions,label ,Labels = ['Solved','Unsolved'],colors = ['orange', 'blue'],dataValues = [totalSolved, totalQuestions - totalSolved]}) => {
   const chartData = {
     labels: Labels, // You can adjust based on your data
     datasets: [
       {
         label: {label},
-        data: [totalSolved, totalQuestions - totalSolved], // Example data
-        backgroundColor: ['orange', 'blue'], // You can set custom colors here
-        hoverBackgroundColor: ['orange', 'blue'],
+        data: dataValues, // Example data
+        backgroundColor: colors, // You can set custom colors here
       },
     ],
   };
@@ -33,7 +32,7 @@ const PieChart = ({ totalSolved,totalQuestions,label ,Labels = ['Solved','Unsolv
   };
 
   return (
-    <div style={{ width: '300px', height: '300px', margin:'15px', }}  >
+    <div style={{ width: '300px', height: '300px' }}  >
       <div className='text-center  text-lg'
         style={{ fontWeight: 'bold', fontStyle: 'italic', textDecoration: 'underline' }}
       >{label}</div>  

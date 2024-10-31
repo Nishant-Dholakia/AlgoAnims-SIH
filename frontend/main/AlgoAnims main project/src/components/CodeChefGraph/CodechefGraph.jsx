@@ -10,17 +10,12 @@ import {
   ReferenceArea
 } from 'recharts';
 
-const CodechefGraph = () => {
+const CodechefGraph = ({data}) => {
     const [ratings, setRatings] = useState([]);
   const [maxRating, setMaxRating] = useState(0);
   const [minRating, setMinRating] = useState(0);
-  const [userName , setUserName] = useState(localStorage.getItem("codechef"))
 
   useEffect(() => {
-    async function fetchData() {
-      const api = await fetch(`https://codechef-api.vercel.app/handle/${userName}`);
-      const data = await api.json();
-      console.log(data.ratingData)
       setRatings(data.ratingData);
       let min = 10000;
       let max = 0;
@@ -32,37 +27,37 @@ const CodechefGraph = () => {
 
       setMinRating(min - 200);
       setMaxRating(max + 200);
-    }
-    fetchData();
   }, []);
 
 
-  return (
-    <ResponsiveContainer width="100%" height={400}>
-      <LineChart
-        width={500}
-        height={300}
-        data={ratings}
-        style={{ backgroundColor: 'white' }}
-      >
-        
-        <XAxis dataKey="contestName" />
-        <YAxis domain={[minRating, maxRating]} tickCount={10} />
-        <Tooltip />
-        <Legend />
+    return (
+          <ResponsiveContainer width="100%" height={400}>
+            <LineChart
+              width={500}
+              height={300}
+              data={ratings}
+              style={{ backgroundColor: 'white' }}
+            >
+              
+              <XAxis dataKey="contestName" />
+              <YAxis domain={[minRating, maxRating]} tickCount={10} />
+              <Tooltip />
+              <Legend />
 
-        <ReferenceArea y1={1400} y2={1599} fill="#8FA98B" /> 
-        <ReferenceArea y1={1600} y2={1799} fill="#7D8DCF" /> 
-        <ReferenceArea y1={1800} y2={1999} fill="#856381" /> 
-        <ReferenceArea y1={2000} y2={2199} fill="#C2A228" /> 
-        <ReferenceArea y1={2200} y2={2499} fill="#CC9470" /> 
-        <ReferenceArea y1={2500} y2={maxRating} fill="#B35E68" /> 
+              <ReferenceArea y1={1400} y2={1599} fill="#8FA98B" /> 
+              <ReferenceArea y1={1600} y2={1799} fill="#7D8DCF" /> 
+              <ReferenceArea y1={1800} y2={1999} fill="#856381" /> 
+              <ReferenceArea y1={2000} y2={2199} fill="#C2A228" /> 
+              <ReferenceArea y1={2200} y2={2499} fill="#CC9470" /> 
+              <ReferenceArea y1={2500} y2={maxRating} fill="#B35E68" /> 
 
 
-        <Line type="monotone" dataKey="rating" stroke="#8884d8"  />
-      </LineChart>
-    </ResponsiveContainer>
-  );
+              <Line type="monotone" dataKey="rating" stroke="#8884d8"  />
+            </LineChart>
+          </ResponsiveContainer>
+    )
+
+  
 }
 
 export default CodechefGraph
