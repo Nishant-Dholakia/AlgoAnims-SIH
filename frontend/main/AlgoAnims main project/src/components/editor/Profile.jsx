@@ -7,6 +7,7 @@ import LeetcodeActivity from "./Leetcode/LeetcodeActivity";
 import MyHeatmap from "../heatMap/heatMap";
 import CodechefGraph from "../CodeChefGraph/CodechefGraph";
 import GFG from "./gfg/GFG";
+import CodeChef from "./codechef/CodeChef";
 function Profile() {
     const [userName,setUserName] = useState('');
     const [emailId,setEmailId] = useState('');
@@ -129,8 +130,7 @@ function Profile() {
                {
                   currentPlatform === 'CodeChef' &&      
                   <div className="mapdiv  dark:bg-platformAccount w-full rounded-md px-6 pt-1 pb-0 ">
-                    <MyHeatmap />
-                    <CodechefGraph/>
+                    <CodeChef />
                   </div>
                 }
                 { currentPlatform === 'GeeksforGeeks' && <GFG /> }
