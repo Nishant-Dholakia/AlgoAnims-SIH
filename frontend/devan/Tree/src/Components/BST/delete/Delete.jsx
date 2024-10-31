@@ -97,11 +97,21 @@ const Delete = (props) => {
       });
       return;
     }else if(deleteNode.left == null && deleteNode.right){
-      rightRoot = deleteNode.right;
-      leftRoot = null;
+      console.log("in left null ");
+      // rightRoot = deleteNode.right;
+      // leftRoot = null;
+      deleteNode = rightRoot;
+      drawBinaryTree(rootNode , canvas);
+      // console.log(rightRoot , deleteNode)
+      return;
     }else if(deleteNode.left && deleteNode.right == null){
-      leftRoot = deleteNode.left;
-      rightRoot = null;
+      console.log("in left null ");
+      // leftRoot = deleteNode.left;
+      // rightRoot = null;
+      console.log(deleteNode , leftRoot , finalNode)
+      deleteNode = leftRoot;
+      drawBinaryTree(rootNode , canvas);
+      return;
     }
 
 
