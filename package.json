@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "crypto-js": "^4.2.0",
-    "gsap": "^3.12.5"
+    "gsap": "^3.12.5",
+    "rechart": "^0.0.1",
+    "recharts": "^2.13.3"
   }
 }

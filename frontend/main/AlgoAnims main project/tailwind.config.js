@@ -13,6 +13,7 @@ export default {
         custoBg: '#111017',
         antiquewhite:'antiquewhite',
         platformAccount: '#333131',
+        theme:'#408697',
       },
     },
   },

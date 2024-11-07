@@ -125,7 +125,7 @@ function Profile() {
         <div className="right dark:bg-custoBg">
           <div className="rightShow">
                 
-                <h1 className="text-center text-3xl w-full font-bold">{currentPlatform}</h1>
+                <h1 className="text-center text-3xl w-full font-bold text-theme">{currentPlatform}</h1>
                { currentPlatform === 'LeetCode' && <LeetcodeActivity />}
                {
                   currentPlatform === 'CodeChef' &&      
