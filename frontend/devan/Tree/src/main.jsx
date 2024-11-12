@@ -7,6 +7,7 @@ import Inorder from './Components/Travel/Inorder/Inorder.jsx';
 import Postorder from './Components/Travel/Postorder/Postorder.jsx';
 import Preorder from './Components/Travel/Preorder/Preorder.jsx';
 import Crud from './Components/BST/CRUD/crud.jsx'
+import Heapsort from './Components/Heapsort/Heapsort.jsx'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
             <Route path='/inorder' element = {<Inorder/>} />
             <Route path='/postorder' element = {<Postorder/>} />
             <Route path='/bst' element = {<Crud/>}></Route>
+            <Route path='/heap' element = {<Heapsort/>}></Route>
         </Route>
     )
 )
