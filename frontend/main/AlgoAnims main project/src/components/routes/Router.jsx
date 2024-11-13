@@ -21,6 +21,8 @@ import Tree from "../Tree/Tree";
 import Preorder from "../Tree/Travel/Preorder/preorder.jsx"
 import Postorder from "../Tree/Travel/Postorder/Postorder.jsx"
 import Inorder from "../Tree/Travel/Inorder/Inorder.jsx"
+import BinarySearch from "../Algorithms/Array/Search/Binary/BinarySearch.jsx";
+import LinearSearch from "../Algorithms/Array/Search/Linear/LinearSearch.jsx"
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,6 +40,8 @@ const Router = createBrowserRouter(
           <Route path="editPlatformPage" element={<EditPlatformPage />} />
           <Route path="editAccountsPage" element={<EditAccountsPage />} />
         </Route>
+      <Route path="binarysearch" element={<BinarySearch />} />
+      <Route path="linearsearch" element={<LinearSearch />} />
       </Route>
 
 
