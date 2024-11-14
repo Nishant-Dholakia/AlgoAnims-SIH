@@ -1,0 +1,167 @@
+{
+    "search": {
+        "linear": {
+            "img": "/public/LinearSearch.png",
+            "qname": "Linear Search",
+            "discription": "Linear Search is a simple search algorithm that sequentially checks each element of the list until a match is found or the whole list has been searched. It is also known as sequential search.",
+            "problink": "https://leetcode.com/problem-list/linear-search/",
+            "article": "https://www.geeksforgeeks.org/linear-search/",
+            "visualization": "/array/search/linear"
+        },
+        "binary": {
+            "img": "/public/BinarySearch.png",
+            "qname": "Binary Search",
+            "discription": "Binary Search is a search algorithm that finds the position of a target value within a sorted array. It compares the target value to the middle element of the array, and if they are not equal, it eliminates half of the remaining elements based on the comparison result.",
+            "problink": "https://leetcode.com/problem-list/binary-search/",
+            "article": "https://www.geeksforgeeks.org/binary-search/",
+            "visualization": "https://localhost:3000/array/search/binary"
+        }
+    },
+    "sort": {
+        "bubble": {
+            "img": "/public/BubbleSort.png",
+            "qname": "Bubble Sort",
+            "discription": "Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.",
+            "problink": "https://leetcode.com/problem-list/bubble-sort/",
+            "article": "https://www.geeksforgeeks.org/bubble-sort/",
+            "visualization": "https://localhost:3000/array/sort/bubble"
+        },
+        "selection": {
+            "img": "/public/SelectionSort.png",
+            "qname": "Selection Sort",
+            "discription": "Selection Sort is an in-place comparison-based sorting algorithm. It divides the input list into two parts: the sorted sublist of items already sorted, and the remaining unsorted sublist. Initially, the sorted sublist is empty, and the unsorted sublist is the entire input list.",
+            "problink": "https://leetcode.com/problem-list/selection-sort/",
+            "article": "https://www.geeksforgeeks.org/selection-sort/",
+            "visualization": "https://localhost:3000/array/sort/selection"
+        },
+        "insertion": {
+            "img": "/public/InsertionSort.png",
+            "qname": "Insertion Sort",
+            "discription": "Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time.",
+            "problink": "https://leetcode.com/problem-list/insertion-sort/",
+            "article": "https://www.geeksforgeeks.org/insertion-sort/",
+            "visualization": "https://localhost:3000/array/sort/insertion"
+        },
+        "merge": {
+            "img": "/public/MergeSort.png",
+            "qname": "Merge Sort",
+            "discription": "Merge Sort is a divide-and-conquer algorithm that divides the input array into two halves, recursively sorts each half, and then merges the two sorted halves back together.",
+            "problink": "https://leetcode.com/problem-list/merge-sort/",
+            "article": "https://www.geeksforgeeks.org/merge-sort/",
+            "visualization": "https://localhost:3000/array/sort/merge"
+        },
+        "quick": {
+            "img": "/public/QuickSort.png",
+            "qname": "Quick Sort",
+            "discription": "Quick Sort is a divide-and-conquer algorithm that picks an element as pivot and partitions the given array around the picked pivot.",
+            "problink": "https://leetcode.com/problem-list/quick-sort/",
+            "article": "https://www.geeksforgeeks.org/quick-sort/",
+            "visualization": "https://localhost:3000/array/sort/quick"
+        },
+        "heap": {
+            "img": "/public/HeapSort.png",
+            "qname": "Heap Sort",
+            "discription": "Heap Sort is a comparison-based sorting algorithm that uses a binary heap data structure to sort elements.",
+            "problink": "https://leetcode.com/problem-list/heap-sort/",
+            "article": "https://www.geeksforgeeks.org/heap-sort/",
+            "visualization": "https://localhost:3000/array/sort/heap"
+        }       
+    },
+
+    "graph": 
+        {
+            "bfs": {
+                "img": "/graph.jpeg",
+                "qname": "BFS",
+                "discription": "Breadth-First Search (BFS) is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or an arbitrary node of a graph, sometimes referred to as a 'search key') and explores the neighbor nodes first, before moving on to the next level neighbors.",
+                "problink": "https://leetcode.com/problem-list/breadth-first-search/",
+                "article": "https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/",
+                "visualization": "https://localhost:3000/graph/bfs"
+            },
+            "dfs": {
+                "img": "/graph.jpeg",
+                "qname": "DFS",
+                "discription": "Depth-First Search (DFS) is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or an arbitrary node of a graph, sometimes referred to as a 'search key') and explores as far as possible along each branch before backtracking.",
+                "problink": "https://leetcode.com/problem-list/depth-first-search/",
+                "article": "https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/",
+                "visualization": "https://localhost:3000/graph/dfs"
+            },
+            "dijkstra": {
+                "img": "/graph.jpeg",
+                "qname": "Dijkstra",
+                "discription": "Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks.",
+                "problink": "https://leetcode.com/problem-list/dijkstra/",
+                "article": "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/",
+                "visualization": "https://localhost:3000/graph/dijkstra"
+            },
+            "kruskal": {
+                "img": "/graph.jpeg",
+                "qname": "Kruskal",
+                "discription": "Kruskal's algorithm is a minimum-spanning-tree algorithm which finds an edge of the least possible weight that connects any two trees in the forest.",
+                "problink": "https://leetcode.com/problem-list/kruskal/",
+                "article": "https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/",
+                "visualization": "https://localhost:3000/graph/kruskal"
+            },
+            "prim": {
+                "img": "/graph.jpeg",
+                "qname": "Prim",
+                "discription": "Prim's algorithm is a minimum-spanning-tree algorithm which finds a subset of edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized.",
+                "problink": "https://leetcode.com/problem-list/prim/",
+                "article": "https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/",
+                "visualization": "https://localhost:3000/graph/prim"
+            }
+        }
+    ,
+    "tree": 
+        {
+            "preorder": {
+                "img": "/public/Preorder.png",
+                "qname": "Preorder",
+                "discription": "Preorder traversal is a tree traversal technique that visits the root node first, then recursively traverses the left subtree, and finally the right subtree.",
+                "problink": "https://leetcode.com/problem-list/preorder-traversal/",
+                "article": "https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/",
+                "visualization": "https://localhost:3000/tree/preorder"
+            },
+            "inorder": {
+                "img": "/public/Inorder.png",
+                "qname": "Inorder",
+                "discription": "Inorder traversal is a tree traversal technique that visits the left subtree first, then the root node, and finally the right subtree.",
+                "problink": "https://leetcode.com/problem-list/inorder-traversal/",
+                "article": "https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/",
+                "visualization": "https://localhost:3000/tree/inorder"
+            },
+            "postorder": {
+                "img": "/public/Postorder.png",
+                "qname": "Postorder",
+                "discription": "Postorder traversal is a tree traversal technique that visits the left subtree first, then the right subtree, and finally the root node.",
+                "problink": "https://leetcode.com/problem-list/postorder-traversal/",
+                "article": "https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/",
+                "visualization": "https://localhost:3000/tree/postorder"
+            },
+            "levelorder": {
+                "img": "/public/Levelorder.png",
+                "qname": "Levelorder",
+                "discription": "Levelorder traversal is a tree traversal technique that visits nodes level by level, from left to right.",
+                "problink": "https://leetcode.com/problem-list/levelorder-traversal/",
+                "article": "https://www.geeksforgeeks.org/level-order-tree-traversal/",
+                "visualization": "https://localhost:3000/tree/levelorder"
+            }
+            
+        }
+    ,
+    "binarysearchtree": 
+        {
+            "crud": {
+                
+                    "img": "/public/Insert.png",
+                    "qname": "Insert",
+                    "discription": "Insertion in a Binary Search Tree (BST) is the process of adding a new node to the tree while maintaining the BST properties. The new node is placed in the correct position based on its value, ensuring that the left subtree contains only nodes with values less than the new node's value, and the right subtree contains only nodes with values greater than the new node's value.",
+                    "problink": "https://leetcode.com/problem-list/binary-search-tree/",
+                    "article": "https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/",
+                    "visualization": "https://localhost:3000/binarysearchtree/crud/insert"
+                
+            }
+        
+        }
+    
+}

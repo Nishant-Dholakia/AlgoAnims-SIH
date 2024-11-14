@@ -2,8 +2,11 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import cryptoJs from "crypto-js";
-import getkey from '../../../public/key';
+
+import { isChar , isDigit , isSpecialChar } from '../../Functions/Check';
+import { getGlobalApi } from '../getGlobalApi';
+import { Reload } from '../../Functions/Reload';
+
 const ResetPassword = () => {
     const [btndisabled, setbtndisabled] = useState(true)
     const [userName, setUserName] = useState("");
@@ -25,49 +28,12 @@ const ResetPassword = () => {
 
     const [passMsg, setpassMsg] = useState("invalid password");
     const [repassmsg, setRepassmsg] = useState("password not match");
-    function isDigit(str) {
-        let hasDigit = false;
-        for (let i = 0; i <= 9; i++) {
-            if (str.includes(i.toString())) {
-                hasDigit = true;
-                break;
-            }
-        }
-        return hasDigit;
-    }
-
-    function isChar(str) {
-        let hasChar = false;
-        for (let i = 65; i <= 90; i++) {
-            if (str.includes(String.fromCharCode(i))) {
-                hasChar = true;
-                break;
-            }
-        }
-        for (let i = 97; i <= 122; i++) {
-            if (str.includes(String.fromCharCode(i))) {
-                hasChar = true;
-                break;
-            }
-        }
-        return hasChar;
-    }
-
-    function isSpecialChar(str) {
-        let isSpecialChar = false;
-        let spchars = '@#!$%^&*()_+{}[]|":;<>,./?';
-        for (let char of spchars) {
-            if (str.includes(char)) {
-                isSpecialChar = true;
-            }
-        }
-        return isSpecialChar;
-    }
 
     function rePassError(evt) {
         console.log(passTick , repassTick)
 
         let value = evt.target.value;
+        setRePass(value);
         if(passTick == '✔' && repassTick == '✔'){
             setbtndisabled(false);
         }else{
@@ -89,8 +55,8 @@ const ResetPassword = () => {
     }
     function passwordError(evt) {
         console.log(passTick , repassTick)
-
-        let value = evt.target.value
+        let value = evt.target.value;
+        setPass(value);
         if(passTick == '✔' && repassTick == '✔'){
             setbtndisabled(false);
         }else{
@@ -128,15 +94,25 @@ const ResetPassword = () => {
     }
 
     async function main() {
-        const api = await fetch("http://localhost:8080/api/resetpassword");
+        const email = localStorage.getItem("email");
+        const link = window.location.href;
+        const api = await fetch(`${getGlobalApi()}/user/getuser?email=${email}`,{
+            method : "POST",
+            headers : {
+                "Content-type" : "application/json"
+            },
+            body : JSON.stringify({link})
+        });
         const data = await api.json();
+        console.log(data);
 
         setEmailid(data.email);
-        setUserName(data.userName);
+        setUserName(data.username);
 
     }
 
     useEffect(() => {
+        Reload("LoginReload");
         main();
     }, [])
 
@@ -146,9 +122,10 @@ const ResetPassword = () => {
         if (passTick == '✔' && repassTick == '✔') {
             setbtndisabled(false);
             let obj = {
-                password: encrypt
+                password: password,
+                email: emailid
             }
-            fetch("http://localhost:8080/changepassword", {
+            fetch(`${getGlobalApi}/user/changepassword`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
@@ -165,9 +142,6 @@ const ResetPassword = () => {
     return (
         <div className="body">
             <div className="login-container">
-                <div className="video-container">
-                    <video className="video" id="background-video" src="/bg.mp4" autoPlay muted loop />
-                </div>
 
                 <header className="algoanims-heading">
                     AlgoAnims
@@ -208,7 +182,6 @@ const ResetPassword = () => {
                                     <input
                                         onChange={(evt) => {
                                             passwordError(evt)
-                                            setEncrypt(cryptoJs.AES.encrypt(evt.target.value, getkey()).toString());
                                         }}
 
                                         value={password}

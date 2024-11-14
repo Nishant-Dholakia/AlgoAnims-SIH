@@ -1,14 +1,19 @@
 import { useState,useEffect } from 'react';
 import style from './edit.module.css'; // Importing CSS module
 import { useNavigate } from 'react-router-dom';
+import { getGlobalApi } from '../../getGlobalApi';
+import { toast } from "react-toastify";
 function EditAccountsPage() {
 
   const [linkedin,setLinkedin] = useState(localStorage.getItem(`linkedin`));
   const [github,setGithub] = useState(localStorage.getItem(`github`));
   const [discord,setDiscord] = useState(localStorage.getItem(`discord`));
-  const [emailId , setEmailId] = useState(localStorage.getItem("email"));
   const navigate = useNavigate();
   useEffect(() => {
+    if(localStorage.getItem("accountupdate") == "true"){
+      toast.success("Account updated successfully!")
+      localStorage.setItem("accountupdate",false);
+    }
       if (!localStorage.getItem("UserName")) {
           navigate("/login");
       }  
@@ -18,13 +23,13 @@ function EditAccountsPage() {
   async function main(){
 
     const data = {
-      email : emailId,
+      id : localStorage.getItem("id"),
       linkedin : linkedin,
       github : github,
       discord : discord,
     }
 
-    const api = await fetch('http://localhost:8080/editAccount' , {
+    const api = await fetch(`${getGlobalApi()}/details/editaccount` , {
       method : 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -32,6 +37,7 @@ function EditAccountsPage() {
       body : JSON.stringify(data),
     })
 
+    
   }
 
   function setAccounts(e)
@@ -40,8 +46,9 @@ function EditAccountsPage() {
     localStorage.setItem('linkedin',linkedin);
     localStorage.setItem('github',github);
     localStorage.setItem('discord',discord);
-
-    main();
+    main(); 
+    location.reload(true);
+    localStorage.setItem("accountupdate",true);
   }
 
   return (
@@ -73,7 +80,7 @@ function EditAccountsPage() {
         onChange={(e)=>setDiscord(e.target.value)}
         />
       </div>
-      <input type="submit" value='Save' className={style.save} />
+      <input type="submit" value='Save' className={`${style.save} cursor-pointer`} />
     </form>
   );
 }

@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer')
 
-async function mailforSignup(to){
+async function mailforSignup(to , subject , text , html){
     let from = "devanchauhan012@gmail.com"
 
     const transporter = nodemailer.createTransport({
@@ -16,11 +16,14 @@ async function mailforSignup(to){
     const sendmsg = await transporter.sendMail({
         from : `<${from}>`,
         to : `${to}`,
-        subject : `thanks to sign up on AlgoAnims`,
-        text : `thanks to sign up on AlgoAnims`,
-        html :`<div>
-            <h1>Thank you so much!</h1>
-        </div>`
+        // subject : `thanks to sign up on AlgoAnims`,
+        // text : `thanks to sign up on AlgoAnims`,
+        // html :`<div>
+        //     <h1>Thank you so much!</h1>
+        // </div>`
+        subject : subject,
+        text : text,
+        html : html,
     })
 }
 module.exports = mailforSignup;

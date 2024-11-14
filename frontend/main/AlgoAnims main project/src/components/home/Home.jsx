@@ -3,30 +3,39 @@ import "./home.css";
 import gsap from "gsap";
 import { NavLink } from "react-router-dom";
 import { Reload } from "../../Functions/Reload";
+import { getGlobalApi } from "../getGlobalApi";
 
 
 export default function Home() {
 
   // logout()
   useEffect(() => {
-    localStorage.removeItem("LoginReload");
-    Reload("HomeReload");
+    // localStorage.removeItem("LoginReload");
+    // Reload("HomeReload");
     main();
   }, []);
 
 
   async function main() {
     console.log("in fun");
-    const api = await fetch('http://localhost:8080/api/home', {
-      credentials: 'include'
-    })
+    let obj = {
+      id: localStorage.getItem("id")
+    }
+    const api = await fetch(`${getGlobalApi()}/api/home`, {
+      method: 'POST',
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(obj)
+    });
     const data = await api.json()
     console.log(data)
-    if (data._id) {
-        Reload('AgainHome')
+    if (data && data._id) {
+      // Reload('AgainHome')
+      console.log(data)
 
-      window.localStorage.setItem("UserName", data.userName);
-      window.localStorage.setItem("email", data.emailId);
+      window.localStorage.setItem("UserName", data.user.username);
+      window.localStorage.setItem("email", data.user.email);
       window.localStorage.setItem("Country", data.details.country);
       window.localStorage.setItem("Contact", data.details.contactNo);
 
@@ -156,100 +165,101 @@ export default function Home() {
 
   return (
 
-    <div>
+      <div className="dark grid-background">
 
-      <div className="rightimage">
-        <div className="content">
-          <h2>Welcome to AlgoAnims!!</h2>
-          <br />
-          <h1>Unlock the World of Algorithms</h1>
-          <br />
-          <p>
-            Say goodbye to dry textbooks! Our dynamic animations simplify
-            complex concepts, making it easier for you to grasp the essentials
-            of algorithms.
-          </p>
-        </div>
+        <div className="rightimage">
+          <div className="content">
+            <h2>Welcome to AlgoAnims!!</h2>
+            <br />
+            <h1>Unlock the World of Algorithms</h1>
+            <br />
+            <p>
+              Say goodbye to dry textbooks! Our dynamic animations simplify
+              complex concepts, making it easier for you to grasp the essentials
+              of algorithms.
+            </p>
+          </div>
 
-        <div className="image">
-          <img src="./intro_laptop.avif" alt="" />
+          <div className="image">
+            <img src="./intro_laptop.avif" alt="" />
+          </div>
         </div>
-      </div>
-      <br />
-      <br />
-      <br />{" "}
-      <div id="page2">
-        <div id="move">
-          <Arrow />
-          <Arrow />
-          <Arrow />
-          <Arrow />
-          <Arrow />
-          <Arrow />
+        <br />
+        <br />
+        <br />{" "}
+        <div id="page2">
+          <div id="move">
+            <Arrow />
+            <Arrow />
+            <Arrow />
+            <Arrow />
+            <Arrow />
+            <Arrow />
+          </div>
         </div>
-      </div>
-      <br />
-      <br />
-      <TopicCard
-        imgSrc="graph.jpeg"
-        heading='GRAPH'
-        description1={`Graph algorithms are the backbone of many complex systems and
+        <br />
+        <br />
+        <TopicCard
+          imgSrc="graph.jpeg"
+          heading='GRAPH'
+          description1={`Graph algorithms are the backbone of many complex systems and
                 applications, from social networks to transportation logistics.
                 These algorithms help us understand and solve problems involving
                 interconnected data, allowing us to traverse, analyze, and
                 manipulate graphs efficiently.`}
-        description2={`Jump into our graph algorithms section and unlock a treasure
+          description2={`Jump into our graph algorithms section and unlock a treasure
                 trove of knowledge that will enhance your skills and expand your
                 horizons.`}
-        navlink='/graph'
-      />
-      <br />
-      <br />
-      <TopicCard
-        imgSrc="tree.jpeg"
-        heading='TREE'
-        description1={`Trees are fundamental data structures that model hierarchical
+          navlink='/graph'
+        />
+        <br />
+        <br />
+        <TopicCard
+          imgSrc="tree.jpeg"
+          heading='TREE'
+          description1={`Trees are fundamental data structures that model hierarchical
                 relationships. They consist of nodes connected by edges, making
                 them ideal for representing data with a parent-child
                 relationship. From file systems to decision processes, trees are
                 everywhere!`}
-        description2={`Ready to branch out into the world of tree data structures?
+          description2={`Ready to branch out into the world of tree data structures?
                 Explore our dedicated section and cultivate your knowledge
                 today!`}
-        navlink='/'
-      />
-      <br />
-      <br />
-      <TopicCard
-        imgSrc="search.jpeg"
-        heading='SEARCHING'
-        description1={`Searching algorithms are the unsung heroes of data retrieval,
+          navlink='/tree'
+        />
+        <br />
+        <br />
+        <TopicCard
+          imgSrc="search.jpeg"
+          heading='SEARCHING'
+          description1={`Searching algorithms are the unsung heroes of data retrieval,
                 helping you find the information you need quickly and
                 efficiently. From simple lists to complex databases, mastering
                 these algorithms is essential for any aspiring programmer or
                 data enthusiast.`}
-        description2={`Are you ready to enhance your skills and unlock the power of
+          description2={`Are you ready to enhance your skills and unlock the power of
                 searching algorithms? Explore our dedicated section today and
                 embark on a journey toward becoming a search master!`}
-        navlink='/'
-      />
-      <br />
-      <br />
-      <TopicCard
-        imgSrc="Sorting.jpeg"
-        heading="SORTING"
-        description1={`The Art of Sorting in DSA Sorting is more than just order; it's
+          navlink='/search'
+        />
+        <br />
+        <br />
+        <TopicCard
+          imgSrc="Sorting.jpeg"
+          heading="SORTING"
+          description1={`The Art of Sorting in DSA Sorting is more than just order; it's
           a dance of efficiency! In data structures and algorithms (DSA), it 
           transforms chaos into clarity. From Bubble Sort bubbling elements to 
           Quick Sort swiftly partitioning data, each algorithm tells a unique 
           story. Explore sorting to master smarter data handling!`}
-        description2={`Dive deeper into each sorting algorithm through our dynamic 
+          description2={`Dive deeper into each sorting algorithm through our dynamic 
           animations and interactive examples. Experience firsthand how they work 
           and see their performance in action!`}
-        navlink="/"
-      />
-      <br />
-    </div>
+          navlink="/sort"
+        />
+        <br />
+      </div>
+    
 
   );
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import Nav from '../../navigation/Nav.jsx'
 
 import { Outlet } from 'react-router-dom'
+import Footer from '../../Footer/Footer.jsx'
 
 
 function HomeMain() {
@@ -9,6 +10,7 @@ function HomeMain() {
         <>
         <Nav/>
         <Outlet/>
+        <Footer/>
         </>
     )
 }

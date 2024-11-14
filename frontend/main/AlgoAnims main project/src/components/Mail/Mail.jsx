@@ -4,14 +4,9 @@ import { Link } from 'react-router-dom'
 const Mail = () => {
     return (
         <>
-            <div className="body">
+            <div className="body bg-zinc-900">
 
-                <div className="login-container">
-
-                    <div className="video-container">
-
-                        <video id="background-video" src="/bg.mp4" muted loop autoPlay />
-                    </div>
+                <div className="login-container bg-zinc-900">
                     <header className="algoanims-heading">
                         AlgoAnims
                     </header>

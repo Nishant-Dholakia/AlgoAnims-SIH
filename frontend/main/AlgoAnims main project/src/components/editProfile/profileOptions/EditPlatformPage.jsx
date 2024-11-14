@@ -1,6 +1,8 @@
-import { useContext, useState } from 'react';
+import { useContext, useState , useEffect } from 'react';
 import style from './edit.module.css';
 import Context from '../../../contexts/context';
+import { getGlobalApi } from '../../getGlobalApi';
+import { toast } from "react-toastify";
 
 function EditPlatformPage() {
   const { allData, setAllData } = useContext(Context);
@@ -8,19 +10,28 @@ function EditPlatformPage() {
   const [leetUname,setLeetUname] = useState(localStorage.getItem("leetcode"));
   const [codeUname,setCodeUname] = useState(localStorage.getItem("codechef"));
   const [gfgUname,setGfgUname] = useState(localStorage.getItem("gfg"));
+
+  useEffect(()=>{
+    if(localStorage.getItem("platformupdate") == "true"){
+      toast.success("Platform updated successfully!")
+      localStorage.setItem("platformupdate",false);
+    }
+  },[])
+
   async function Savedb()
   {
   
-    const email = localStorage.getItem("email");
+    const id = localStorage.getItem("id")
 
     // Send the updated usernames to the server
-    const response = await fetch("http://localhost:8080/editprofile/editPlatformPage", {
-      method: 'POST',
+    const response = await fetch(`${getGlobalApi()}/details/editplatform`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ leetUname, codeUname, gfgUname , email })
+      body: JSON.stringify({ leetUname, codeUname, gfgUname , id })
     });
+
 
     // Update the local state with the response data
     const data = await response.json();
@@ -33,8 +44,9 @@ function EditPlatformPage() {
     localStorage.setItem("leetcode" , leetUname);
     localStorage.setItem("codechef" , codeUname);
     localStorage.setItem("gfg" , gfgUname);
-    // location.reload(true);
     Savedb();
+    location.reload(true);
+    localStorage.setItem("platformupdate",true);
   };
 
   console.log("allData" , allData); 

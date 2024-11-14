@@ -5,6 +5,8 @@ import 'font-awesome/css/font-awesome.min.css';
 import { Link,NavLink } from "react-router-dom";
 import { Reload } from '../../Functions/Reload';
 import { useEffect ,useState} from 'react';
+import { toast } from 'react-toastify';
+import {getGlobalApi} from '../getGlobalApi'
 
 
 
@@ -16,18 +18,24 @@ import { useEffect ,useState} from 'react';
 
 // }
 
-
 function logout() {
   let conform = confirm("DO you want logout");
 
   if (conform) {
+
     localStorage.clear();
+   
+   
     // console.log("User logged out, localStorage cleared.");
-    fetch("http://localhost:8080/logout", {
+    fetch(`${getGlobalApi()}/user/logout`, {
       method: 'POST',
       credentials : 'include'
     })
+    localStorage.setItem("logout",true);
     Reload("logoutReload");
+    
+  }else{
+    toast.error("user can't logout!")
   }
 
 }
@@ -36,6 +44,7 @@ function Nav() {
 
   const [mode,setmode] = useState("light");
   useEffect(()=>{
+
     document.querySelector('html').classList.remove("light","dark");
     document.querySelector('html').classList.add(mode);
 },[mode])
@@ -44,13 +53,11 @@ function Nav() {
   // window.localStorage.removeItem("UserName");
 
   useEffect(() => {
-    localStorage.removeItem("LoginReload");
-    localStorage.removeItem("LogoutReload");    
-    // localStorage.removeItem("HomedReload");    
 
-    setInterval(() => {
-      Reload("NavReload");
-    }, 100)
+      if(localStorage.getItem("logout") == "true"){
+        toast.success("user logout!")
+        localStorage.setItem("logout",false);
+      }
 
   }, []);
 

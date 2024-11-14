@@ -2,13 +2,19 @@ import { useState ,useEffect} from "react";
 import style from "./edit.module.css";
 import codes from "country-calling-code";
 import { useNavigate } from "react-router-dom";
+import { getGlobalApi } from "../../getGlobalApi";
+import { toast } from "react-toastify";
 
 function EditProfilePage() {
       let code = new Object();
       const [userName,setUserName] = useState(localStorage.getItem("UserName"));
-      const emailId = localStorage.getItem("email");;
+      const emailId = localStorage.getItem("email");
       const navigate = useNavigate();
       useEffect(() => {
+        if(localStorage.getItem("profileupdate") == "true"){
+          toast.success("Profile updated successfully!")
+          localStorage.setItem("profileupdate",false);
+        }
           if (!localStorage.getItem("UserName")) {
               navigate("/login");
           }  
@@ -22,14 +28,16 @@ function EditProfilePage() {
   const [phonecountry, setPhoneCountry] = useState(localStorage.getItem('Country'));
   const [phonecode, setPhoneCode] = useState(code[phonecountry]);
   const [phoneNumber,setPhoneNumber] = useState(localStorage.getItem('Contact'));
+  const id = localStorage.getItem("id")
   async function submitData(){
     const data = {
       email : emailId,
       username : userName,
       country : phonecountry,
       phoneNo : phoneNumber,
+      id : id
     }
-    const api = await fetch("http://localhost:8080/editProfile" , {
+    const api = await fetch(`${getGlobalApi()}/details/editprofile`, {
       method : 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -37,6 +45,7 @@ function EditProfilePage() {
       body : JSON.stringify(data),
     })
 
+    
 
   }
   function saveEditProfile(e)
@@ -46,6 +55,7 @@ function EditProfilePage() {
     localStorage.setItem('Country',phonecountry);
     localStorage.setItem('UserName',userName);
     location.reload(true);// to show changes in the edit profile also
+    localStorage.setItem("profileupdate",true);
     
     submitData();
   }
@@ -140,7 +150,7 @@ function EditProfilePage() {
           />
         </div>
       </div>
-      <input type="submit" value="Save" className={style.save} />
+      <input  type="submit" value="Save" className={`${style.save} cursor-pointer`} />
     </form>
   );
 }

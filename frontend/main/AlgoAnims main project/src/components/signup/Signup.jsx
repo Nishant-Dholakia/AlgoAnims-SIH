@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useNavigate, NavLink } from "react-router-dom";
-import getkey from "../../../public/key";
-import cryptoJs from "crypto-js";
+import {getGlobalApi} from "../getGlobalApi"
 import './signup.css';
-
+import {isDigit , isChar , isSpecialChar} from '../../Functions/Check'
+import { toast } from "react-toastify";
 
 function Signup() {
     useEffect(()=>{
@@ -39,44 +39,7 @@ function Signup() {
   const [repassmsg, setRepassmsg] = useState("password not match");
   const [unameMsg, setunameMsg] = useState("invalid username");
 
-  function isDigit(str) {
-    let hasDigit = false;
-    for (let i = 0; i <= 9; i++) {
-      if (str.includes(i.toString())) {
-        hasDigit = true;
-        break;
-      }
-    }
-    return hasDigit;
-  }
 
-  function isChar(str) {
-    let hasChar = false;
-    for (let i = 65; i <= 90; i++) {
-      if (str.includes(String.fromCharCode(i))) {
-        hasChar = true;
-        break;
-      }
-    }
-    for (let i = 97; i <= 122; i++) {
-      if (str.includes(String.fromCharCode(i))) {
-        hasChar = true;
-        break;
-      }
-    }
-    return hasChar;
-  }
-
-  function isSpecialChar(str) {
-    let isSpecialChar = false;
-    let spchars = '@#!$%^&*()_+{}[]|":;<>,./?';
-    for (let char of spchars) {
-      if (str.includes(char)) {
-        isSpecialChar = true;
-      }
-    }
-    return isSpecialChar;
-  }
 
   function userNameError(evt) {
     let value = evt.target.value
@@ -115,10 +78,10 @@ function Signup() {
     let value = evt.target.value;
     setEmailid(value);
 
-    const response = await fetch(`https://api.hunter.io/v2/email-verifier?email=${value}&api_key=91fe1ddad21f8fc3e899ceb48bc41c704ad89269`);
-    const data = await response.json();
+    // const response = await fetch(`https://api.hunter.io/v2/email-verifier?email=${value}&api_key=91fe1ddad21f8fc3e899ceb48bc41c704ad89269`);
+    // const data = await response.json();
 
-    if (data.data.status == 'valid') {
+    if ('valid') {
       setEmailTick("✔");
       setEmailColor("text-green-500");
       setEmailmsg("valid");
@@ -127,14 +90,7 @@ function Signup() {
       setEmailmsg("invalid emailid");
       setEmailColor("text-red-500");
     }
-    for (let data of alldata) {
-      if (data.emailId === value) {
-        setEmailTick("X");
-        setEmailmsg("email is alreay present! pls login in");
-        setEmailColor("text-red-500");
-        break;
-      }
-    }
+   
   }
 
   function rePassError(evt){
@@ -150,6 +106,7 @@ function Signup() {
       setRepassmsg("valid");
     }
   }
+  
   function passwordError(evt) {
     let value = evt.target.value
     if(value != repassword){
@@ -188,7 +145,7 @@ function Signup() {
 
   // Fetch existing user data
   async function main() {
-    const api = await fetch("http://localhost:8080/api/signup");
+    const api = await fetch(`${getGlobalApi()}/api/signup`);
     const data = await api.json();
     setAlldata(data);
     console.log(data)
@@ -235,37 +192,41 @@ function Signup() {
     evt.preventDefault();
       if (passTick == '✔' && unameTick == '✔' && repassTick == '✔' && emailTick == '✔') {
         // Encrypt password before sending
-        const lastChar = password[password.length - 1];
         const formData = {
           uname: evt.target[0].value,
           email: emailid,
-          pass: cryptoJs.AES.encrypt(password, getkey()).toString(),
-          last_char: lastChar
+          password : password
+
         };
 
         // Send data to the server
-        fetch("http://localhost:8080/signup", {
+        fetch(`${getGlobalApi()}/user/signup`, {
           method: 'POST',
           headers: {
             "Content-type": "application/json"
           },
           body: JSON.stringify(formData)
-        }).then((res) => {
-          console.log("respones");
+        }).then(async(res) => {
+          // console.log(res);
+          let data = await res.json()
+          console.log(data)
+          if(data.message){
+            toast.error(data.message);
+          }else{
+            toast.success("user register successfully")
+            navigate("/login");
+          }
         });
 
 
-        navigate("/login");
       
     }
   }
 
   return (
-    <div className="body">
-      <div className="login-container">
-        <div className="video-container">
-          <video className="video" id="background-video" src="/bg.mp4" autoPlay muted loop />
-        </div>
+    <div className="body bg-zinc-900">
+      <div className="login-container bg-zinc-900">
+       
 
         <header className="algoanims-heading">
           AlgoAnims
@@ -324,7 +285,7 @@ function Signup() {
                   <input
                     onChange={(evt) => {
                       passwordError(evt)
-                      setEncrypt(cryptoJs.AES.encrypt(evt.target.value, getkey()).toString());
+                      
                     }}
                     
                     value={password}
