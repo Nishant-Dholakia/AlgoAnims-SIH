@@ -27,9 +27,9 @@ function CodeChef() {
     },[values])
 
   return values && values.status === 200 && values.heatMap && values.ratingData ?
-    (<div>
-        <div className="details mb-4">
-            <div className='flex gap-10'>
+    (<div className='dark:text-antiquewhite'>
+        <div className="details mb-4 ">
+            <div className='sm:flex gap-16 '>
                 <strong>
                     User Name : {values.name}
                 </strong>
@@ -38,26 +38,32 @@ function CodeChef() {
                     {values.countryName}
                 </strong>
             </div>
-            <div  className='flex justify-evenly '>
+            <div  className='sm:flex gap-12'>
                 <strong className='flex gap-3'>
+                    
                     <div>
                     Current Rating : {values.currentRating || 'N/A'}
                     </div>
-                    <div>
+                    <div className='text-green-700'>
                         {values.stars}
                     </div>
+                   
                 </strong>
                 <strong>
                     Maximum Rating : {values.highestRating || 'N/A'}
                 </strong>
             </div>
-            <div className='flex justify-evenly'>
+            <div className='sm:flex gap-20'>
+              <div>
                 <strong>
                     Country Rank : {values.countryRank}
-                </strong>
-                <strong>
+                    </strong>
+                    </div>
+              <div>
+              <strong>
                 Global Rank : {values.globalRank}
                 </strong>
+                </div>
             </div>
         </div>
         <MyHeatmap values={values.heatMap}/>

@@ -129,7 +129,7 @@ function Profile() {
                { currentPlatform === 'LeetCode' && <LeetcodeActivity />}
                {
                   currentPlatform === 'CodeChef' &&      
-                  <div className="mapdiv  dark:bg-platformAccount w-full rounded-md px-6 pt-1 pb-0 ">
+                  <div className="mapdiv  dark:bg-custoBg w-full rounded-md px-6 pt-1 pb-0 ">
                     <CodeChef />
                   </div>
                 }

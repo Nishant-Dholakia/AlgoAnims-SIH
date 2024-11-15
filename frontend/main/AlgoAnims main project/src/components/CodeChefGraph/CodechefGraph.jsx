@@ -31,7 +31,7 @@ const CodechefGraph = ({data}) => {
 
 
     return (
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="100%" height={400} className='mr-5 mb-5'>
             <LineChart
               width={500}
               height={300}

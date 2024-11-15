@@ -41,7 +41,7 @@ function MyHeatmap ({values})  {
 
   return (
     <div>
-      <h2 className='dark:text-white font-bold'>CodeChef heatmap</h2>
+      <div className='flex justify-center text-2xl mb-4'><h2 className='dark:text-white font-bold'> Heatmap</h2></div>
         <div className='jaytay'>
           <CalendarHeatmap
             startDate={startDate}
