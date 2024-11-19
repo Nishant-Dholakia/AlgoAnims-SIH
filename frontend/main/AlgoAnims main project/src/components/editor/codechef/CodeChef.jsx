@@ -44,7 +44,7 @@ function CodeChef() {
                     <div>
                     Current Rating : {values.currentRating || 'N/A'}
                     </div>
-                    <div className='text-green-700'>
+                    <div className='text-green-600'>
                         {values.stars}
                     </div>
                    
