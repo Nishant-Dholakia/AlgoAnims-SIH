@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import LoadingPage from '../../LoadingPage';
 import PieChart from '../pieChart/PieChart';
-import { getGlobalApi } from '../../getGlobalApi';
 
 function GFG() {
   const gfg = useSelector(state => state.gfg);
@@ -15,7 +14,7 @@ function GFG() {
     };
 
     try {
-      const api = await fetch(`${getGlobalApi()}/api/gfg`, {
+      const api = await fetch(`http://localhost:8080/api/gfg`, {
         method: 'post',
         headers: {
           "Content-type": "application/json"

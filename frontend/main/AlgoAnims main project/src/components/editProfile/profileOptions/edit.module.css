@@ -23,7 +23,7 @@
     border: 2px solid gray;
     border-radius: 10px;
     padding: 10px;
-    background-color: gray;
+    background-color: #d4d4d4;
     display: flex;
     justify-content: space-between;
     width: 60%; 
@@ -33,7 +33,7 @@
 
 .label {
     font-size: 22px;
-    color: wheat;
+    color: rgb(0, 0, 0);
     font-weight: bolder;
 }
 

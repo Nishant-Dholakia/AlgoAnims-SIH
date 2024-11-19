@@ -1,8 +1,8 @@
-import  { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css'; // Include the default styles
 import "./heatMap.css";
-// import LoadingPage from '../LoadingPage';
+import LoadingPage from '../LoadingPage';
 function MyHeatmap ({values})  {
   const [endDate, setEndDate] = useState();
   const [startDate, setStartDate] = useState();
@@ -10,7 +10,6 @@ function MyHeatmap ({values})  {
   
   useEffect(() => {
 
-        // eslint-disable-next-line react/prop-types
         const end = new Date(values[values.length - 1].date);
         const initialDate = new Date();
         initialDate.setDate(end.getDate() - 365);

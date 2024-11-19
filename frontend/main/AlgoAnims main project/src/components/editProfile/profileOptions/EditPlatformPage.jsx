@@ -53,24 +53,24 @@ function EditPlatformPage() {
 
   return (
     <form className={style.edit} onSubmit={handleSubmit}>
-      <div className={style.area}>
-        <label htmlFor="leetcode" className={style.label}>LeetCode:</label>
+      <div className={`${style.area} dark:bg-platformAccount`}>
+        <label htmlFor="leetcode" className={`${style.label} dark:text-white`}>LeetCode:</label>
         <input type="text"
         defaultValue={leetUname}
         name='leetcodeUname' id='leetcode' placeholder='username (e.g., user_12)'
         onChange={evt => setLeetUname(evt.target.value)}
         />
       </div>
-      <div className={style.area}>
-        <label htmlFor="codechef" className={style.label}>CodeChef:</label>
+      <div className={`${style.area} dark:bg-platformAccount`}>
+        <label htmlFor="codechef" className={`${style.label} dark:text-white`}>CodeChef:</label>
         <input type="text" 
         defaultValue={codeUname}
         name='codechefUname' id='codechef' placeholder='username (e.g., user_12)'
         onChange={evt => setCodeUname(evt.target.value)}
         />
       </div>
-      <div className={style.area}>
-        <label htmlFor="geeksforgeeks" className={style.label}>GeeksForGeeks:</label>
+      <div className={`${style.area} dark:bg-platformAccount`}>
+        <label htmlFor="geeksforgeeks" className={`${style.label} dark:text-white`}>GeeksForGeeks:</label>
         <input type="text"
         defaultValue={gfgUname}
         name='gfgUname' id='geeksforgeeks' placeholder='username (e.g., user_12)'
