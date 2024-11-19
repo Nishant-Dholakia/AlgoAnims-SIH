@@ -113,7 +113,7 @@
     width: 71vw;
     border-radius: 10px;
     height: 100%;
-    overflow: auto;
+    overflow:   auto;
   }
   
   /* Media Queries for responsiveness */
