@@ -45,7 +45,7 @@ function LeetcodeActivity() {
     
     console.log(leetdata,heatmap);
 
-  return leetdata && leetdata.status !== 500 ? (<div>
+  return leetdata && leetdata.status !== 500 ? (<div className='dark:text-antiquewhite'>
 
                 <div>
                     <div>

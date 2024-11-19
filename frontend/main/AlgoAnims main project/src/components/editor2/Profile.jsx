@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import {useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LeetcodeActivity from "./Leetcode/LeetcodeActivity";
-// import MyHeatmap from "../heatMap/heatMap";
-// import CodechefGraph from "../CodeChefGraph/CodechefGraph";
+import MyHeatmap from "../heatMap/heatMap";
+import CodechefGraph from "../CodeChefGraph/CodechefGraph";
 import GFG from "./gfg/GFG";
 import CodeChef from "./codechef/CodeChef";
 function Profile() {
@@ -129,7 +129,7 @@ function Profile() {
                { currentPlatform === 'LeetCode' && <LeetcodeActivity />}
                {
                   currentPlatform === 'CodeChef' &&      
-                  <div className="mapdiv  dark:bg-custoBg w-full rounded-md px-6 pt-1 pb-0 ">
+                  <div className="mapdiv  dark:bg-platformAccount w-full rounded-md px-6 pt-1 pb-0 ">
                     <CodeChef />
                   </div>
                 }

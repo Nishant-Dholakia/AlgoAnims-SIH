@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+/* eslint-disable no-unused-vars */
+import { useEffect, useRef, useState } from 'react'
 import Insert from '../insert/insert'
 import { BinarySearchTreeNode, drawBinaryTree ,setTheme, VisualizationType } from 'binary-tree-visualizer';
 import Delete from '../delete/Delete';
@@ -19,31 +20,31 @@ const Crud = () => {
   const [deleteNode , setDeleteNode] = useState(0);
 
 
-  const someInsertNode = () => {
-    const root = new BinarySearchTreeNode(100);
-    [50, 145, 150, 130, 120, 140, 30, 70, 75,10,40,60,160,147].forEach((ele) => {
-      root.insert(ele)
-    })
+  // const someInsertNode = () => {
+  //   const root = new BinarySearchTreeNode(100);
+  //   [50, 145, 150, 130, 120, 140, 30, 70, 75,10,40,60,160,147].forEach((ele) => {
+  //     root.insert(ele)
+  //   })
 
-    // setTimeout(() => {
-    //   root.delete(145 , root);
-    //   drawBinaryTree(root, document.querySelector("#bst"),{
-    //     type : VisualizationType.PRETTY
-    //   });
-    // }, 2000);
+  //   // setTimeout(() => {
+  //   //   root.delete(145 , root);
+  //   //   drawBinaryTree(root, document.querySelector("#bst"),{
+  //   //     type : VisualizationType.PRETTY
+  //   //   });
+  //   // }, 2000);
 
-    setrootNode(root)
-    setfirst(false);
-    setTheme({
-      fontSize : 24,
-      leafNodeSpace : 130,
-      lineHeight : 130,
-    });
-    drawBinaryTree(root, document.querySelector("#bst"),{
-      type : VisualizationType.PRETTY
-    });
+  //   setrootNode(root)
+  //   setfirst(false);
+  //   setTheme({
+  //     fontSize : 24,
+  //     leafNodeSpace : 130,
+  //     lineHeight : 130,
+  //   });
+  //   drawBinaryTree(root, document.querySelector("#bst"),{
+  //     type : VisualizationType.PRETTY
+  //   });
 
-  }
+  // }
 
 
 

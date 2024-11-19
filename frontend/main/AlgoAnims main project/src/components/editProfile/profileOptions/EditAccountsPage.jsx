@@ -55,25 +55,25 @@ function EditAccountsPage() {
     <form className={style.edit} method='post'
     onSubmit={(setAccounts)}
     >
-      <div className={`${style.area} dark:bg-platformAccount `}>
+      <div className={style.area}>
         <label 
-        htmlFor="linkedin" className={`${style.label} dark:text-white`}>LinkedIn : </label>
+        htmlFor="linkedin" className={style.label}>LinkedIn : </label>
         <input 
         defaultValue={linkedin}
         type="text" name='linkedin' id='linkedin' placeholder='username(eg. user_12)' 
         onChange={(e)=>setLinkedin(e.target.value)}
         />
       </div>
-      <div className={`${style.area} dark:bg-platformAccount`}>
-        <label htmlFor="github" className={`${style.label} dark:text-white`}>GitHub : </label>
+      <div className={style.area}>
+        <label htmlFor="github" className={style.label}>GitHub : </label>
         <input 
         defaultValue={github}
         type="text" name='github' id='github' placeholder='username(eg. user_12)'
         onChange={(e)=>setGithub(e.target.value)}
         />
       </div>
-      <div className={`${style.area} dark:bg-platformAccount`}>
-        <label htmlFor="discord" className={`${style.label} dark:text-white`}>Discord : </label>
+      <div className={style.area}>
+        <label htmlFor="discord" className={style.label}>Discord : </label>
         <input 
         defaultValue={discord}
         type="text" name='discord' id='discord' placeholder='username(eg. user_12)' 

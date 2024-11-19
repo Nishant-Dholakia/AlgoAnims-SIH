@@ -80,8 +80,8 @@ function EditProfilePage() {
     <form className={style.edit} method="post"
       onSubmit={saveEditProfile}
     >
-      <div className={`${style.area} dark:bg-platformAccount `}>
-        <label htmlFor="username" className={`${style.label} dark:text-white`}>
+      <div className={style.area}>
+        <label htmlFor="username" className={style.label}>
           Username :
         </label>
         <input
@@ -93,8 +93,8 @@ function EditProfilePage() {
           onChange={(e)=>setUserName(e.target.value)}
         />
       </div>
-      <div className={`${style.area} dark:bg-platformAccount`}>
-        <label htmlFor="emailid" className={`${style.label} dark:text-white`}>
+      <div className={style.area}>
+        <label htmlFor="emailid" className={style.label}>
           Email id :
         </label>
         <input
@@ -106,8 +106,8 @@ function EditProfilePage() {
           placeholder="eg. billy12@gmail.com"
         />
       </div>
-      <div className={`${style.area} dark:bg-platformAccount`}>
-        <label htmlFor="country" className={`${style.label} dark:text-white`}>
+      <div className={style.area}>
+        <label htmlFor="country" className={style.label}>
           Country :
         </label>
         <select
@@ -131,8 +131,8 @@ function EditProfilePage() {
         </select>
       </div>
 
-      <div className={`${style.area} dark:bg-platformAccount`}>
-        <label htmlFor="contactnum" className={`${style.label} dark:text-white`}>
+      <div className={style.area}>
+        <label htmlFor="contactnum" className={style.label}>
           Contact Number :
         </label>
         <div className={style['contact-input']}>
