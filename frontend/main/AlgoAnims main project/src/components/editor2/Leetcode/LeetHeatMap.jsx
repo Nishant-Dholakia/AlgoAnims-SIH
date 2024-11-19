@@ -1,48 +1,45 @@
-import  { useState, useEffect } from 'react';
+import React, { useEffect,useState } from 'react'
 import CalendarHeatmap from 'react-calendar-heatmap';
 import 'react-calendar-heatmap/dist/styles.css'; // Include the default styles
-import "./heatMap.css";
-// import LoadingPage from '../LoadingPage';
-function MyHeatmap ({values})  {
-  const [endDate, setEndDate] = useState();
+import '../../heatMap/heatMap.css'
+function LeetHeatMap({values}) {
+    const [endDate, setEndDate] = useState();
   const [startDate, setStartDate] = useState();
-
-  
-  useEffect(() => {
-
-        // eslint-disable-next-line react/prop-types
-        const end = new Date(values[values.length - 1].date);
+console.log(values);
+  useEffect(()=>
+{
+    const end = new Date(values[values.length - 1].date);
         const initialDate = new Date();
         initialDate.setDate(end.getDate() - 365);
         
         setStartDate(initialDate.toISOString().split('T')[0]);
         setEndDate(end);
 
-  }, []); 
-
-  function RankOf(value) {
+},[])
+function RankOf(value) {
     if (value === 0) {
       return 0; // No activity (optional)
+    } else if (value <= 5) {
+      return 1; 
     } else if (value <= 10) {
-      return 1; // Very Low (1-10)
+      return 2; 
+    } else if (value <= 15) {
+      return 3; 
     } else if (value <= 20) {
-      return 2; // Low (11-20)
+      return 4; 
+    } else if (value <= 25) {
+      return 5; 
     } else if (value <= 30) {
-      return 3; // Moderate (21-30)
-    } else if (value <= 40) {
-      return 4; // High (31-40)
-    } else if (value <= 50) {
-      return 5; // Very High (41-50)
-    } else if (value <= 75) {
-      return 6; // Extreme (51-75)
+      return 6; 
     } else {
-      return 7; // Max (76+)
+      return 7; 
     }
   }
-
   return (
-    <div>
-      <div className='flex justify-center text-2xl mb-4'><h2 className='dark:text-white font-bold'> Heatmap</h2></div>
+    <div className='w-full text-center mt-16'>
+
+      <h2 className='dark:text-white text-2xl font-bold w-full align-middle m-4 '>Heatmap</h2>
+      
         <div className='jaytay'>
           <CalendarHeatmap
             startDate={startDate}
@@ -57,8 +54,10 @@ function MyHeatmap ({values})  {
             }}
           />
         </div>
+      
+      
     </div>
-  );
-};
+  )
+}
 
-export default MyHeatmap;
+export default LeetHeatMap

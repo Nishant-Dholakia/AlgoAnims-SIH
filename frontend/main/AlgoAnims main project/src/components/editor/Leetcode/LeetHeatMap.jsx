@@ -36,9 +36,9 @@ function RankOf(value) {
     }
   }
   return (
-    <div className='w-full text-center mt-16'>
+    <div className='w-full text-center mt-9'>
 
-      <h2 className='dark:text-white text-2xl font-bold w-full align-middle m-4 '>Heatmap</h2>
+      <h2 className='dark:text-white text-xl font-bold w-full align-middle'>Heatmap</h2>
       
         <div className='jaytay'>
           <CalendarHeatmap

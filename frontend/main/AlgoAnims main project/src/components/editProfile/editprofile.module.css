@@ -30,31 +30,28 @@
  */
 
  .profile {
-    background-color: #ffffff;
+    background-color: #2C2B30;
     display: flex;
     width: 100vw;
-    /* height: 100vh; */
-    padding: 11px;
+    height: 100vh;
+    padding: 9px;
     justify-content: space-around;
-    color: #000000;
+    color: #EAEAEA;
     overflow: auto;
     box-sizing: border-box;
   }
   
   .leftedit {
-  
-    background-color: #ffffff;
+    height: 100vh;
+    background-color: #3E3D42;
     width: 26vw;
-    min-height: 85vh;
     border-radius: 10px;
     padding: 0.5rem;
-    color: rgb(0, 0, 0);
+    color: antiquewhite;
     word-break: keep-all;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    border: 2px solid #408697;
-    box-shadow: 0px 0px 10px 0px black;
   }
   
   .profiledetails {
@@ -69,7 +66,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #d4d4d4;
+    background-color: blueviolet;
     border-radius: 50%;
     font-weight: bolder;
     font-size: 50px;
@@ -82,14 +79,12 @@
     font-size: 25px;
     padding: 5px;
     width: 60%;
-    color: #000000;
-    display: flex;
-    justify-content: center;
+    color: #EAEAEA;
   }
   
   .changeOptions {
     margin-top: 20px;
-    background-color:white;
+    background-color: #2C2B30;
     padding: 10px;
     border-radius: 10px;
     
@@ -109,22 +104,16 @@
     border: 2px solid gray;
     font-size: 18px;
     border-radius: 10px;
-    margin: 9px;   
-    background-color: #d4d4d4; 
+    margin: 9px;    
 }
 
   .rightedit {
-    background-color: #ffffff;
-    color: #000000;
-    min-height: 85vh;
+    background-color: #3E3D42;
+    height: 100vh;
     width: 71vw;
     border-radius: 10px;
     height: 100%;
-    overflow: auto;
-    border: 2px solid #408697;
-    box-shadow: 0px 0px 10px 0px black;
-    display: flex;
-    align-items: center;
+    overflow:   auto;
   }
   
   /* Media Queries for responsiveness */

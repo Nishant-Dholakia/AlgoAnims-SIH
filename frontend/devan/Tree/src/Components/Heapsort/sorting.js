@@ -15,30 +15,14 @@ function findele(root, no) {
     return findele(root.left, no) || findele(root.right, no);
 }
 
-async function swapInCanvas(canvas, arr) {
+async function swapInCanvas(canvas, arr , speed) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             const root = drawtree(canvas, arr)
-            // drawBinaryTree(root , canvas)
             resolve(root)
-        }, 500)
+        }, speed)
     })
 }
-
-async function waitForDraw(root, canvas) {
-    drawBinaryTree(root, canvas);
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve();
-        }, 100);
-    })
-}
-
-// function changeValue(root, orignal, newval, canvas, mainroot) {
-//     let node = findele(root, orignal);
-//     node.value = newval;
-//     drawBinaryTree(mainroot, canvas)
-// }
 
 function bordercolor(node, color) {
     if (node && node.nodeCircle && node.nodeCircle.colorSettings) {
@@ -59,7 +43,7 @@ function color(node, color) {
     }
 }
 
-async function swapCanvasValue(ele1, ele2, root, canvas, arr) {
+async function swapCanvasValue(ele1, ele2, root, canvas, arr , speed) {
     if (!ele1 || !ele2) {
         console.log("Invalid nodes for swap");
         return;
@@ -67,24 +51,24 @@ async function swapCanvasValue(ele1, ele2, root, canvas, arr) {
 
 
     let orignalColor = ele1.nodeCircle.colorSettings.bgColor
-    color(ele1, "green");
-    color(ele2, "green");
+    // color(ele1, "green");
+    // color(ele2, "green");
 
-    drawBinaryTree(root, canvas);
+    // drawBinaryTree(root, canvas);
 
-    const newRoot = await swapInCanvas(canvas, arr);
+    const newRoot = await swapInCanvas(canvas, arr , speed);
     return new Promise((resolve) => {
         setTimeout(async () => {
 
-            color(ele1, orignalColor);
-            color(ele2, orignalColor);
-            drawBinaryTree(newRoot, canvas);
+            // color(ele1, orignalColor);
+            // color(ele2, orignalColor);
+            // drawBinaryTree(newRoot, canvas);
             resolve();
-        }, 1000);
+        }, speed);
     });
 }
 
-async function changeBoarder(ele1, ele2, root, canvas) {
+async function changeBoarder(ele1, ele2, root, canvas,speed) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
 
@@ -92,17 +76,18 @@ async function changeBoarder(ele1, ele2, root, canvas) {
             bordercolor(ele1, "black");
             bordercolor(ele2, "black");
             if (root) drawBinaryTree(root, canvas);
+            
             resolve()
-        }, 500);
+        }, speed);
     })
 }
 
-async function check(allDivs, canvas, arr, i, j, root) {
+async function check(allDivs, canvas, arr, i, j, root , speed) {
     if (arr[i] === undefined || arr[j] === undefined) return;
 
     const ele1 = findele(root, arr[i]);
     const ele2 = findele(root, arr[j]);
-    // await changeBoarder(ele1 , ele2 , root , canvas)
+    // await changeBoarder(ele1 , ele2 , root , canvas , speed)
 
     // bordercolor(ele1, "black");
     // bordercolor(ele2, "black");
@@ -115,11 +100,11 @@ async function check(allDivs, canvas, arr, i, j, root) {
         setTimeout(async () => {
             allDivs[i].style.backgroundColor = "white"
             allDivs[j].style.backgroundColor = "white"
-            // bordercolor(ele1, "red");
-            // bordercolor(ele2, "red");
+            // bordercolor(ele2, "red" , speed);
+            // bordercolor(ele1, "red" , speed);
             // if (root) drawBinaryTree(root, canvas);
             resolve();
-        }, 1000);
+        }, speed);
     });
 }
 
@@ -129,7 +114,7 @@ const actualSwap = (allDivs, i, j) => {
     allDivs[j].innerText = no;
 }
 
-async function divSwap(allDivs, i, j, root, canvas, arr) {
+async function divSwap(allDivs, i, j, root, canvas, arr , speed) {
     const div1 = allDivs[i], div2 = allDivs[j];
 
     const div1Rect = div1.getBoundingClientRect();
@@ -141,31 +126,33 @@ async function divSwap(allDivs, i, j, root, canvas, arr) {
     const ele1 = findele(root, div1.innerText);
     const ele2 = findele(root, div2.innerText);
 
-    await swapCanvasValue(ele1, ele2, root, canvas, arr); // Make sure this works as intended
 
-    await Promise.all([
-        gsap.to(div1, { x: xDiff, y: yDiff, duration: 1 }),
-        gsap.to(div2, { x: -xDiff, y: -yDiff, duration: 1 })
-    ]);
+    // await Promise.all([
+        gsap.to(div1, { x: xDiff, y: yDiff }),
+        gsap.to(div2, { x: -xDiff, y: -yDiff }),
+ 
+        // await swapCanvasValue(ele1 , ele2 , root , canvas , arr , speed)
+    // ]);
     actualSwap(allDivs, i, j);
 
-    gsap.set([div1, div2], { clearProps: "all" });
+
+    // gsap.set([div1, div2], { clearProps: "all" });
 }
 
-const heapify = async (arr, i, n, allDivs, canvas, root) => {
+const heapify = async (arr, i, n, allDivs, canvas, root , speed) => {
     let largest = i;
     let left = 2 * i + 1;
     let right = left + 1;
 
     if (left < n) {
-        await check(allDivs, canvas, arr, i, left, root);
+        await check(allDivs, canvas, arr, i, left, root , speed);
     }
     if (left < n && arr[largest] < arr[left]) {
         largest = left;
     }
 
     if (right < n) {
-        await check(allDivs, canvas, arr, i, right, root);
+        await check(allDivs, canvas, arr, i, right, root , speed);
     }
     if (right < n && arr[largest] < arr[right]) {
         largest = right;
@@ -173,19 +160,45 @@ const heapify = async (arr, i, n, allDivs, canvas, root) => {
 
     if (largest !== i) {
         swap(arr, i, largest);
-        await divSwap(allDivs, i, largest, root, canvas, arr);
+        await divSwap(allDivs, i, largest, root, canvas, arr , speed);
         // await swapInCanvas(canvas, arr)
-        await heapify(arr, largest, n, allDivs, canvas, root);
+        await heapify(arr, largest, n, allDivs, canvas, root , speed);
     }
 }
 
-async function main(allDivs, canvas, arr, root) {
+function setlastele(allDivs , i){
+    allDivs[i].style.opacity = 0.3;
+}
+
+function removelastFromTree(canvas , arr , i){
+    let newarr = [];
+    
+    for (let index = 0; index < i; index++) {
+        const element = arr[index];
+        newarr.push(element);
+    }
+
+    return drawtree(canvas , newarr)
+}
+
+async function main(allDivs, canvas, arr, root ,speed) {
     let n = arr.length;
     for (let i = Math.floor(n / 2 - 1); i >= 0; i--) {
-        await heapify(arr, i, n, allDivs, canvas, root);
+        await heapify(arr, i, n, allDivs, canvas, root , speed);
     }
+
+    for(let i = n - 1; i> 0 ;i--){
+        swap(arr , 0 , i)
+        await divSwap(allDivs , 0 , i, root , canvas , arr , speed);
+        setlastele(allDivs , i);
+        root = removelastFromTree(canvas , arr , i)
+        drawBinaryTree(root , canvas)
+        await heapify(arr , 0 , i ,allDivs , canvas , root , speed);
+    }
+
+    setlastele(allDivs , 0);
 }
 
-export const animation = (allDivs, canvas, arr, root) => {
-    main(allDivs, canvas, arr, root);
+export const animation = (allDivs, canvas, arr, root , speed) => {
+    main(allDivs, canvas, arr, root , speed);
 }
