@@ -101,7 +101,6 @@ function Topic() {
 
 
     function Questions({ data }) {
-        // console.log(data)
         return (
             <div className='quecard'>
                 <div className='outerglimpse'>
@@ -121,14 +120,14 @@ function Topic() {
                         <p >{data.discription}</p>
                     </div>
                     <div className='problem'>
-                        Problem Practice: &nbsp; <a className='problink' href={data.problink} alt="bfs">{data.qname}</a> &nbsp; <img className='logo' src="/public/leetcode.svg" alt="" />
+                        Problem Practice: &nbsp; <a className='problink' href={data.problink} alt="bfs">{data.qname}</a> &nbsp; <img className='logo' src="/leetcode.svg" alt="" />
                     </div>
                     <div className='buttons'>
                         <Link className='Articlebtn' to={data.article}>
-                            <img className='forinvert' src="/public/Article.svg" alt="*" />Article
+                            <img className='forinvert' src="/Article.svg" alt="*" />Article
                         </Link>
                         <Link className='Viewbtn' to={data.visualization}>
-                            <img className='forinvert' src="/public/Visualization.svg" alt="" />
+                            <img className='forinvert' src="/Visualization.svg" alt="" />
                             Visualization
                         </Link>
                     </div>
