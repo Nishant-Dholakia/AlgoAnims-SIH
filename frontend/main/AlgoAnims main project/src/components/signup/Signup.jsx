@@ -224,7 +224,7 @@ function Signup() {
   }
 
   return (
-    <div className="body bg-zinc-900">
+    <div className="body33">
       <div className="login-container bg-zinc-900">
        
 

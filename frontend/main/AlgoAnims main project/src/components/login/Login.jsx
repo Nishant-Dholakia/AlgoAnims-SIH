@@ -76,7 +76,16 @@ function Login() {
       localStorage.setItem("email", data.email);
       localStorage.setItem("id", data._id)
     } else {
-      toast.error("user is not found!");
+      console.log("funck");
+      toast.error("eror", {
+        position: "top-right", // Adjust position
+        autoClose: 3000,       // Adjust auto-close timing
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     }
   }
 
@@ -113,8 +122,8 @@ function Login() {
   return (
 
     <>
-   
-      <div className="body">
+
+      <div className="body2">
 
 
         <div className="login-container bg-zinc-900">
@@ -184,16 +193,16 @@ function Login() {
                 <div className="links flex justify-between">
                   <Link to={
                     {
-                      pathname : "forgetusername",
+                      pathname: "forgetusername",
                     }
                   }
-                  
-                  className="forgot-password">
+
+                    className="forgot-password">
                     forget username?
                   </Link>
-                  <Link to = {
+                  <Link to={
                     {
-                      pathname : "forgetpassword",
+                      pathname: "forgetpassword",
                     }
                   } className="forgot-password">
                     Forgot password?

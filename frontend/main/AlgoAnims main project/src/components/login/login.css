@@ -136,13 +136,13 @@ video {
     font-family: 'Arial', sans-serif;
 }
 
-.body {
+.body2 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #fafafa;
-    position: relative;
+    /* position: relative; */
     overflow: hidden;
 }
 
