@@ -16,7 +16,7 @@ const apiRouter = require("./Routes/api")
 const detailsRouter = require("./Routes/details")
 const userRouter = require("./Routes/user")
 const scoreRouter = require("./Routes/score")
-
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const app = express();
 
 
@@ -53,7 +53,38 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
     done(null, user);
 })
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT,
+    clientSecret: process.env.GOOGLE_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    done(null ,profile);
+  }
+));
 
+app.get('/auth/google',
+    passport.authenticate('google', { scope: ['profile','email'] }));
+  
+  app.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/user/login' }),
+    async function(req, res) {
+
+      const inDbuser = await User.findOne({email : req.user._json.email || ""})
+      if(inDbuser){
+        return res.redirect("http://localhost:5173");
+      }
+
+      const user = new User({
+        email : req.user._json_email,
+        username : req.user.displayName
+      })
+
+      const registerUser = await User.register(user , user.email + user.username);
+      
+      res.redirect(`http://localhost:5173?id=${registerUser._id}`);
+
+    });
 
 app.use("/api" , apiRouter);
 app.use("/user" , userRouter);

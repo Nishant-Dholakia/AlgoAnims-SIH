@@ -26,16 +26,16 @@ async function divSwap(allDivs, i, j, root, canvas, arr , speed) {
     const ele2 = findele(root, div2.innerText);
 
 
-    // await Promise.all([
+    await Promise.all([
         gsap.to(div1, { x: xDiff, y: yDiff }),
         gsap.to(div2, { x: -xDiff, y: -yDiff }),
  
         // await swapCanvasValue(ele1 , ele2 , root , canvas , arr , speed)
-    // ]);
+    ]);
     actualSwap(allDivs, i, j);
 
 
-    // gsap.set([div1, div2], { clearProps: "all" });
+    gsap.set([div1, div2], { clearProps: "all" });
 }
 function findele(root, no) {
     if (root == null) return null;

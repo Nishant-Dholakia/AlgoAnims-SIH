@@ -20,7 +20,7 @@ router.post("/signup", async (req, res) => {
         const user = await User.register(newUser, password)
 
         req.login(user ,(err)=> {
-            if(err) return res.json(err)  
+            if(err) return res.json({err})  
         })
        
         if(user){
@@ -40,13 +40,13 @@ router.post("/signup", async (req, res) => {
             
         }
 
-        res.json("signup successfull")
+        res.json({msg : "signup successfull"})
     } catch (error) {
         res.json(error)
     }
 })
 
-router.get("/login" , (err , req,res) => {
+router.get("/login" , (req,res) => {
     res.json("user is not found!");
 })
 

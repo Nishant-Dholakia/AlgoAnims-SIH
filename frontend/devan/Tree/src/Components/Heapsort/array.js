@@ -3,7 +3,7 @@ import { BinaryTreeNode, drawBinaryTree } from "binary-tree-visualizer";
 export const  randomArray = () => {
     let arr = [];
 
-    for(let i = 0; i < 5 ;i++){
+    for(let i = 0; i < 10 ;i++){
         let no = Math.ceil(Math.random()*100);
 
         while(arr.includes(no)){

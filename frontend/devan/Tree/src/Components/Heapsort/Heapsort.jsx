@@ -1,97 +1,77 @@
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { randomArray, drawtree } from "./array";
 import { setTheme } from "binary-tree-visualizer";
-// import { animation } from "./sorting";
-import animation from "./temp";
+import { animation, setmainSpeed } from "./sorting";
 
 const Heapsort = () => {
-  setTheme({
-    fontSize: 16,
-    strokeColor: "#111",
-  });
-
-//   const [insert, setinsert] = useState(0);
   const [arr, setArr] = useState([]);
   const arrRef = useRef([]);
-  const [start, setstart] = useState(false);
+  const [start, setStart] = useState(false);
   const [speed, setSpeed] = useState(10);
-  const inspeed = useRef(1600);
+  const [sorted, setSorted] = useState(false);
+  const speedRef = useRef(1600);
   const arrDivRef = useRef(null);
   const rootRef = useRef(null);
 
   useEffect(() => {
-    setTheme({
-      radius: 36,
-    });
-    let array = randomArray();
+    setTheme({ radius: 36, fontSize: 16, strokeColor: "#111" });
+    const array = randomArray();
     setArr(array);
     arrRef.current = array;
-    const root = drawtree(document.querySelector("canvas"), arrRef.current);
+    const root = drawtree(document.querySelector("canvas"), array);
     rootRef.current = root;
   }, []);
 
   useEffect(() => {
     if (start) {
-      console.log(arrRef.current);
-      let allDivs = arrDivRef.current.querySelectorAll("div");
-
+      const allDivs = arrDivRef.current.querySelectorAll("div");
       if (rootRef.current) {
         animation(
-          rootRef.current , 
+          allDivs,
           document.querySelector("#heap"),
           arrRef.current,
-          inspeed.current,
-          allDivs
-        )
+          rootRef.current,
+        );
       }
     }
-  }, [start]);
+    }, [start]);
 
   useEffect(() => {
-    inspeed.current = 2600 - speed * 100;
+    speedRef.current = 2600 - speed * 100;
+    setmainSpeed(speedRef.current);
   }, [speed]);
 
   return (
-    <>
+    <div className="heapsort-container">
       <h1>Heap Sort</h1>
       <div className="speed-block flex items-center gap-2">
-        <label htmlFor="speed">Speed</label>
+        <label htmlFor="speed">Speed:</label>
         <input
-          onChange={(evt) => setSpeed(evt.target.value)}
-          defaultValue={10}
+          type="range"
+          id="speed"
           min={1}
           max={20}
-          type="range"
-          name="speed"
-          id="speed"
+          defaultValue={10}
+          onChange={(e) => setSpeed(e.target.value)}
         />
-        <span>{speed / 10}</span>
+        <span>{speed / 10}s</span>
       </div>
-      <div ref={arrDivRef} className="flex flex-wrap justify-center ">
-        {arr.map((ele, idx) => {
-          return (
-            <>
-              <div
-                className="p-4 text-black bg-white border-black border-2"
-                key={idx}
-              >
-                <h3 key={idx}>{ele}</h3>
-              </div>
-            </>
-          );
-        })}
+      <div ref={arrDivRef} className="array-container flex flex-wrap justify-center">
+        {arr.map((ele, idx) => (
+          <div key={idx} className="array-element p-4 text-black bg-white border-2 border-black">
+            <h3>{ele}</h3>
+          </div>
+        ))}
       </div>
-
       <button
-        onClick={() => {
-          setstart((prev) => !prev);
-        }}
-        className="p-2 bg-green-400 rounded-md"
+        onClick={() => setStart((prev) => !prev)}
+        className="start-button p-2 bg-green-400 rounded-md"
       >
-        Start
+        {start ? "Stop" : "Start"}
       </button>
-      <canvas id="heap" className="w-1/2 h-1/2 bg-zinc-300"></canvas>
-    </>
+      {sorted && <button onClick={() => setSorted(false)} className="start-button p-2 bg-green-400 rounded-md">Sort Again</button>}
+      <canvas id="heap" className="heap-canvas w-1/2 h-1/2 bg-zinc-300"></canvas>
+    </div>
   );
 };
 

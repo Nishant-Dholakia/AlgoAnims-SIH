@@ -77,15 +77,7 @@ function Login() {
       localStorage.setItem("id", data._id)
     } else {
       console.log("funck");
-      toast.error("eror", {
-        position: "top-right", // Adjust position
-        autoClose: 3000,       // Adjust auto-close timing
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
+      toast.error("erorr")
     }
   }
 

@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useNavigate, NavLink } from "react-router-dom";
-import {getGlobalApi} from "../getGlobalApi"
+import { getGlobalApi } from "../getGlobalApi"
 import './signup.css';
-import {isDigit , isChar , isSpecialChar} from '../../Functions/Check'
+import { isDigit, isChar, isSpecialChar } from '../../Functions/Check'
 import { toast } from "react-toastify";
 
 function Signup() {
-    useEffect(()=>{
-      localStorage.removeItem("LoginReload");
-    } , [])
+  useEffect(() => {
+    localStorage.removeItem("LoginReload");
+  }, [])
 
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
@@ -19,10 +19,10 @@ function Signup() {
   const [emailid, setEmailid] = useState("");
   const [alldata, setAlldata] = useState([]);
 
-  const [passType , setPassType] = useState("password");
-  const [passicon , setPassicon] = useState("👁️");
-  const [repassType , setrePassType] = useState("password");
-  const [repassicon , setrePassicon] = useState("👁️");
+  const [passType, setPassType] = useState("password");
+  const [passicon, setPassicon] = useState("👁️");
+  const [repassType, setrePassType] = useState("password");
+  const [repassicon, setrePassicon] = useState("👁️");
 
   const [emailColor, setEmailColor] = useState("text-red-500");
   const [passColor, setpassColor] = useState("text-red-500");
@@ -90,26 +90,26 @@ function Signup() {
       setEmailmsg("invalid emailid");
       setEmailColor("text-red-500");
     }
-   
+
   }
 
-  function rePassError(evt){
+  function rePassError(evt) {
     let value = evt.target.value;
     setRePass(value)
-    if(value != password){
+    if (value != password) {
       setRepassColor("text-red-500");
       setRepassTick("X");
       setRepassmsg("don't match password");
-    }else{
+    } else {
       setRepassColor("text-green-500");
       setRepassTick("✔");
       setRepassmsg("valid");
     }
   }
-  
+
   function passwordError(evt) {
     let value = evt.target.value
-    if(value != repassword){
+    if (value != repassword) {
       setRepassColor("text-red-500");
       setRepassTick("X");
       setRepassmsg("don't match password");
@@ -139,9 +139,9 @@ function Signup() {
 
     }
   }
-  
 
-  
+
+
 
   // Fetch existing user data
   async function main() {
@@ -190,43 +190,43 @@ function Signup() {
   // Handle form submission
   function handler(evt) {
     evt.preventDefault();
-      if (passTick == '✔' && unameTick == '✔' && repassTick == '✔' && emailTick == '✔') {
-        // Encrypt password before sending
-        const formData = {
-          uname: evt.target[0].value,
-          email: emailid,
-          password : password
+    if (passTick == '✔' && unameTick == '✔' && repassTick == '✔' && emailTick == '✔') {
+      // Encrypt password before sending
+      const formData = {
+        uname: evt.target[0].value,
+        email: emailid,
+        password: password
 
-        };
+      };
 
-        // Send data to the server
-        fetch(`${getGlobalApi()}/user/signup`, {
-          method: 'POST',
-          headers: {
-            "Content-type": "application/json"
-          },
-          body: JSON.stringify(formData)
-        }).then(async(res) => {
-          // console.log(res);
-          let data = await res.json()
-          console.log(data)
-          if(data.message){
-            toast.error(data.message);
-          }else{
-            toast.success("user register successfully")
-            navigate("/login");
-          }
-        });
+      // Send data to the server
+      fetch(`${getGlobalApi()}/user/signup`, {
+        method: 'POST',
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      }).then(async (res) => {
+        // console.log(res);
+        let data = await res.json()
+        console.log(data)
+        if (data.message) {
+          toast.error(data.message);
+        } else {
+          toast.success("user register successfully")
+          navigate("/login");
+        }
+      });
 
 
-      
+
     }
   }
 
   return (
     <div className="body33">
       <div className="login-container bg-zinc-900">
-       
+
 
         <header className="algoanims-heading">
           AlgoAnims
@@ -285,28 +285,28 @@ function Signup() {
                   <input
                     onChange={(evt) => {
                       passwordError(evt)
-                      
+
                     }}
-                    
+
                     value={password}
                     type={passType}
                     placeholder="Password"
                     required
                   />
                   <button
-                  className="btn-pass"
-                  type="button"
-                  onClick={()=>{
-                    setPassType((prev)=>{
-                      if(prev == 'password'){
-                        setPassicon("🙈");
-                        return "text";
-                      }else{
-                        setPassicon("👁️");
-                        return "password";
-                      }
-                    })
-                  }}
+                    className="btn-pass"
+                    type="button"
+                    onClick={() => {
+                      setPassType((prev) => {
+                        if (prev == 'password') {
+                          setPassicon("🙈");
+                          return "text";
+                        } else {
+                          setPassicon("👁️");
+                          return "password";
+                        }
+                      })
+                    }}
                   >{passicon}</button>
                   {password.length > 0 ? <input type="text"
                     readOnly
@@ -328,20 +328,20 @@ function Signup() {
                     placeholder="Confirm Password"
                     required
                   />
-                   <button
-                  className="btn-pass"
-                  type="button"
-                  onClick={()=>{
-                    setrePassType((prev)=>{
-                      if(prev == 'password'){
-                        setrePassicon("🙈");
-                        return "text";
-                      }else{
-                        setrePassicon("👁️");
-                        return "password";
-                      }
-                    })
-                  }}
+                  <button
+                    className="btn-pass"
+                    type="button"
+                    onClick={() => {
+                      setrePassType((prev) => {
+                        if (prev == 'password') {
+                          setrePassicon("🙈");
+                          return "text";
+                        } else {
+                          setrePassicon("👁️");
+                          return "password";
+                        }
+                      })
+                    }}
                   >{repassicon}</button>
                   {repassword.length > 0 ? <input type="text"
                     readOnly
@@ -361,6 +361,10 @@ function Signup() {
             </form>
           </div>
           <div className="signup-box">
+            <form  action="http://localhost:3000/auth/google" method="get">
+            
+              <button type="submit">Sign up google</button>
+            </form>
             <p>
               Have an account?
               <NavLink to='/login' className="text-blue-500">
