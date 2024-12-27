@@ -5,6 +5,10 @@ const UserDeatilsSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : "User"
     },
+    image:{
+        buffer : String,
+        contentType: String,
+    },
     details : {
         country : {
             type : String,

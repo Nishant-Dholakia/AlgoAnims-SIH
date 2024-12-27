@@ -204,3 +204,37 @@ background-color: #d4d4d4;
   } */
   
  
+  .image-container {
+    position: relative;
+    display: inline-block;
+    width: 150px; /* Adjust to your image size */
+    height: 150px;
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px; /* Optional */
+  }
+  
+  .edit-icon {
+    position: absolute;
+    top: 70%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 10px;
+  }
+  
+  .edit-icon:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
