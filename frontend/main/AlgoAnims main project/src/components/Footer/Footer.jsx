@@ -2,7 +2,7 @@ import React from 'react'
 import './footer.css'
 const Footer = () => {
     return (
-        <footer className="footer">
+        <footer className="footer relative top-[100vh]">
 
             <div className="footer-container">
                 <div className="footer-section feedback-form">

@@ -23,33 +23,89 @@ import Inorder from "../Algorithms/Tree/Travel/Inorder/Inorder.jsx"
 import Topic from "../Topic/Topic.jsx";
 import BinarySearch from "../Algorithms/Array/Search/Binary/BinarySearch.jsx";
 import LinearSearch from "../Algorithms/Array/Search/Linear/LinearSearch.jsx";
+import UserProcted from "../UserProcted/UserProtected.jsx"
+import Level from "../Algorithms/Tree/Travel/Level/Level.jsx"
 
 const Router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="" element={<HomeMain />}>
         <Route path="" element={<Home />} />
-        <Route path="graph" element={<Graph />} />
+        <Route path="graph" element={
+          <UserProcted>
+            <Graph />
+          </UserProcted>} />
 
-        <Route path="profile" element={<Profile />} />
-        <Route path="editprofile" element={<EditProfile />}>
-          <Route path="editProfilePage" element={<EditProfilePage />} />
-          <Route path="editPlatformPage" element={<EditPlatformPage />} />
-          <Route path="editAccountsPage" element={<EditAccountsPage />} />
+        <Route path="profile" element={
+          <UserProcted>
+            <Profile />
+          </UserProcted>} />
+        <Route path="editprofile" element={
+          <UserProcted>
+            <EditProfile />
+          </UserProcted>}>
+          <Route path="editProfilePage" element={
+            <UserProcted>
+              <EditProfilePage />
+            </UserProcted>} />
+          <Route path="editPlatformPage" element={
+            <UserProcted>
+              <EditPlatformPage />
+            </UserProcted>} />
+          <Route path="editAccountsPage" element={
+            <UserProcted>
+              <EditAccountsPage />
+            </UserProcted>} />
         </Route>
 
-        <Route path="search" element={<Topic/>} />
-        <Route path="sort" element={<Topic/>} />
-        <Route path="graph" element={<Topic/>} />
-        <Route path="linkedlist" element={<Topic/>} />
-        <Route path="tree" element={<Topic/>} />
+        <Route path="search" element={
+          <UserProcted>
+            <Topic />
+          </UserProcted>
+        } />
+        <Route path="sort" element={
+          <UserProcted>
+            <Topic />
+          </UserProcted>} />
+        <Route path="graph" element={
+          <UserProcted>
+            <Topic />
+          </UserProcted>} />
+        <Route path="linkedlist" element={
+          <UserProcted>
+            <Topic />
+          </UserProcted>} />
+        <Route path="tree" element={
+          <UserProcted>
+            <Topic />
+          </UserProcted>} />
 
-        <Route path="array/search/binary" element={<BinarySearch/>} />
-        <Route path="array/search/linear" element={<LinearSearch/>} />
+        <Route path="array/search/binary" element={
+          <UserProcted>
+            <BinarySearch />
+          </UserProcted>} />
+        <Route path="array/search/linear" element={
+          <UserProcted>
+            <LinearSearch />
+          </UserProcted>} />
 
-        <Route path="tree/preorder" element={<Preorder/>} />
-        <Route path="tree/postorder" element={<Postorder/>} />
-        <Route path="tree/inorder" element={<Inorder/>} />  
+        <Route path="tree/preorder" element={
+          <UserProcted>
+            <Preorder />
+          </UserProcted>
+        } />
+        <Route path="tree/postorder" element={
+          <UserProcted>
+            <Postorder />
+          </UserProcted>} />
+        <Route path="tree/inorder" element={
+          <UserProcted>
+            <Inorder />
+          </UserProcted>} />
+          <Route path="tree/levelorder" element={
+          <UserProcted>
+            <Level />
+          </UserProcted>} />
       </Route>
 
       <Route path="login" element={<Login />} />

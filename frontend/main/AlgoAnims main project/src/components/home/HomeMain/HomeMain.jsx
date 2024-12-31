@@ -8,9 +8,11 @@ import Footer from '../../Footer/Footer.jsx'
 function HomeMain() {
     return (
         <>
-        <Nav/>
-        <Outlet/>
-        <Footer/>
+            <div className='min-h-[100vh]'>
+                <Nav />
+                <Outlet />
+                <Footer />
+            </div>
         </>
     )
 }
