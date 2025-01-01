@@ -5,10 +5,14 @@ import '../travel.css'
 let anino = 0;
 
 function Postorder() {
-//   setTheme({
-//     strokeColor : "#111",
-//     fontSize: 12,
-//   })
+  setTheme({
+      strokeColor : "#111",
+      fontSize: 15,
+      radius : 30,
+      leafNodeSpace: 100,
+      lineHeight: 150,
+    })
+  
   const [resetDisabled, setResetDisabled] = useState(false);
   const [ramdomDisabled, setRandomDisabled] = useState(false);
 
