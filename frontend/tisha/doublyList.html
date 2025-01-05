@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doubly Linked List</title>
+    <link href="doublyList.css" rel="stylesheet">
+    
+</head>
+<body>
+    
+    <div class="controls">
+        <input type="text" id="valueInput" placeholder="Enter value">
+        <button onclick="insertAtFirst()" id="entervalbtn">Enter at First</button>
+        <button onclick="insertAtLast()" id="entervalbtn">Enter at Last</button>
+        <input type="number" id="targetValueInput" placeholder="Target value">
+        <button onclick="insertBeforeValue()" id="entervalbtn">Enter Before Value</button>
+        <button onclick="insertAfterValue()" id="entervalbtn">Enter After Value</button>
+        <br><button id="size" onclick="length()">Length</button><br>
+        <input type="number" id="element" placeholder="Enter Element">
+        <button id="size" onclick="findelement()">Find</button>
+        
+        <input type="number" id="element1" placeholder="Enter Element ">
+        <button id="size" onclick="deleteelement()">Delete</button>
+    </div>
+    <p id="message"></p><br><br/>
+    <p id="message1"></p><br><br/>
+    <div class="linked-list-container" id="linkedListContainer">
+    </div>
+    
+<script src="doublyList.js"></script>
+   
+    
+</body>
+</html>

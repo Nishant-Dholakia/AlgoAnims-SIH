@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>circular List</title>
+    <link rel="stylesheet" href="circularList.css">
+   
+     
+    
+</head>
+<body>
+    <div class="controls">
+        <input type="text" id="valueInput" placeholder="Enter value">
+        <button onclick="insertAtFirst()" id="cirinsert">Enter at First</button>
+        <button onclick="insertAtLast()" id="cirinsert">Enter at Last</button>
+        <input type="number" id="targetValueInput" placeholder="Target value">
+        <button onclick="insertBeforeValue()" id="cirinsert">Enter Before Value</button>
+        <button onclick="insertAfterValue()" id="cirinsert">Enter After Value</button>
+    
+        <button onclick="deleteLastNode()" id="cirdelete">Delete Last Node</button>
+        <button onclick="deleteFirstNode()" id="cirdelete">Delete First Node</button>
+        <input type="number" id="element" placeholder="Enter Value">
+        <button onclick="cirfind()" id="cirfind">Find</button>
+        <button onclick="cirlength()" id="cirlength">Length</button>
+    </div>
+    <div class="linked-list-container" id="linkedListContainer">
+    </div>
+    <br><br>
+  <p id="message"></p>
+  <script src="circularList.js"></script>
+    
+    
+</body>
+</html>
