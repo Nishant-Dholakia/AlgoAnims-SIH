@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Priority Queue</title>
+ <link href="priorityqueue.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="controls">
+        <input type="text" id="sizevalue" placeholder="Enter Size" onkeypress="handleSizeKeypress(event)">
+        <button onclick="size()" id="sizeval">Enter</button>
+    </div>
+    <div class="controls">
+      <label>
+          <input type="radio" id="highprq" name="hq" value="highpriority" checked>
+          High Priority
+      </label>
+      <label>
+          <input type="radio" id="lowprq" name="hq" value="lowpriority">
+          Low Priority
+      </label>
+  </div>
+    <div class="controls">
+        <input type="text" id="valueInput" placeholder="Enter value" onkeypress="handleEnqueueKeypress(event)">
+        <button onclick="enqueue()" id="enqueueval">Enqueue</button>
+        <button onclick="dequeue()" id="dequeueval">Dequeue</button>
+        <button onclick="reset()" id="resetval">Reset</button>
+    </div>
+    <div class="rectangle" id="rectangle">
+        <div class="queue-container" id="queueContainer"></div>
+    </div>
+   
+    <br><br/>
+    <p id="message"></p>
+    <br><br/>
+
+    <script src="priorityqueue.js"></script>
+      
+</body>
+</html>
