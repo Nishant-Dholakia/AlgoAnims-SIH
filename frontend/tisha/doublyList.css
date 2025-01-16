@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.controls {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+#entervalbtn,#size {
+    background-color: #356976;
+    color: white;
+    border: 4px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.controls input, .controls button {
+    padding: 10px;
+    font-size: 16px;
+}
+.linked-list-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.node {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+.node-box {
+    border: 2px solid #333;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.removee {
+    border: 2px solid #333;
+    width: 50px;
+    height: 50px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.pointer {
+    width: 54px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+.arrow {
+    font-size: 24px;
+}
+#message,#message1{
+    font-size: 21px;
+    color: #356976;
+
+}
+

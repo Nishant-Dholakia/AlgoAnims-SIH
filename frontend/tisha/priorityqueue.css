@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+}
+
+
+#enqueueval, #dequeueval, #sizeval ,#resetval{
+        background-color: #356976;
+        color: white;
+        border: 4px;
+        border-radius: 7px;
+        cursor: pointer;
+    }
+.controls {
+        margin-bottom: 20px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .controls input, .controls button {
+        padding: 10px;
+        font-size: 17px;
+    }
+.queue-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.queue-box {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #000;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background-color: #f0f0f0;
+  position: relative;
+}
+.queue-box .label {
+  position: absolute;
+  font-size: 12px;
+  font-weight: normal;
+  color: #356976;
+}
+.front-label {
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.rear-label {
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.controls {
+  margin: 20px 0;
+}
+.controls input {
+  margin-right: 10px;
+}
+#message{
+  color: #356976;
+  font-size: 20px;
+}
