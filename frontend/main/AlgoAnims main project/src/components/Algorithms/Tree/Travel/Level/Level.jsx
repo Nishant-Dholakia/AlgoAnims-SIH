@@ -34,7 +34,7 @@ const Level = () => {
   const inspeed = useRef(1600);
   const [drawMode, setDrawMode] = useState(false);
   const [inserDisabled, setInserDisabled] = useState(false);
-  const [queueLength, setqueueLength] = useState([Array.from({ length: 15 }, (_) => -1)]);
+  const [queueLength, setqueueLength] = useState([]);
 
   function resetAll(root) {
     setReset(true);
@@ -68,9 +68,11 @@ const Level = () => {
 
 
 
-  async function border(node) {
+  async function border(node , isPush) {
     return new Promise((resolve, reject) => {
       node.nodeCircle.colorSettings.borderColor = "#111"
+      if(isPush) setqueueLength((prev) => [...prev, node]);
+
       //   node.nodeCircle.colorSettings.bgColor = "#fff2e0"
       drawBinaryTree(fixedTreeRoot, document.querySelector("#travel"), option)
       setTimeout(() => {
@@ -82,52 +84,46 @@ const Level = () => {
   }
 
 
-  // async function collectLevel(node) {
-
-  //   if (node == null) {
-  //     return;
-  //   }
-  //   //   console.log(node)
-  //   await border(node);
-
-  //   node.nodeCircle.colorSettings.bgColor = 'lightgreen';
-  //   drawBinaryTree(fixedTreeRoot, document.querySelector("#travel"), option);
-  //   setTravel((prevTravel) => [...prevTravel, node.value]);
-  //   levelorder.push(node.value);
-  //   await collectLevel(node.left);
-
-  //   await border(node);
-
-  //   await collectLevel(node.right);
-  //   await border(node);
-
-  // }
-
   async function collectLevel(node) {
     if (node == null) {
       return;
     }
+  
     let queue = [];
     queue.push(node);
-    await border(node);
+  
+    await border(node, true);
+    // Update queueLength only once, after the first node
+    setqueueLength([...queue]);
+  
     while (queue.length > 0) {
       let temp = queue.shift();
+  
+      // Process left child
       if (temp.left != null) {
-        await border(temp.left);
+        await border(temp.left, true);
         queue.push(temp.left);
       }
+  
+      // Process right child
       if (temp.right != null) {
-        await border(temp.right);
+        await border(temp.right, true);
         queue.push(temp.right);
       }
-      await border(temp);
+  
+      // Update queueLength whenever the queue changes
+      setqueueLength([...queue]);
+  
+      // Highlight the current node
+      await border(temp, false);
       temp.nodeCircle.colorSettings.bgColor = 'lightgreen';
       drawBinaryTree(fixedTreeRoot, document.querySelector("#travel"), option);
+  
+      // Add the value of the current node to travel state
       setTravel((prevTravel) => [...prevTravel, temp.value]);
-
     }
-
   }
+  
 
   function forTravelBtn(evt) {
     setReset(false);
@@ -242,10 +238,10 @@ const Level = () => {
         </div>
       </div>
 
-      <div id='levelorder' className='p-4 w-full h-1/4 bg-zinc-200 text-black'>
-        {travel.map((value, idx) => (
-          <span key={idx} className='text-2xl m-4'>{value}</span>
-        ))}
+      <div id='levelorder' className=' flex  w-full h-1/4 bg-zinc-200 text-black'>
+          {travel.map((value, idx) => (
+            <div key={idx} className='text-2xl m-2 p-2'>{value}</div>
+          ))}
       </div>
 
       <section className={`section w-full h-full p-3`}>
@@ -261,12 +257,14 @@ const Level = () => {
             <pre className='' > {"}"}</pre>
           </div>
         </div>
-        <div className='bg-zinc-700 text-white z-50 flex justify-between gap-12'>
-          {queueLength.map((value, idx) => (
-            <div key={idx} className=' border-black'>{value}</div>
-          ))}
+        <div className=' text-black z-50 flex justify-between '>
+          {/* <div className='border-black p-4 m-4'> */}
+            {queueLength.map((node, idx) => (
+              <div key={idx} className=' border-black border-2 p-2'>{node.value}</div>
+            ))}
+          {/* </div> */}
         </div>
-        <canvas id='travel' className='z-0 dark:bg-gray-800'></canvas>
+        <canvas id='travel' className='z-0 mt-4 dark:bg-gray-800'></canvas>
       </section>
     </div>
   )

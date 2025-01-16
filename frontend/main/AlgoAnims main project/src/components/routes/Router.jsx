@@ -102,10 +102,10 @@ const Router = createBrowserRouter(
           <UserProcted>
             <Inorder />
           </UserProcted>} />
-          <Route path="tree/levelorder" element={
-          <UserProcted>
-            <Level />
-          </UserProcted>} />
+        <Route path="tree/levelorder" element={
+          // <UserProcted>
+          <Level />
+        } />
       </Route>
 
       <Route path="login" element={<Login />} />
