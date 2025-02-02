@@ -35,6 +35,7 @@ const Level = () => {
   const [drawMode, setDrawMode] = useState(false);
   const [inserDisabled, setInserDisabled] = useState(false);
   const [queueLength, setqueueLength] = useState([]);
+  const [disabledArray, setDisabledArray] = useState(Array(15).fill(false));
 
   function resetAll(root) {
     setReset(true);
@@ -93,33 +94,52 @@ const Level = () => {
     queue.push(node);
   
     await border(node, true);
-    // Update queueLength only once, after the first node
     setqueueLength([...queue]);
+    setDisabledArray((prev) => {
+      let temp = [...prev];
+      temp[0] = false;
+      return temp;
+    })
+
+    let idx = 0;
+    let deleteidx = 0;
   
     while (queue.length > 0) {
       let temp = queue.shift();
   
-      // Process left child
       if (temp.left != null) {
         await border(temp.left, true);
         queue.push(temp.left);
+        idx++;
+        setDisabledArray((prev) => {  
+          let temp = [...prev];
+          temp[idx] = false;
+          return temp;
+        })
       }
-  
-      // Process right child
       if (temp.right != null) {
         await border(temp.right, true);
         queue.push(temp.right);
+        idx++;
+        setDisabledArray((prev) => {  
+          let temp = [...prev];
+          temp[idx] = false;
+          return temp;
+        })
       }
-  
-      // Update queueLength whenever the queue changes
-      setqueueLength([...queue]);
-  
-      // Highlight the current node
+   
       await border(temp, false);
       temp.nodeCircle.colorSettings.bgColor = 'lightgreen';
       drawBinaryTree(fixedTreeRoot, document.querySelector("#travel"), option);
-  
-      // Add the value of the current node to travel state
+      setDisabledArray((prev)=>{
+        let temp = [...prev];
+        temp[0] = true;
+        temp[deleteidx] = true;
+        return temp
+      })
+      deleteidx++;
+      
+     
       setTravel((prevTravel) => [...prevTravel, temp.value]);
     }
   }
@@ -258,11 +278,10 @@ const Level = () => {
           </div>
         </div>
         <div className=' text-black z-50 flex justify-between '>
-          {/* <div className='border-black p-4 m-4'> */}
+          
             {queueLength.map((node, idx) => (
-              <div key={idx} className=' border-black border-2 p-2'>{node.value}</div>
+              disabledArray[idx] ? <div key={idx} className={`opacity-50 border-black border-2 p-2`}>{node.value}</div> : <div key={idx} className={`border-black border-2 p-2`}>{node.value}</div>
             ))}
-          {/* </div> */}
         </div>
         <canvas id='travel' className='z-0 mt-4 dark:bg-gray-800'></canvas>
       </section>
